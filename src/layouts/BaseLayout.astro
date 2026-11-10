@@ -40,7 +40,7 @@ const shouldIndex = !site.demoMode && site.seo.robots === 'index,follow' && base
     <meta name="twitter:title" content={site.seo.title} />
     <meta name="twitter:description" content={site.seo.description} />
     <meta name="twitter:image" content={imageUrl} />
-    <script type="application/ld+json" set:html={JSON.stringify(businessSchema).replace(/</g, '\u003c')}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema).replace(/</g, String.fromCharCode(92) + 'u003c')}></script>
   </head>
   <body class="antialiased">
     <a href="#sadrzaj" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-4">Preskoči na sadržaj</a>
