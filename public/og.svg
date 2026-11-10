@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f7f6f2"/>
+  <rect x="702" y="-60" width="550" height="760" rx="250" fill="#d9d7c8"/>
+  <path d="M805 590 V260 Q980 30 1150 260 V590Z" fill="#b3bbaa"/>
+  <circle cx="1020" cy="370" r="145" fill="#bf715a"/>
+  <text x="100" y="130" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" letter-spacing="6" fill="#bf715a">PROSTOR &amp; IDEJE</text>
+  <text x="100" y="335" font-family="Georgia,serif" font-size="146" fill="#1b2826">FORMA</text>
+  <text x="105" y="410" font-family="Arial,Helvetica,sans-serif" font-size="33" fill="#626c69">Enterijer sa karakterom</text>
+  <rect x="103" y="470" width="140" height="7" rx="4" fill="#bf715a"/>
+</svg>

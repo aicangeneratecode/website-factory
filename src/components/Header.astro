@@ -1,0 +1,30 @@
+---
+import type { SiteConfig } from '../types/site';
+interface Props { site: SiteConfig }
+const { site } = Astro.props;
+---
+<header class="sticky top-0 z-40 border-b border-line/70 bg-canvas/95 backdrop-blur-xl">
+  <div class="container-shell flex min-h-21 items-center justify-between gap-6">
+    <a href="#vrh" class="flex items-center gap-2.5" aria-label={site.brand.name + ' — početna'}>
+      <span class="grid h-10 w-10 place-items-center rounded-full bg-ink text-lg font-bold text-white">{site.brand.initials}</span>
+      <span class="flex flex-col leading-none"><strong class="text-xl tracking-[.1em]">{site.brand.name}</strong><small class="mt-1.5 text-[.52rem] font-bold tracking-[.22em] text-muted">{site.brand.tag}</small></span>
+    </a>
+    <nav aria-label="Glavna navigacija" class="hidden items-center gap-9 lg:flex">
+      {site.navigation.map((item) => <a href={item.href} class="text-[.77rem] font-bold text-muted transition hover:text-ink">{item.label}</a>)}
+    </nav>
+    <a class="hidden rounded-full border border-ink px-6 py-3 text-[.75rem] font-bold transition hover:bg-ink hover:text-white lg:inline-flex" href="#kontakt">Pošaljite upit <span aria-hidden="true" class="ml-2">↗</span></a>
+    <details class="group relative lg:hidden">
+      <summary class="flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-line px-4 text-xs font-bold [&::-webkit-details-marker]:hidden"><span>Meni</span><span class="text-base" aria-hidden="true">☰</span></summary>
+      <nav aria-label="Mobilna navigacija" class="absolute right-0 top-12 flex w-56 flex-col gap-1 rounded-2xl border border-line bg-paper p-3 shadow-xl">
+        {site.navigation.map((item) => <a class="rounded-lg px-3 py-3 text-sm font-semibold hover:bg-canvas" href={item.href}>{item.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('details nav a').forEach((link) => {
+    link.addEventListener('click', () => {
+      link.closest('details')?.removeAttribute('open');
+    });
+  });
+</script>

@@ -1,0 +1,22 @@
+---
+import type { SiteConfig } from '../types/site';
+interface Props { site: SiteConfig }
+const { site } = Astro.props;
+const section = site.services;
+---
+<section id="usluge" class="section-space">
+  <div class="container-shell">
+    <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+      <div><p class="section-kicker mb-5">{section.eyebrow}</p><h2 class="section-title max-w-lg">{section.title}</h2></div>
+      <p class="max-w-lg self-end text-base leading-[1.9] text-muted lg:ml-auto">{section.lead}</p>
+    </div>
+    <div class="mt-15 grid gap-4 md:grid-cols-3">
+      {section.items.map((item) => <article class="group rounded-[1.7rem] border border-line bg-paper p-8 transition duration-300 hover:-translate-y-1 hover:shadow-xl lg:p-10">
+        <p class="flex items-center justify-between border-b border-line pb-8"><span class="font-display text-3xl text-clay">{item.number}</span><span class="grid h-10 w-10 place-items-center rounded-full border border-line text-lg transition group-hover:bg-ink group-hover:text-white" aria-hidden="true">↗</span></p>
+        <h3 class="mt-9 font-display text-[1.85rem] leading-tight tracking-tight">{item.title}</h3>
+        <p class="mt-4 min-h-22 text-[.92rem] leading-[1.8] text-muted">{item.description}</p>
+        <ul class="mt-6 space-y-3 border-t border-line pt-6">{item.points.map((point) => <li class="flex items-center gap-3 text-xs font-bold text-ink"><span class="h-1.5 w-1.5 rounded-full bg-clay"></span>{point}</li>)}</ul>
+      </article>)}
+    </div>
+  </div>
+</section>

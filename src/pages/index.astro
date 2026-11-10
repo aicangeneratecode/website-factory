@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { siteData } from '../data/site';
+---
+<BaseLayout site={siteData}>
+  <Header site={siteData} />
+  <main id="sadrzaj">
+    <Hero site={siteData} />
+    <Services site={siteData} />
+    <Gallery site={siteData} />
+    <Reviews site={siteData} />
+    <Contact site={siteData} />
+  </main>
+  <Footer site={siteData} />
+</BaseLayout>

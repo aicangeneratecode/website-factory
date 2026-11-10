@@ -1,0 +1,12 @@
+---
+import type { SiteConfig } from '../types/site';
+interface Props { site: SiteConfig }
+const { site } = Astro.props;
+---
+<footer class="bg-[#14211e] text-white">
+  <div class="container-shell flex flex-col gap-8 border-t border-white/15 py-9 md:flex-row md:items-center md:justify-between">
+    <div><a href="#vrh" class="font-extrabold tracking-[.2em]">{site.brand.name}</a><p class="mt-2 text-xs text-white/55">{site.footer.note}</p></div>
+    <nav aria-label="Navigacija u podnožju" class="flex flex-wrap gap-5">{site.navigation.map((item) => <a class="text-xs text-white/65 transition hover:text-white" href={item.href}>{item.label}</a>)}</nav>
+    <p class="text-xs text-white/45">© {new Date().getFullYear()} {site.brand.name}{site.demoMode ? ' · Demo šablon' : ''}</p>
+  </div>
+</footer>
