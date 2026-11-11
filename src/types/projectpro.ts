@@ -56,6 +56,18 @@ export interface ProjectProConfig {
       note: string;
     }[];
   };
+  
+  beforeAfter: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    beforeImage: string;
+    afterImage: string;
+    beforeAlt: string;
+    afterAlt: string;
+    verifiedPair: boolean;
+  };
+
   sections: {
     id: string;
     number: string;

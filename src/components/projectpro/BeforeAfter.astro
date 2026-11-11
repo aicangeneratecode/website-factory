@@ -1,0 +1,195 @@
+
+---
+import type { ProjectProConfig } from '../../types/projectpro';
+
+interface Props {
+  comparison: ProjectProConfig['beforeAfter'];
+}
+
+const { comparison } = Astro.props;
+
+const beforeLabel = comparison.verifiedPair
+  ? 'PRE'
+  : 'PRIMER A';
+
+const afterLabel = comparison.verifiedPair
+  ? 'POSLE'
+  : 'PRIMER B';
+---
+
+<section
+  id="preposle"
+  class="scroll-mt-24 bg-[var(--pp-bg)] py-20 md:py-28"
+>
+  <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+    <div class="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
+      <div>
+        <p class="mb-6 text-[11px] font-extrabold tracking-[0.2em] text-[var(--pp-accent)]">
+          {comparison.eyebrow}
+        </p>
+
+        <h2 class="font-display text-[clamp(3rem,5.5vw,5.8rem)] leading-[1.05] tracking-[-0.06em]">
+          {comparison.title}
+        </h2>
+      </div>
+
+      <p class="max-w-md text-base leading-8 text-[var(--pp-muted)] lg:ml-auto">
+        {comparison.description}
+      </p>
+    </div>
+
+    <div data-compare>
+      <div
+        data-compare-stage
+        style="--reveal: 50%"
+        class="relative aspect-[4/3] cursor-ew-resize select-none overflow-hidden bg-[#d8d4cb] touch-pan-y sm:aspect-[16/9]"
+      >
+        <!-- Base image -->
+        <img
+          src={comparison.beforeImage}
+          alt={comparison.beforeAlt}
+          width="1600"
+          height="900"
+          loading="lazy"
+          draggable="false"
+          class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
+
+        <!-- Revealed image -->
+        <img
+          src={comparison.afterImage}
+          alt={comparison.afterAlt}
+          width="1600"
+          height="900"
+          loading="lazy"
+          draggable="false"
+          class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          style="clip-path: inset(0 calc(100% - var(--reveal)) 0 0)"
+        />
+
+        <!-- Labels -->
+        <span class="pointer-events-none absolute bottom-5 left-5 bg-white px-4 py-2 text-[11px] font-extrabold tracking-widest text-[var(--pp-ink)] md:bottom-8 md:left-8">
+          {afterLabel}
+        </span>
+
+        <span class="pointer-events-none absolute bottom-5 right-5 bg-white px-4 py-2 text-[11px] font-extrabold tracking-widest text-[var(--pp-ink)] md:bottom-8 md:right-8">
+          {beforeLabel}
+        </span>
+
+        <!-- Divider -->
+        <div
+          class="pointer-events-none absolute bottom-0 top-0 z-10 w-[2px] -translate-x-1/2 bg-white"
+          style="left: var(--reveal)"
+        >
+          <div class="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-white bg-[var(--pp-accent)] text-lg font-bold text-white shadow-xl sm:h-17 sm:w-17">
+            <span aria-hidden="true">↔</span>
+          </div>
+        </div>
+
+        {!comparison.verifiedPair && (
+          <span class="pointer-events-none absolute left-4 top-4 bg-[var(--pp-ink)] px-4 py-2 text-[10px] font-bold tracking-wider text-white">
+            DEMO POREĐENJE
+          </span>
+        )}
+      </div>
+
+      <!-- Accessible keyboard / touch control -->
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
+        <label
+          for="pp-compare-range"
+          class="shrink-0 text-sm font-bold"
+        >
+          Pomerite klizač
+        </label>
+
+        <input
+          id="pp-compare-range"
+          data-compare-range
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          step="1"
+          aria-label="Uporedite dve fotografije"
+          class="h-3 w-full cursor-ew-resize accent-[var(--pp-accent)]"
+        />
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-col justify-between gap-6 border-t border-black/10 pt-7 md:flex-row md:items-center">
+      <p class="max-w-xl text-xs leading-6 text-[var(--pp-muted)]">
+        {comparison.verifiedPair
+          ? 'Pomerite razdelnik da uporedite prostor pre i posle radova.'
+          : 'Demonstracija funkcije sa fotografijama različitih prostora. Ovo nije stvarna transformacija pre i posle.'}
+      </p>
+
+      <a
+        href="#upit"
+        class="inline-flex items-center gap-3 self-start text-sm font-bold text-[var(--pp-accent)]"
+      >
+        Zatražite procenu
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-compare]').forEach((root) => {
+    const stage = root.querySelector<HTMLElement>(
+      '[data-compare-stage]'
+    );
+
+    const slider = root.querySelector<HTMLInputElement>(
+      '[data-compare-range]'
+    );
+
+    if (!stage || !slider) return;
+
+    const setValue = (number: number) => {
+      const value = Math.max(0, Math.min(100, number));
+
+      stage.style.setProperty('--reveal', `${value}%`);
+      slider.value = String(value);
+    };
+
+    const updateFromPointer = (event: PointerEvent) => {
+      const rect = stage.getBoundingClientRect();
+
+      if (!rect.width) return;
+
+      const percentage =
+        ((event.clientX - rect.left) / rect.width) * 100;
+
+      setValue(Math.round(percentage));
+    };
+
+    slider.addEventListener('input', () => {
+      setValue(Number(slider.value));
+    });
+
+    stage.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) {
+        return;
+      }
+
+      stage.setPointerCapture(event.pointerId);
+      updateFromPointer(event);
+    });
+
+    stage.addEventListener('pointermove', (event) => {
+      if (stage.hasPointerCapture(event.pointerId)) {
+        updateFromPointer(event);
+      }
+    });
+
+    const releasePointer = (event: PointerEvent) => {
+      if (stage.hasPointerCapture(event.pointerId)) {
+        stage.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    stage.addEventListener('pointerup', releasePointer);
+    stage.addEventListener('pointercancel', releasePointer);
+  });
+</script>

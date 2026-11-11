@@ -71,6 +71,17 @@
     ]
   },
 
+  "beforeAfter": {
+    "eyebrow": "02 / PRE I POSLE",
+    "title": "Pogledajte razliku izbliza.",
+    "description": "Pomerite klizač i uporedite dva prikaza prostora.",
+    "beforeImage": "/images/projectpro/project-01.jpg",
+    "afterImage": "/images/projectpro/project-02.jpg",
+    "beforeAlt": "Ilustrativna fotografija dnevnog boravka",
+    "afterAlt": "Ilustrativna fotografija kuhinje",
+    "verifiedPair": false
+  },
+
   "sections": [
     {
       "id": "projekti",
