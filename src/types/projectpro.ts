@@ -81,6 +81,19 @@ export interface ProjectProConfig {
     }[];
   };
 
+  process: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    steps: {
+      number: string;
+      title: string;
+      description: string;
+      detail: string;
+    }[];
+    note: string;
+  };
+
   sections: {
     id: string;
     number: string;

@@ -134,6 +134,39 @@
   ]
 },
 
+"process": {
+  "eyebrow": "04 / PROCES RADA",
+  "title": "Jasan plan. Svaki korak.",
+  "description": "Dobar rezultat počinje dobrom organizacijom. Od prvog razgovora do završne provere, svaki korak ima svoju svrhu.",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Prvi razgovor",
+      "description": "Razgovaramo o vašim idejama, potrebama i radovima koje planirate.",
+      "detail": "Upoznavanje sa projektom"
+    },
+    {
+      "number": "02",
+      "title": "Obilazak i procena",
+      "description": "Sagledavamo stanje prostora i definišemo okvirni obim potrebnih radova.",
+      "detail": "Planiranje i ponuda"
+    },
+    {
+      "number": "03",
+      "title": "Organizacija radova",
+      "description": "Dogovaramo redosled aktivnosti i pristup realizaciji projekta.",
+      "detail": "Priprema i izvođenje"
+    },
+    {
+      "number": "04",
+      "title": "Završna provera",
+      "description": "Pregledamo izvedene radove i dogovorene završne detalje.",
+      "detail": "Pregled prostora"
+    }
+  ],
+  "note": "Obim radova i dinamika realizacije određuju se prema konkretnom projektu."
+},
+
   "sections": [
     {
       "id": "projekti",
