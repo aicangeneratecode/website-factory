@@ -4,6 +4,7 @@ import '../styles/global.css';
 import type { ProjectProConfig } from '../types/projectpro';
 import ProjectGallery from '../components/projectpro/ProjectGallery.astro';
 import BeforeAfter from '../components/projectpro/BeforeAfter.astro';
+import ProjectServices from '../components/projectpro/ProjectServices.astro';
 
 
 interface Props {
@@ -166,6 +167,9 @@ const themeStyle = [
   <!-- BEFORE / AFTER -->
   <BeforeAfter comparison={config.beforeAfter} />
 
+  <!-- SERVICES -->
+  <ProjectServices services={config.services} />
+
   <!-- NEXT SECTIONS -->
   <section class="bg-[var(--pp-bg)] py-20">
     <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
@@ -179,9 +183,11 @@ const themeStyle = [
 
       <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {config.sections
-          .filter((section) =>
-            !['projekti', 'preposle'].includes(section.id)
-          )
+
+      .filter((section) =>
+        !['projekti', 'preposle', 'usluge'].includes(section.id)
+      )
+
           .map((section) => (
             <section
               id={section.id}

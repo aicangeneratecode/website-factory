@@ -82,6 +82,58 @@
     "verifiedPair": false
   },
 
+"services": {
+  "eyebrow": "03 / NAŠE USLUGE",
+  "title": "Sve što vašem prostoru treba.",
+  "description": "Od kompletne adaptacije do pažljivo izvedenih završnih radova. Izaberite uslugu koja odgovara vašem projektu.",
+  "items": [
+    {
+      "number": "01",
+      "title": "Kompletno renoviranje stanova",
+      "description": "Sveobuhvatna adaptacija stambenog prostora, od početne pripreme do završnih detalja.",
+      "details": [
+        "Demontaža i priprema prostora",
+        "Građevinski i instalaterski radovi",
+        "Završna obrada enterijera"
+      ],
+      "featured": true
+    },
+    {
+      "number": "02",
+      "title": "Adaptacija kupatila",
+      "description": "Funkcionalna i estetska rešenja za potpuno osveženje kupatila.",
+      "details": [
+        "Vodovodne instalacije",
+        "Hidroizolacija i keramika",
+        "Ugradnja sanitarija"
+      ],
+      "featured": false
+    },
+    {
+      "number": "03",
+      "title": "Renoviranje kuhinje",
+      "description": "Praktičan raspored, savremeni materijali i pažnja prema svakom detalju.",
+      "details": [
+        "Priprema instalacija",
+        "Keramičarski radovi",
+        "Završna obrada prostora"
+      ],
+      "featured": false
+    },
+    {
+      "number": "04",
+      "title": "Završni radovi",
+      "description": "Precizna završna obrada koja prostoru daje potpuno nov izgled.",
+      "details": [
+        "Gletovanje i krečenje",
+        "Postavljanje podnih obloga",
+        "Dekorativni završni detalji"
+      ],
+      "featured": false
+    }
+  ]
+},
+
   "sections": [
     {
       "id": "projekti",

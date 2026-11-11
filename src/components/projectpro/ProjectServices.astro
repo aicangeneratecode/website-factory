@@ -1,0 +1,151 @@
+
+---
+import type { ProjectProConfig } from '../../types/projectpro';
+
+interface Props {
+  services: ProjectProConfig['services'];
+}
+
+const { services } = Astro.props;
+---
+
+<section
+  id="usluge"
+  class="scroll-mt-24 bg-[var(--pp-bg)] py-20 md:py-28"
+>
+  <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+
+    <!-- SECTION HEADING -->
+    <div class="grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
+      <div>
+        <p class="mb-6 text-[11px] font-extrabold tracking-[0.2em] text-[var(--pp-accent)]">
+          {services.eyebrow}
+        </p>
+
+        <h2 class="max-w-[780px] font-display text-[clamp(3rem,5.5vw,5.8rem)] leading-[1.05] tracking-[-0.06em]">
+          {services.title}
+        </h2>
+      </div>
+
+      <p class="max-w-[440px] text-base leading-8 text-[var(--pp-muted)] lg:ml-auto">
+        {services.description}
+      </p>
+    </div>
+
+    <!-- SERVICES GRID -->
+    <div class="mt-14 grid gap-4 md:grid-cols-2">
+      {services.items.map((service) => (
+        <article
+          class:list={[
+            "group relative flex min-h-[410px] flex-col justify-between overflow-hidden p-7 transition-all duration-300 md:p-10 lg:min-h-[460px] lg:p-12",
+            service.featured
+              ? "bg-[var(--pp-ink)] text-white"
+              : "border border-black/10 bg-[var(--pp-surface)] text-[var(--pp-ink)] hover:-translate-y-1 hover:shadow-xl"
+          ]}
+        >
+          <!-- TOP -->
+          <div>
+            <div
+              class:list={[
+                "flex items-center justify-between border-b pb-7",
+                service.featured
+                  ? "border-white/20"
+                  : "border-black/10"
+              ]}
+            >
+              <span
+                class:list={[
+                  "font-display text-4xl",
+                  service.featured
+                    ? "text-[#DCA18A]"
+                    : "text-[var(--pp-accent)]"
+                ]}
+              >
+                {service.number}
+              </span>
+
+              <span
+                class:list={[
+                  "grid h-12 w-12 place-items-center rounded-full border text-xl transition-transform duration-300 group-hover:rotate-45",
+                  service.featured
+                    ? "border-white/30 text-white"
+                    : "border-black/15 text-[var(--pp-ink)]"
+                ]}
+                aria-hidden="true"
+              >
+                ↗
+              </span>
+            </div>
+
+            <h3 class="mt-9 max-w-[470px] font-display text-[clamp(1.85rem,3vw,3rem)] leading-[1.1] tracking-[-0.04em]">
+              {service.title}
+            </h3>
+
+            <p
+              class:list={[
+                "mt-5 max-w-[470px] text-sm leading-7",
+                service.featured
+                  ? "text-white/65"
+                  : "text-[var(--pp-muted)]"
+              ]}
+            >
+              {service.description}
+            </p>
+          </div>
+
+          <!-- DETAILS + LINK -->
+          <div class="mt-10">
+            <ul class="space-y-3">
+              {service.details.map((detail) => (
+                <li class="flex items-start gap-3 text-[13px] leading-6">
+                  <span
+                    class:list={[
+                      "mt-2 h-1.5 w-1.5 shrink-0 rounded-full",
+                      service.featured
+                        ? "bg-[#DCA18A]"
+                        : "bg-[var(--pp-accent)]"
+                    ]}
+                  ></span>
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#upit"
+              class:list={[
+                "mt-9 inline-flex items-center gap-4 border-b pb-2 text-sm font-bold transition-all duration-200 hover:gap-6",
+                service.featured
+                  ? "border-white/60 text-white"
+                  : "border-[var(--pp-accent)] text-[var(--pp-accent)]"
+              ]}
+            >
+              Zatražite procenu
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div class="mt-14 flex flex-col justify-between gap-7 border-t border-black/15 pt-9 md:flex-row md:items-center">
+      <div>
+        <h3 class="font-display text-2xl tracking-tight md:text-3xl">
+          Niste sigurni odakle da počnete?
+        </h3>
+        <p class="mt-3 text-sm leading-7 text-[var(--pp-muted)]">
+          Opišite svoj prostor i radove koje planirate.
+        </p>
+      </div>
+
+      <a
+        href="#upit"
+        class="inline-flex min-h-14 shrink-0 items-center justify-center gap-5 self-start bg-[var(--pp-accent)] px-7 py-4 text-sm font-bold text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[var(--pp-ink)]"
+      >
+        Pošaljite upit
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>

@@ -68,6 +68,19 @@ export interface ProjectProConfig {
     verifiedPair: boolean;
   };
 
+  services: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: {
+      number: string;
+      title: string;
+      description: string;
+      details: string[];
+      featured: boolean;
+    }[];
+  };
+
   sections: {
     id: string;
     number: string;
