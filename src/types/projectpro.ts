@@ -94,6 +94,19 @@ export interface ProjectProConfig {
     note: string;
   };
 
+  testimonials: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: {
+      text: string;
+      author: string;
+      context: string;
+      verified: boolean;
+    }[];
+    note: string;
+  };
+
   sections: {
     id: string;
     number: string;

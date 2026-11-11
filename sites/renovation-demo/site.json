@@ -82,90 +82,117 @@
     "verifiedPair": false
   },
 
-"services": {
-  "eyebrow": "03 / NAŠE USLUGE",
-  "title": "Sve što vašem prostoru treba.",
-  "description": "Od kompletne adaptacije do pažljivo izvedenih završnih radova. Izaberite uslugu koja odgovara vašem projektu.",
-  "items": [
-    {
-      "number": "01",
-      "title": "Kompletno renoviranje stanova",
-      "description": "Sveobuhvatna adaptacija stambenog prostora, od početne pripreme do završnih detalja.",
-      "details": [
-        "Demontaža i priprema prostora",
-        "Građevinski i instalaterski radovi",
-        "Završna obrada enterijera"
-      ],
-      "featured": true
-    },
-    {
-      "number": "02",
-      "title": "Adaptacija kupatila",
-      "description": "Funkcionalna i estetska rešenja za potpuno osveženje kupatila.",
-      "details": [
-        "Vodovodne instalacije",
-        "Hidroizolacija i keramika",
-        "Ugradnja sanitarija"
-      ],
-      "featured": false
-    },
-    {
-      "number": "03",
-      "title": "Renoviranje kuhinje",
-      "description": "Praktičan raspored, savremeni materijali i pažnja prema svakom detalju.",
-      "details": [
-        "Priprema instalacija",
-        "Keramičarski radovi",
-        "Završna obrada prostora"
-      ],
-      "featured": false
-    },
-    {
-      "number": "04",
-      "title": "Završni radovi",
-      "description": "Precizna završna obrada koja prostoru daje potpuno nov izgled.",
-      "details": [
-        "Gletovanje i krečenje",
-        "Postavljanje podnih obloga",
-        "Dekorativni završni detalji"
-      ],
-      "featured": false
-    }
-  ]
-},
+  "services": {
+    "eyebrow": "03 / NAŠE USLUGE",
+    "title": "Sve što vašem prostoru treba.",
+    "description": "Od kompletne adaptacije do pažljivo izvedenih završnih radova. Izaberite uslugu koja odgovara vašem projektu.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Kompletno renoviranje stanova",
+        "description": "Sveobuhvatna adaptacija stambenog prostora, od početne pripreme do završnih detalja.",
+        "details": [
+          "Demontaža i priprema prostora",
+          "Građevinski i instalaterski radovi",
+          "Završna obrada enterijera"
+        ],
+        "featured": true
+      },
+      {
+        "number": "02",
+        "title": "Adaptacija kupatila",
+        "description": "Funkcionalna i estetska rešenja za potpuno osveženje kupatila.",
+        "details": [
+          "Vodovodne instalacije",
+          "Hidroizolacija i keramika",
+          "Ugradnja sanitarija"
+        ],
+        "featured": false
+      },
+      {
+        "number": "03",
+        "title": "Renoviranje kuhinje",
+        "description": "Praktičan raspored, savremeni materijali i pažnja prema svakom detalju.",
+        "details": [
+          "Priprema instalacija",
+          "Keramičarski radovi",
+          "Završna obrada prostora"
+        ],
+        "featured": false
+      },
+      {
+        "number": "04",
+        "title": "Završni radovi",
+        "description": "Precizna završna obrada koja prostoru daje potpuno nov izgled.",
+        "details": [
+          "Gletovanje i krečenje",
+          "Postavljanje podnih obloga",
+          "Dekorativni završni detalji"
+        ],
+        "featured": false
+      }
+    ]
+  },
 
-"process": {
-  "eyebrow": "04 / PROCES RADA",
-  "title": "Jasan plan. Svaki korak.",
-  "description": "Dobar rezultat počinje dobrom organizacijom. Od prvog razgovora do završne provere, svaki korak ima svoju svrhu.",
-  "steps": [
-    {
-      "number": "01",
-      "title": "Prvi razgovor",
-      "description": "Razgovaramo o vašim idejama, potrebama i radovima koje planirate.",
-      "detail": "Upoznavanje sa projektom"
-    },
-    {
-      "number": "02",
-      "title": "Obilazak i procena",
-      "description": "Sagledavamo stanje prostora i definišemo okvirni obim potrebnih radova.",
-      "detail": "Planiranje i ponuda"
-    },
-    {
-      "number": "03",
-      "title": "Organizacija radova",
-      "description": "Dogovaramo redosled aktivnosti i pristup realizaciji projekta.",
-      "detail": "Priprema i izvođenje"
-    },
-    {
-      "number": "04",
-      "title": "Završna provera",
-      "description": "Pregledamo izvedene radove i dogovorene završne detalje.",
-      "detail": "Pregled prostora"
-    }
-  ],
-  "note": "Obim radova i dinamika realizacije određuju se prema konkretnom projektu."
-},
+  "process": {
+    "eyebrow": "04 / PROCES RADA",
+    "title": "Jasan plan. Svaki korak.",
+    "description": "Dobar rezultat počinje dobrom organizacijom. Od prvog razgovora do završne provere, svaki korak ima svoju svrhu.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Prvi razgovor",
+        "description": "Razgovaramo o vašim idejama, potrebama i radovima koje planirate.",
+        "detail": "Upoznavanje sa projektom"
+      },
+      {
+        "number": "02",
+        "title": "Obilazak i procena",
+        "description": "Sagledavamo stanje prostora i definišemo okvirni obim potrebnih radova.",
+        "detail": "Planiranje i ponuda"
+      },
+      {
+        "number": "03",
+        "title": "Organizacija radova",
+        "description": "Dogovaramo redosled aktivnosti i pristup realizaciji projekta.",
+        "detail": "Priprema i izvođenje"
+      },
+      {
+        "number": "04",
+        "title": "Završna provera",
+        "description": "Pregledamo izvedene radove i dogovorene završne detalje.",
+        "detail": "Pregled prostora"
+      }
+    ],
+    "note": "Obim radova i dinamika realizacije određuju se prema konkretnom projektu."
+  },
+
+  "testimonials": {
+    "eyebrow": "05 / UTISCI KLIJENATA",
+    "title": "Poverenje se gradi iskustvom.",
+    "description": "Iskustva klijenata najbolje govore o saradnji. Ovde možete predstaviti njihove autentične utiske.",
+    "items": [
+      {
+        "text": "Ovde će biti prikazana originalna recenzija klijenta, uz njegovu saglasnost za objavljivanje.",
+        "author": "Ime klijenta",
+        "context": "Primer glavne recenzije",
+        "verified": false
+      },
+      {
+        "text": "Prostor za iskustvo klijenta o komunikaciji, planiranju i toku renoviranja.",
+        "author": "Ime klijenta",
+        "context": "Primer recenzije",
+        "verified": false
+      },
+      {
+        "text": "Prostor za iskustvo klijenta o izvedenim radovima i završnim detaljima.",
+        "author": "Ime klijenta",
+        "context": "Primer recenzije",
+        "verified": false
+      }
+    ],
+    "note": "Prikazani tekstovi su demonstracioni primeri, a ne stvarne recenzije."
+  },
 
   "sections": [
     {

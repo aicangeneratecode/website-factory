@@ -6,6 +6,7 @@ import ProjectGallery from '../components/projectpro/ProjectGallery.astro';
 import BeforeAfter from '../components/projectpro/BeforeAfter.astro';
 import ProjectServices from '../components/projectpro/ProjectServices.astro';
 import ProcessTimeline from '../components/projectpro/ProcessTimeline.astro';
+import ProjectTestimonials from '../components/projectpro/ProjectTestimonials.astro';
 
 
 interface Props {
@@ -177,6 +178,12 @@ const themeStyle = [
     demo={config.demo}
   />
 
+<!-- TESTIMONIALS -->
+<ProjectTestimonials
+  testimonials={config.testimonials}
+  demo={config.demo}
+/>
+
 
   <!-- NEXT SECTIONS -->
   <section class="bg-[var(--pp-bg)] py-20">
@@ -192,13 +199,13 @@ const themeStyle = [
       <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {config.sections
 
-     
       .filter((section) =>
         ![
           'projekti',
           'preposle',
           'usluge',
-          'proces'
+          'proces',
+          'utisci'
         ].includes(section.id)
       )
 

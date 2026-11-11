@@ -1,0 +1,138 @@
+
+---
+import type { ProjectProConfig } from '../../types/projectpro';
+
+interface Props {
+  testimonials: ProjectProConfig['testimonials'];
+  demo: boolean;
+}
+
+const { testimonials, demo } = Astro.props;
+
+// On real client sites, display only verified reviews.
+const visibleItems = demo
+  ? testimonials.items
+  : testimonials.items.filter((item) => item.verified);
+
+const [featured, ...secondary] = visibleItems;
+---
+
+{featured && (
+  <section
+    id="utisci"
+    class="scroll-mt-24 bg-[var(--pp-bg)] py-20 md:py-28"
+  >
+    <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+
+      <!-- HEADING -->
+      <div class="grid gap-7 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <div>
+          <p class="mb-6 text-[11px] font-extrabold tracking-[0.2em] text-[var(--pp-accent)]">
+            {testimonials.eyebrow}
+          </p>
+
+          <h2 class="max-w-[780px] font-display text-[clamp(3rem,5.5vw,5.8rem)] leading-[1.05] tracking-[-0.06em]">
+            {testimonials.title}
+          </h2>
+        </div>
+
+        <p class="max-w-[450px] text-base leading-8 text-[var(--pp-muted)] lg:ml-auto">
+          {testimonials.description}
+        </p>
+      </div>
+
+      <!-- TESTIMONIAL CARDS -->
+      <div class="mt-14 grid gap-5 lg:grid-cols-12">
+
+        <!-- FEATURED REVIEW -->
+        <figure class="flex flex-col justify-between bg-[var(--pp-ink)] p-8 text-white sm:p-12 lg:col-span-7 lg:min-h-[480px]">
+          <div>
+            <span
+              aria-hidden="true"
+              class="font-display text-[90px] leading-none text-[#DCA18A]"
+            >
+              “
+            </span>
+
+            <blockquote class="mt-5 max-w-[650px] font-display text-[clamp(1.7rem,3vw,2.8rem)] leading-[1.35] tracking-[-0.035em]">
+              {featured.text}
+            </blockquote>
+          </div>
+
+          <figcaption class="mt-12 flex flex-wrap items-end justify-between gap-5 border-t border-white/20 pt-7">
+            <div>
+              <p class="text-sm font-bold">{featured.author}</p>
+              <p class="mt-2 text-xs text-white/55">
+                {featured.context}
+              </p>
+            </div>
+
+            {demo && (
+              <span class="border border-white/30 px-3 py-2 text-[10px] font-bold tracking-widest text-white/70">
+                DEMO RECENZIJA
+              </span>
+            )}
+          </figcaption>
+        </figure>
+
+        <!-- SECONDARY REVIEWS -->
+        <div class="grid gap-5 lg:col-span-5">
+          {secondary.map((item) => (
+            <figure class="flex min-h-[220px] flex-col justify-between border border-black/10 bg-[var(--pp-surface)] p-7 sm:p-9">
+
+              <div>
+                <span
+                  aria-hidden="true"
+                  class="font-display text-5xl leading-none text-[var(--pp-accent)]"
+                >
+                  “
+                </span>
+
+                <blockquote class="mt-3 font-display text-[clamp(1.2rem,2vw,1.55rem)] leading-[1.5] tracking-[-0.025em]">
+                  {item.text}
+                </blockquote>
+              </div>
+
+              <figcaption class="mt-8 flex flex-wrap items-end justify-between gap-3 border-t border-black/10 pt-5">
+                <div>
+                  <p class="text-sm font-bold">
+                    {item.author}
+                  </p>
+
+                  <p class="mt-1 text-xs text-[var(--pp-muted)]">
+                    {item.context}
+                  </p>
+                </div>
+
+                {demo && (
+                  <span class="text-[10px] font-bold tracking-widest text-[var(--pp-accent)]">
+                    DEMO
+                  </span>
+                )}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="mt-10 flex flex-col justify-between gap-6 border-t border-black/10 pt-8 md:flex-row md:items-center">
+        <p class="max-w-[650px] text-xs leading-7 text-[var(--pp-muted)]">
+          {demo
+            ? testimonials.note
+            : 'Objavljeni su samo utisci potvrđeni od strane klijenata.'}
+        </p>
+
+        <a
+          href="#upit"
+          class="inline-flex items-center gap-4 self-start text-sm font-bold text-[var(--pp-accent)] transition hover:opacity-60"
+        >
+          Razgovarajmo o vašem projektu
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+)}
