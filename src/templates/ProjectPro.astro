@@ -1,0 +1,255 @@
+
+---
+import '../styles/global.css';
+import type { ProjectProConfig } from '../types/projectpro';
+
+interface Props {
+  config: ProjectProConfig;
+}
+
+const { config } = Astro.props;
+const { brand, hero, theme, navigation } = config;
+
+const themeStyle = [
+  `--pp-bg:${theme.background}`,
+  `--pp-surface:${theme.surface}`,
+  `--pp-ink:${theme.ink}`,
+  `--pp-muted:${theme.muted}`,
+  `--pp-accent:${theme.accent}`
+].join(';');
+---
+
+<!doctype html>
+<html lang="sr-Latn-RS">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={theme.background} />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content={config.seo.description} />
+    <title>{config.seo.title}</title>
+  </head>
+
+  <body style={themeStyle} class="pp-body">
+    <a href="#sadrzaj" class="sr-only focus:not-sr-only">
+      Preskoči na sadržaj
+    </a>
+
+    <!-- HEADER -->
+    <header class="pp-header">
+      <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-5 lg:px-12">
+        <a href="#pocetna" class="flex items-center gap-3">
+          <span class="grid h-11 w-11 place-items-center bg-[var(--pp-ink)] text-xl font-bold text-white">
+            N.
+          </span>
+          <span>
+            <strong class="block text-lg font-extrabold tracking-[-0.05em]">
+              {brand.name}
+            </strong>
+            <small class="block text-[9px] font-bold tracking-[0.22em] text-[var(--pp-muted)]">
+              {brand.descriptor}
+            </small>
+          </span>
+        </a>
+
+        <nav aria-label="Glavna navigacija" class="hidden items-center gap-9 lg:flex">
+          {navigation.map((item) => (
+            <a
+              href={item.href}
+              class="text-[13px] font-semibold text-[var(--pp-ink)] transition hover:opacity-55"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <a href="#upit" class="pp-header-cta hidden lg:inline-flex">
+          Zatražite procenu <span aria-hidden="true">↗</span>
+        </a>
+
+        <details class="relative lg:hidden">
+          <summary class="cursor-pointer rounded border border-black/20 px-4 py-2 text-sm font-semibold">
+            Meni
+          </summary>
+
+          <nav aria-label="Mobilna navigacija" class="absolute right-0 top-12 z-30 flex w-52 flex-col gap-4 border border-black/10 bg-white p-5 shadow-lg">
+            {navigation.map((item) => (
+              <a href={item.href} class="text-sm font-semibold">
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="sadrzaj">
+      <!-- HERO -->
+      <section id="pocetna" class="mx-auto grid max-w-[1440px] items-center gap-12 px-6 pb-20 pt-12 lg:min-h-[760px] lg:grid-cols-[0.94fr_1.06fr] lg:gap-14 lg:px-12">
+        <div class="max-w-[680px]">
+          <div class="mb-9 flex flex-wrap items-center gap-3">
+            <span class="h-2 w-2 rounded-full bg-[var(--pp-accent)]"></span>
+            <p class="text-[11px] font-extrabold tracking-[0.17em]">
+              {hero.eyebrow}
+            </p>
+          </div>
+
+          <h1 class="font-display text-[clamp(3.45rem,5.5vw,6.3rem)] leading-[1.04] tracking-[-0.065em]">
+            {hero.headline}
+            <span class="mt-2 block text-[var(--pp-accent)]">
+              {hero.highlight}
+            </span>
+          </h1>
+
+          <p class="mt-8 max-w-[500px] text-base leading-[1.9] text-[var(--pp-muted)] lg:text-lg">
+            {hero.description}
+          </p>
+
+          <div class="mt-10 flex flex-wrap items-center gap-7">
+            <a href={hero.primary.href} class="pp-button">
+              {hero.primary.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <a href={hero.secondary.href} class="border-b border-[var(--pp-ink)] pb-2 text-sm font-bold transition hover:opacity-60">
+              {hero.secondary.label} ↗
+            </a>
+          </div>
+
+          <div class="mt-16 flex flex-wrap gap-4 border-t border-black/15 pt-6 text-[11px] font-bold tracking-[0.08em] text-[var(--pp-muted)]">
+            <span>PLANIRANJE</span>
+            <span class="text-[var(--pp-accent)]">✳</span>
+            <span>RENOVIRANJE</span>
+            <span class="text-[var(--pp-accent)]">✳</span>
+            <span>ZAVRŠNI RADOVI</span>
+          </div>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="relative">
+          <div class="overflow-hidden bg-[#d8d4cb]">
+            <img
+              src={hero.image}
+              alt={hero.imageAlt}
+              width="1200"
+              height="800"
+              fetchpriority="high"
+              class="h-[440px] w-full object-cover lg:h-[650px]"
+            />
+          </div>
+
+          <div class="absolute bottom-0 left-0 bg-[var(--pp-ink)] px-6 py-5 text-white lg:px-9 lg:py-7">
+            <p class="text-[10px] font-bold tracking-[0.17em] text-white/60">
+              DEMO CONCEPT
+            </p>
+            <p class="mt-2 font-display text-xl">
+              Prostor po vašoj meri.
+            </p>
+          </div>
+
+          <div class="absolute right-4 top-4 bg-white/95 px-4 py-2 text-[10px] font-bold tracking-wider text-[var(--pp-ink)]">
+            ILUSTRATIVNA FOTOGRAFIJA
+          </div>
+        </div>
+      </section>
+
+      <!-- TEMPORARY SECTION PLACEHOLDERS -->
+      <section class="bg-[var(--pp-surface)] py-20">
+        <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+          <p class="text-xs font-extrabold tracking-[0.2em] text-[var(--pp-accent)]">
+            STRUKTURA SAJTA
+          </p>
+
+          <h2 class="mt-5 max-w-2xl font-display text-4xl tracking-tight lg:text-5xl">
+            Od prvog plana do gotovog prostora.
+          </h2>
+
+          <div class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {config.sections.map((section) => (
+              <section
+                id={section.id}
+                class="scroll-mt-28 border border-black/10 p-7"
+              >
+                <span class="font-display text-3xl text-[var(--pp-accent)]">
+                  {section.number}
+                </span>
+
+                <h3 class="mt-6 font-display text-2xl">
+                  {section.title}
+                </h3>
+
+                <p class="mt-3 text-sm leading-7 text-[var(--pp-muted)]">
+                  {section.description}
+                </p>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-[var(--pp-ink)] px-6 py-8 text-white lg:px-12">
+      <div class="mx-auto flex max-w-[1344px] flex-wrap justify-between gap-4 text-xs">
+        <span>{brand.name} — Demo Concept</span>
+        <span>Prikaz dizajna · Nije stvarna kompanija</span>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .pp-body {
+    margin: 0;
+    background: var(--pp-bg);
+    color: var(--pp-ink);
+  }
+
+  .pp-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    background: var(--pp-bg);
+  }
+
+  .pp-button {
+    display: inline-flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 16px 26px;
+    background: var(--pp-accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 750;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .pp-button:hover {
+    background: var(--pp-ink);
+    transform: translateY(-2px);
+  }
+
+  .pp-header-cta {
+    align-items: center;
+    gap: 18px;
+    border: 1px solid var(--pp-ink);
+    padding: 12px 19px;
+    font-size: 12px;
+    font-weight: 750;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .pp-header-cta:hover {
+    background: var(--pp-ink);
+    color: white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pp-button,
+    .pp-header-cta {
+      transition: none;
+    }
+  }
+</style>

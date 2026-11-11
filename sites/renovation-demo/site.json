@@ -1,0 +1,79 @@
+{
+  "template": "ProjectPro",
+  "demo": true,
+  "brand": {
+    "name": "NOVA OSNOVA",
+    "descriptor": "RENOVIRANJE STANOVA"
+  },
+  "seo": {
+    "title": "NOVA OSNOVA | Renoviranje stanova u Beogradu",
+    "description": "Demo koncept sajta za renoviranje stanova, adaptacije i završne radove u Beogradu."
+  },
+  "theme": {
+    "background": "#F4F2ED",
+    "surface": "#FFFFFF",
+    "ink": "#1C2522",
+    "muted": "#6E7973",
+    "accent": "#B86442"
+  },
+  "navigation": [
+    { "label": "Projekti", "href": "#projekti" },
+    { "label": "Usluge", "href": "#usluge" },
+    { "label": "Proces rada", "href": "#proces" },
+    { "label": "Kontakt", "href": "#upit" }
+  ],
+  "hero": {
+    "eyebrow": "ADAPTACIJE I RENOVIRANJE · BEOGRAD",
+    "headline": "Renoviranje stanova",
+    "highlight": "od ideje do realizacije.",
+    "description": "Kvalitetni završni radovi, adaptacije i kompletno renoviranje u Beogradu.",
+    "image": "/images/projectpro/hero.jpg",
+    "imageAlt": "Savremeno uređen dnevni boravak — ilustrativna fotografija",
+    "primary": {
+      "label": "Zatražite procenu",
+      "href": "#upit"
+    },
+    "secondary": {
+      "label": "Pogledajte radove",
+      "href": "#projekti"
+    }
+  },
+  "sections": [
+    {
+      "id": "projekti",
+      "number": "01",
+      "title": "Izvedeni projekti",
+      "description": "Galerija projekata — u pripremi."
+    },
+    {
+      "id": "preposle",
+      "number": "02",
+      "title": "Pre i posle",
+      "description": "Poređenje prostora — u pripremi."
+    },
+    {
+      "id": "usluge",
+      "number": "03",
+      "title": "Naše usluge",
+      "description": "Detaljan pregled usluga — u pripremi."
+    },
+    {
+      "id": "proces",
+      "number": "04",
+      "title": "Proces rada",
+      "description": "Koraci realizacije — u pripremi."
+    },
+    {
+      "id": "utisci",
+      "number": "05",
+      "title": "Utisci klijenata",
+      "description": "Prostor za proverene recenzije."
+    },
+    {
+      "id": "upit",
+      "number": "06",
+      "title": "Zatražite procenu",
+      "description": "Kontakt i upit za procenu — u pripremi."
+    }
+  ]
+}
