@@ -1,46 +1,61 @@
+
 # Website Factory
 
-Universal static website starter for Serbian small businesses.
+Kolekcija statičkih web šablona za poslovne sajtove u Srbiji.
 
-**Stack:** Astro 7, Tailwind CSS 4, TypeScript, static HTML output to `dist/`.
+## Stack
 
-## Quick start
+- Astro
+- Tailwind CSS
+- TypeScript
+- Static output: `dist/`
+
+## Templates
+
+- ProjectPro — `/projectpro` — renovation demo
+- VenuePro — planned
+- ClinicPro — planned
+
+The homepage `/` is the template gallery.
+
+## Local development
 
 Requires Node.js 22.12+.
 
 ```bash
 npm install
-npm run dev
 npm run check
 npm run build
+npm run dev
 ```
 
-Open the Astro URL printed by `npm run dev`.
+## ProjectPro configuration
 
-## Client setup
+Edit:
 
-1. Edit `src/data/site.ts` for brand, copy, service cards, gallery, reviews, and contact.
-2. Add client photos under `public/images`, then set their paths in the data file.
-3. Replace placeholder reviews and demo contact details with verified customer information.
-4. Set `SITE_URL=https://client-domain.rs` in environment variables (see `.env.example`).
-5. Set `demoMode: false` and `seo.robots: 'index,follow'` only when ready for production.
-6. Run `npm run check && npm run build`. Deploy `dist/` using Vercel (Astro framework preset).
+`sites/renovation-demo/site.json`
 
-The demo brand FORMA is fictional and ships with indexing turned off.
+The demo is fictional. Do not present illustrative photographs or placeholder testimonials as actual completed work or customer reviews.
 
-## Project layout
+## Cloudflare Pages
 
-- `src/components/`: Header, Hero, Services, Gallery, Reviews, Contact, Footer
-- `src/data/site.ts`: one typed configuration file per site
-- `src/types/site.ts`: content shape
-- `src/layouts/BaseLayout.astro`: SEO, Open Graph, JSON-LD
-- `src/styles/global.css`: Tailwind and design tokens
-- `src/pages/robots.txt.ts`: preview/production robots policy
-- `astro.config.mjs`: static output + sitemap
-- `.github/workflows/ci.yml`: automated type and build verification
+Connect this GitHub repository to Cloudflare Pages.
 
-### Deployment note
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Environment variable: `SITE_URL` — full public website URL
+- Environment variable: `SHOWCASE_INDEXABLE=false` while testing
 
-Do not publish a real client's site before replacing demo names, information, imagery, reviews and social preview. Astro static sites have no contact-form backend by default; the contact section uses phone/email links.
+Only enable public search indexing after the gallery is ready and its final URL is configured.
 
-The next stages will add theme variations, business templates and automated client site generation.
+## Architecture
+
+- `src/pages/index.astro` — template gallery
+- `src/pages/projectpro.astro` — ProjectPro demo route
+- `src/templates/ProjectPro.astro` — ProjectPro template
+- `src/components/projectpro/` — ProjectPro components
+- `src/types/projectpro.ts` — ProjectPro data types
+- `sites/renovation-demo/site.json` — demo configuration
+- `src/styles/global.css` — shared styles
+
+Client websites must be deployed with verified business information and an appropriate contact handling setup.
