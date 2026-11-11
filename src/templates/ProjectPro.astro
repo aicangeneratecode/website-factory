@@ -24,6 +24,23 @@ const themeStyle = [
   `--pp-muted:${theme.muted}`,
   `--pp-accent:${theme.accent}`
 ].join(';');
+
+const siteBase = Astro.site ?? Astro.url;
+
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  siteBase
+).href;
+
+const socialImageUrl = new URL(
+  hero.image,
+  siteBase
+).href;
+
+const allowIndexing =
+  !config.demo &&
+  siteBase.hostname !== 'example.com';
+
 ---
 
 <!doctype html>
@@ -32,9 +49,40 @@ const themeStyle = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content={theme.background} />
-    <meta name="robots" content="noindex,nofollow" />
-    <meta name="description" content={config.seo.description} />
+
     <title>{config.seo.title}</title>
+
+    <meta
+      name="description"
+      content={config.seo.description}
+    />
+
+    <meta
+      name="robots"
+      content={allowIndexing ? 'index,follow' : 'noindex,nofollow'}
+    />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:site_name" content={brand.name} />
+    <meta property="og:title" content={config.seo.title} />
+    <meta
+      property="og:description"
+      content={config.seo.description}
+    />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={config.seo.title} />
+    <meta
+      name="twitter:description"
+      content={config.seo.description}
+    />
+    <meta name="twitter:image" content={socialImageUrl} />
+
   </head>
 
   <body style={themeStyle} class="pp-body">
@@ -74,7 +122,7 @@ const themeStyle = [
           Zatražite procenu <span aria-hidden="true">↗</span>
         </a>
 
-        <details class="relative lg:hidden">
+        <details class="pp-mobile-menu relative lg:hidden">
           <summary class="cursor-pointer rounded border border-black/20 px-4 py-2 text-sm font-semibold">
             Meni
           </summary>
@@ -101,7 +149,7 @@ const themeStyle = [
             </p>
           </div>
 
-          <h1 class="font-display text-[clamp(3.45rem,5.5vw,6.3rem)] leading-[1.04] tracking-[-0.065em]">
+          <h1 class="font-display text-[clamp(2.6rem,8vw,6.3rem)] leading-[1.04] tracking-[-0.065em] [overflow-wrap:anywhere]">
             {hero.headline}
             <span class="mt-2 block text-[var(--pp-accent)]">
               {hero.highlight}
@@ -257,3 +305,21 @@ const themeStyle = [
     }
   }
 </style>
+
+<script>
+  document
+    .querySelectorAll<HTMLDetailsElement>('.pp-mobile-menu')
+    .forEach((menu) => {
+      menu.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.open = false;
+        });
+      });
+
+      menu.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          menu.open = false;
+        }
+      });
+    });
+</script>
