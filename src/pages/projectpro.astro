@@ -4,28 +4,7 @@ import config from '../../sites/renovation-demo/site.json';
 import ProjectPro from '../templates/ProjectPro.astro';
 import type { ProjectProConfig } from '../types/projectpro';
 
-const project: ProjectProConfig = config;
-const isClientBuild = process.env.SITE_MODE === 'projectpro';
+const projectConfig: ProjectProConfig = config;
 ---
 
-{
-  isClientBuild ? (
-    <html lang="sr-Latn-RS">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="robots" content="noindex,follow" />
-        <meta http-equiv="refresh" content="0; url=/" />
-        <link rel="canonical" href="/" />
-        <title>Preusmeravanje</title>
-      </head>
-      <body>
-        <p>
-          Stranica je premeštena.
-          <a href="/">Pređite na početnu stranicu.</a>
-        </p>
-      </body>
-    </html>
-  ) : (
-    <ProjectPro config={project} />
-  )
-}
+<ProjectPro config={projectConfig} />

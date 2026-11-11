@@ -213,44 +213,5 @@
       "Još uvek planiram"
     ],
     "disclaimer": "Procena cene i rokova zavisi od stanja prostora, obima radova i odabranih materijala."
-  },
-
-  "sections": [
-    {
-      "id": "projekti",
-      "number": "01",
-      "title": "Izvedeni projekti",
-      "description": "Galerija projekata — u pripremi."
-    },
-    {
-      "id": "preposle",
-      "number": "02",
-      "title": "Pre i posle",
-      "description": "Poređenje prostora — u pripremi."
-    },
-    {
-      "id": "usluge",
-      "number": "03",
-      "title": "Naše usluge",
-      "description": "Detaljan pregled usluga — u pripremi."
-    },
-    {
-      "id": "proces",
-      "number": "04",
-      "title": "Proces rada",
-      "description": "Koraci realizacije — u pripremi."
-    },
-    {
-      "id": "utisci",
-      "number": "05",
-      "title": "Utisci klijenata",
-      "description": "Prostor za proverene recenzije."
-    },
-    {
-      "id": "upit",
-      "number": "06",
-      "title": "Zatražite procenu",
-      "description": "Kontakt i upit za procenu — u pripremi."
-    }
-  ]
+  }
 }

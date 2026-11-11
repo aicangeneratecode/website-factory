@@ -142,6 +142,17 @@ const allowIndexing =
       <!-- HERO -->
       <section id="pocetna" class="mx-auto grid max-w-[1440px] items-center gap-12 px-6 pb-20 pt-12 lg:min-h-[760px] lg:grid-cols-[0.94fr_1.06fr] lg:gap-14 lg:px-12">
         <div class="max-w-[680px]">
+
+        {config.demo && (
+          <a
+            href="/"
+            class="mb-10 inline-flex items-center gap-3 text-xs font-bold text-[var(--pp-muted)] transition hover:text-[var(--pp-accent)]"
+          >
+            <span aria-hidden="true">←</span>
+            Svi šabloni
+          </a>
+        )}
+
           <div class="mb-9 flex flex-wrap items-center gap-3">
             <span class="h-2 w-2 rounded-full bg-[var(--pp-accent)]"></span>
             <p class="text-[11px] font-extrabold tracking-[0.17em]">
