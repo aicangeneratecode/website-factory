@@ -38,6 +38,39 @@
       "href": "#projekti"
     }
   },
+
+  "portfolio": {
+    "eyebrow": "01 / INSPIRACIJA",
+    "title": "Prostori koji inspirišu.",
+    "description": "Pogledajte primere savremenih enterijera i zamislite mogućnosti svog prostora.",
+    "projects": [
+      {
+        "id": "dnevni-boravak",
+        "title": "Dnevni boravak po meri",
+        "category": "DNEVNI BORAVAK",
+        "image": "/images/projectpro/project-01.jpg",
+        "imageAlt": "Moderan dnevni boravak sa svetlim enterijerom",
+        "note": "Ilustrativni primer enterijera"
+      },
+      {
+        "id": "kuhinja",
+        "title": "Savremena kuhinja",
+        "category": "KUHINJA",
+        "image": "/images/projectpro/project-02.jpg",
+        "imageAlt": "Savremena kuhinja sa minimalističkim elementima",
+        "note": "Ilustrativni primer enterijera"
+      },
+      {
+        "id": "kupatilo",
+        "title": "Detalji koji menjaju prostor",
+        "category": "KUPATILO",
+        "image": "/images/projectpro/project-03.jpg",
+        "imageAlt": "Moderno kupatilo sa samostojećom kadom",
+        "note": "Ilustrativni primer enterijera"
+      }
+    ]
+  },
+
   "sections": [
     {
       "id": "projekti",

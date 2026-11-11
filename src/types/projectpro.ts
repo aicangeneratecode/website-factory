@@ -43,7 +43,19 @@ export interface ProjectProConfig {
       href: string;
     };
   };
-
+  portfolio: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    projects: {
+      id: string;
+      title: string;
+      category: string;
+      image: string;
+      imageAlt: string;
+      note: string;
+    }[];
+  };
   sections: {
     id: string;
     number: string;
