@@ -107,6 +107,16 @@ export interface ProjectProConfig {
     note: string;
   };
 
+  estimate: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    recipientEmail: string;
+    projectTypes: string[];
+    startOptions: string[];
+    disclaimer: string;
+  };
+
   sections: {
     id: string;
     number: string;

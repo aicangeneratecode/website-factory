@@ -194,6 +194,27 @@
     "note": "Prikazani tekstovi su demonstracioni primeri, a ne stvarne recenzije."
   },
 
+  "estimate": {
+    "eyebrow": "06 / ZATRAŽITE PROCENU",
+    "title": "Vaš novi prostor počinje razgovorom.",
+    "description": "Popunite nekoliko osnovnih informacija o prostoru i radovima koje planirate. Na osnovu toga možete pripremiti upit za procenu.",
+    "recipientEmail": "",
+    "projectTypes": [
+      "Kompletno renoviranje stana",
+      "Adaptacija kupatila",
+      "Renoviranje kuhinje",
+      "Završni radovi",
+      "Drugi radovi"
+    ],
+    "startOptions": [
+      "Što pre",
+      "U narednih mesec dana",
+      "U naredna 3 meseca",
+      "Još uvek planiram"
+    ],
+    "disclaimer": "Procena cene i rokova zavisi od stanja prostora, obima radova i odabranih materijala."
+  },
+
   "sections": [
     {
       "id": "projekti",

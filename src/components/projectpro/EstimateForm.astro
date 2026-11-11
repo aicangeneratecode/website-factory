@@ -1,0 +1,403 @@
+
+---
+import type { ProjectProConfig } from '../../types/projectpro';
+
+interface Props {
+  estimate: ProjectProConfig['estimate'];
+  demo: boolean;
+}
+
+const { estimate, demo } = Astro.props;
+---
+
+<section
+  id="upit"
+  class="scroll-mt-24 bg-[var(--pp-surface)] py-20 md:py-28"
+>
+  <div class="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-12">
+
+    <!-- LEFT CONTENT -->
+    <div class="lg:pt-8">
+      <p class="mb-6 text-[11px] font-extrabold tracking-[0.2em] text-[var(--pp-accent)]">
+        {estimate.eyebrow}
+      </p>
+
+      <h2 class="font-display text-[clamp(3rem,5vw,5.5rem)] leading-[1.07] tracking-[-0.06em]">
+        {estimate.title}
+      </h2>
+
+      <p class="mt-8 max-w-[440px] text-base leading-8 text-[var(--pp-muted)]">
+        {estimate.description}
+      </p>
+
+      <div class="mt-12 border-t border-black/10 pt-8">
+        <p class="mb-4 text-sm font-bold">
+          Kako funkcioniše upit?
+        </p>
+
+        <div class="space-y-5">
+          <p class="flex items-start gap-4 text-sm leading-7 text-[var(--pp-muted)]">
+            <span class="font-bold text-[var(--pp-accent)]">01</span>
+            Unesite osnovne podatke o projektu.
+          </p>
+
+          <p class="flex items-start gap-4 text-sm leading-7 text-[var(--pp-muted)]">
+            <span class="font-bold text-[var(--pp-accent)]">02</span>
+            Pregledajte pripremljenu poruku.
+          </p>
+
+          <p class="flex items-start gap-4 text-sm leading-7 text-[var(--pp-muted)]">
+            <span class="font-bold text-[var(--pp-accent)]">03</span>
+            Pošaljite upit putem e-pošte nakon potvrde.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-10 max-w-[440px] border-l-2 border-[var(--pp-accent)] pl-5 text-xs leading-7 text-[var(--pp-muted)]">
+        {estimate.disclaimer}
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <div class="min-w-0">
+      <form
+        data-estimate-form
+        data-demo={String(demo)}
+        data-recipient={estimate.recipientEmail}
+        class="border border-black/10 bg-[var(--pp-bg)] p-6 sm:p-9 lg:p-12"
+      >
+        <div class="mb-9 flex flex-wrap items-center justify-between gap-3">
+          <h3 class="font-display text-3xl tracking-tight">
+            Detalji vašeg projekta
+          </h3>
+
+          {demo && (
+            <span class="border border-[var(--pp-accent)] px-3 py-2 text-[10px] font-bold tracking-widest text-[var(--pp-accent)]">
+              DEMO
+            </span>
+          )}
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+
+          <!-- TYPE -->
+          <div class="sm:col-span-2">
+            <label for="pp-type" class="mb-2 block text-xs font-bold">
+              Vrsta radova *
+            </label>
+
+            <select
+              id="pp-type"
+              name="projectType"
+              required
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm text-[var(--pp-ink)] outline-none focus:border-[var(--pp-accent)]"
+            >
+              <option value="" disabled selected>
+                Izaberite vrstu radova
+              </option>
+
+              {estimate.projectTypes.map((type) => (
+                <option value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- AREA -->
+          <div>
+            <label for="pp-area" class="mb-2 block text-xs font-bold">
+              Površina (m²) *
+            </label>
+
+            <input
+              id="pp-area"
+              name="area"
+              type="number"
+              min="1"
+              max="10000"
+              step="1"
+              required
+              placeholder="npr. 65"
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            />
+          </div>
+
+          <!-- LOCATION -->
+          <div>
+            <label for="pp-location" class="mb-2 block text-xs font-bold">
+              Lokacija *
+            </label>
+
+            <input
+              id="pp-location"
+              name="location"
+              type="text"
+              maxlength="100"
+              required
+              placeholder="npr. Novi Beograd"
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            />
+          </div>
+
+          <!-- TIMELINE -->
+          <div class="sm:col-span-2">
+            <label for="pp-start" class="mb-2 block text-xs font-bold">
+              Kada planirate početak radova? *
+            </label>
+
+            <select
+              id="pp-start"
+              name="start"
+              required
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            >
+              <option value="" disabled selected>
+                Izaberite okvirni termin
+              </option>
+
+              {estimate.startOptions.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+
+          <!-- NAME -->
+          <div>
+            <label for="pp-name" class="mb-2 block text-xs font-bold">
+              Ime i prezime *
+            </label>
+
+            <input
+              id="pp-name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              maxlength="100"
+              required
+              placeholder="Vaše ime"
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            />
+          </div>
+
+          <!-- PHONE -->
+          <div>
+            <label for="pp-phone" class="mb-2 block text-xs font-bold">
+              Telefon
+            </label>
+
+            <input
+              id="pp-phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              maxlength="40"
+              placeholder="+381..."
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            />
+          </div>
+
+          <!-- EMAIL -->
+          <div class="sm:col-span-2">
+            <label for="pp-email" class="mb-2 block text-xs font-bold">
+              E-mail adresa *
+            </label>
+
+            <input
+              id="pp-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              maxlength="150"
+              required
+              placeholder="ime@example.com"
+              class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            />
+          </div>
+
+          <!-- MESSAGE -->
+          <div class="sm:col-span-2">
+            <label for="pp-message" class="mb-2 block text-xs font-bold">
+              Dodatne informacije
+            </label>
+
+            <textarea
+              id="pp-message"
+              name="message"
+              rows="4"
+              maxlength="600"
+              placeholder="Opišite radove koje planirate..."
+              class="w-full min-w-0 resize-y border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
+            ></textarea>
+          </div>
+
+        </div>
+
+        <p class="mt-6 text-xs leading-6 text-[var(--pp-muted)]">
+          * Obavezna polja. Podaci se ne šalju automatski.
+        </p>
+
+        <button
+          type="submit"
+          class="mt-7 flex min-h-14 w-full items-center justify-center gap-5 bg-[var(--pp-accent)] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[var(--pp-ink)]"
+        >
+          Pripremite upit
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <!-- RESULT -->
+        <div
+          data-estimate-result
+          hidden
+          class="mt-8 border-t border-black/15 pt-7"
+        >
+          <h4 class="font-display text-2xl">
+            Pregled vašeg upita
+          </h4>
+
+          <p
+            data-estimate-status
+            role="status"
+            aria-live="polite"
+            class="mt-3 text-sm leading-7 text-[var(--pp-muted)]"
+          ></p>
+
+          <textarea
+            data-estimate-preview
+            aria-label="Pripremljena poruka"
+            readonly
+            rows="11"
+            class="mt-5 w-full resize-y border border-black/15 bg-white p-4 text-sm leading-7"
+          ></textarea>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            <button
+              type="button"
+              data-estimate-copy
+              class="border border-[var(--pp-ink)] px-5 py-3 text-sm font-bold"
+            >
+              Kopirajte tekst
+            </button>
+
+            <a
+              data-estimate-mail
+              hidden
+              href="#upit"
+              class="bg-[var(--pp-ink)] px-5 py-3 text-sm font-bold text-white"
+            >
+              Otvorite e-poštu ↗
+            </a>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document
+    .querySelectorAll<HTMLFormElement>('[data-estimate-form]')
+    .forEach((form) => {
+      const result = form.querySelector<HTMLElement>(
+        '[data-estimate-result]'
+      );
+
+      const preview = form.querySelector<HTMLTextAreaElement>(
+        '[data-estimate-preview]'
+      );
+
+      const status = form.querySelector<HTMLElement>(
+        '[data-estimate-status]'
+      );
+
+      const mailLink = form.querySelector<HTMLAnchorElement>(
+        '[data-estimate-mail]'
+      );
+
+      const copyButton = form.querySelector<HTMLButtonElement>(
+        '[data-estimate-copy]'
+      );
+
+      if (!result || !preview || !status || !mailLink || !copyButton) {
+        return;
+      }
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+
+        const value = (key: string) =>
+          String(data.get(key) ?? '').trim();
+
+        const message = [
+          'Poštovani,',
+          '',
+          'Želim da zatražim procenu radova.',
+          '',
+          `Vrsta radova: ${value('projectType')}`,
+          `Površina: ${value('area')} m²`,
+          `Lokacija: ${value('location')}`,
+          `Planirani početak: ${value('start')}`,
+          '',
+          `Ime i prezime: ${value('name')}`,
+          `Telefon: ${value('phone') || 'Nije naveden'}`,
+          `E-mail: ${value('email')}`,
+          '',
+          'Dodatne informacije:',
+          value('message') || 'Nisu navedene.',
+          '',
+          'Hvala!'
+        ].join('\n');
+
+        preview.value = message;
+        result.hidden = false;
+
+        const demo = form.dataset.demo === 'true';
+        const recipient = form.dataset.recipient?.trim() ?? '';
+
+        const validRecipient =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient);
+
+        if (!demo && validRecipient) {
+          const subject = 'Upit za procenu radova';
+
+          mailLink.href =
+            `mailto:${recipient}` +
+            `?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(message)}`;
+
+          mailLink.hidden = false;
+
+          status.textContent =
+            'Upit je pripremljen. Otvorite e-poštu i potvrdite slanje u svojoj aplikaciji.';
+        } else {
+          mailLink.hidden = true;
+
+          status.textContent = demo
+            ? 'Ovo je demo prikaz. Podaci nisu poslati nijednoj kompaniji.'
+            : 'Adresa za prijem upita nije podešena. Kopirajte tekst za ručno slanje.';
+        }
+
+        result.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      });
+
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(preview.value);
+          status.textContent = 'Tekst je kopiran.';
+        } catch {
+          preview.focus();
+          preview.select();
+
+          status.textContent =
+            'Označen je tekst. Kopirajte ga pomoću Ctrl+C.';
+        }
+      });
+    });
+</script>
