@@ -5,6 +5,8 @@ import type { VenueProConfig } from '../types/venuepro';
 import VenueGallery from '../components/venuepro/VenueGallery.astro';
 import VenueEvents from '../components/venuepro/VenueEvents.astro';
 import VenueCapacity from '../components/venuepro/VenueCapacity.astro';
+import VenuePackages from '../components/venuepro/VenuePackages.astro';
+import VenueAdvantages from '../components/venuepro/VenueAdvantages.astro';
 
 
 interface Props {
@@ -260,6 +262,19 @@ const shouldIndex =
     demo={config.demo}
     />
 
+    <!-- PACKAGES -->
+    <VenuePackages
+    packages={config.packages}
+    demo={config.demo}
+    />
+
+    <!-- ADVANTAGES -->
+    <VenueAdvantages
+    advantages={config.advantages}
+    demo={config.demo}
+    />
+
+
 
       <!-- TEMPORARY SECTION STRUCTURE -->
       <section class="bg-white px-6 py-20 lg:px-12 lg:py-28">
@@ -271,10 +286,17 @@ const shouldIndex =
           <div class="mt-12 grid gap-5 md:grid-cols-2">
            
         {config.sections
-            .filter(
-            (section) =>
-                !['galerija', 'dogadjaji'].includes(section.id)
-            )
+        .filter(
+        (section) =>
+            ![
+            'galerija',
+            'dogadjaji',
+            'kapacitet',
+            'paketi',
+            'prednosti'
+            ].includes(section.id)
+        )
+
             .map((section) => (
               <section
                 id={section.id}

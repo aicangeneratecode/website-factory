@@ -99,6 +99,35 @@ export interface VenueProConfig {
     footerText: string;
   };
 
+  packages: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: {
+      number: string;
+      name: string;
+      subtitle: string;
+      title: string;
+      description: string;
+      topics: string[];
+      featured: boolean;
+      cta: string;
+    }[];
+    note: string;
+  };
+
+  advantages: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: {
+      number: string;
+      title: string;
+      description: string;
+    }[];
+    note: string;
+  };
+
   sections: {
     id: string;
     number: string;

@@ -1,0 +1,156 @@
+
+---
+import type { VenueProConfig } from '../../types/venuepro';
+
+interface Props {
+  packages: VenueProConfig['packages'];
+  demo: boolean;
+}
+
+const { packages, demo } = Astro.props;
+---
+
+<section
+  id="paketi"
+  class="scroll-mt-20 bg-[var(--vp-bg)] py-20 md:py-28"
+>
+  <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+
+    <!-- INTRO -->
+    <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+      <div>
+        <p class="mb-7 text-[11px] font-bold tracking-[0.2em] text-[var(--vp-accent)]">
+          {packages.eyebrow}
+        </p>
+
+        <h2 class="max-w-[760px] font-display text-[clamp(3rem,5.5vw,5.8rem)] leading-[1.06] tracking-[-0.055em]">
+          {packages.title}
+        </h2>
+      </div>
+
+      <p class="max-w-[450px] text-base leading-8 text-[var(--vp-muted)] lg:ml-auto">
+        {packages.description}
+      </p>
+    </div>
+
+    <!-- CONCEPT CARDS -->
+    <div class="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+
+      {packages.items.map((item) => (
+        <article
+          class:list={[
+            'flex min-w-0 flex-col p-7 sm:p-9 lg:p-10',
+            item.featured
+              ? 'bg-[var(--vp-ink)] text-white'
+              : 'border border-[#DFD6CA] bg-white text-[var(--vp-ink)]'
+          ]}
+        >
+          <!-- TOP -->
+          <div class:list={[
+            'flex items-start justify-between gap-4 border-b pb-7',
+            item.featured ? 'border-white/20' : 'border-black/10'
+          ]}>
+            <div>
+              <p class:list={[
+                'text-[10px] font-bold tracking-[0.16em]',
+                item.featured ? 'text-[#E9D6B6]' : 'text-[var(--vp-accent)]'
+              ]}>
+                {item.subtitle}
+              </p>
+
+              <h3 class="mt-5 font-display text-[clamp(2.5rem,3.4vw,3.6rem)] tracking-[-0.045em]">
+                {item.name}
+              </h3>
+            </div>
+
+            <span class:list={[
+              'font-display text-3xl italic',
+              item.featured ? 'text-[#E9D6B6]' : 'text-[var(--vp-accent)]'
+            ]}>
+              {item.number}
+            </span>
+          </div>
+
+          <!-- BODY -->
+          <div class="flex-1 py-8">
+            <h4 class="max-w-[310px] font-display text-[clamp(1.8rem,2.3vw,2.4rem)] leading-[1.2] tracking-[-0.035em]">
+              {item.title}
+            </h4>
+
+            <p class:list={[
+              'mt-5 text-sm leading-8',
+              item.featured ? 'text-white/65' : 'text-[var(--vp-muted)]'
+            ]}>
+              {item.description}
+            </p>
+
+            <div class="mt-10">
+              <p class:list={[
+                'mb-5 text-[10px] font-bold tracking-[0.17em]',
+                item.featured ? 'text-[#E9D6B6]' : 'text-[var(--vp-accent)]'
+              ]}>
+                TEME ZA DOGOVOR
+              </p>
+
+              <ul class="space-y-4">
+                {item.topics.map((topic) => (
+                  <li class="flex items-start gap-3 text-sm leading-6">
+                    <span
+                      aria-hidden="true"
+                      class:list={[
+                        'mt-2 h-1.5 w-1.5 shrink-0 rounded-full',
+                        item.featured
+                          ? 'bg-[#E9D6B6]'
+                          : 'bg-[var(--vp-accent)]'
+                      ]}
+                    ></span>
+
+                    <span class={item.featured ? 'text-white/85' : ''}>
+                      {topic}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- FOOTER -->
+          <div class:list={[
+            'border-t pt-7',
+            item.featured ? 'border-white/20' : 'border-black/10'
+          ]}>
+            <a
+              href="#upit"
+              class:list={[
+                'inline-flex min-h-12 items-center gap-5 text-sm font-semibold transition-opacity hover:opacity-65',
+                item.featured ? 'text-[#E9D6B6]' : 'text-[var(--vp-ink)]'
+              ]}
+            >
+              {item.cta}
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            {demo && (
+              <p class:list={[
+                'mt-4 text-[10px] font-bold tracking-[0.1em]',
+                item.featured ? 'text-white/45' : 'text-[var(--vp-muted)]'
+              ]}>
+                DEMO KONCEPT
+              </p>
+            )}
+          </div>
+
+        </article>
+      ))}
+
+    </div>
+
+    <!-- DISCLAIMER -->
+    {demo && (
+      <p class="mt-8 max-w-[850px] border-l-2 border-[var(--vp-accent)] pl-5 text-xs leading-7 text-[var(--vp-muted)]">
+        {packages.note}
+      </p>
+    )}
+
+  </div>
+</section>

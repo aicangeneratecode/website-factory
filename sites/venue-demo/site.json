@@ -191,6 +191,85 @@
     "footerText": "Konačan kapacitet i raspored zavise od karakteristika konkretnog prostora, opreme i vrste događaja."
   },
 
+"packages": {
+  "eyebrow": "04 / KONCEPTI PONUDE",
+  "title": "Proslava po vašoj meri.",
+  "description": "Svaki događaj ima drugačije potrebe. Ovi koncepti prikazuju kako se ponuda može predstaviti i prilagoditi željenom formatu.",
+  "items": [
+    {
+      "number": "01",
+      "name": "Essential",
+      "subtitle": "JEDNOSTAVAN KONCEPT",
+      "title": "Suština lepog događaja.",
+      "description": "Početna osnova za razgovor o organizaciji događaja sa jasno definisanim potrebama.",
+      "topics": [
+        "Vrsta i termin događaja",
+        "Okviran broj gostiju",
+        "Željeni raspored prostora"
+      ],
+      "featured": false,
+      "cta": "Zatražite predlog"
+    },
+    {
+      "number": "02",
+      "name": "Signature",
+      "subtitle": "SVEČANI KONCEPT",
+      "title": "Prostor za posebnu atmosferu.",
+      "description": "Koncept za događaje kod kojih su ambijent, vizuelni detalji i doživljaj posebno važni.",
+      "topics": [
+        "Stil i atmosfera događaja",
+        "Ideje za dekoraciju",
+        "Posebni zahtevi organizacije"
+      ],
+      "featured": true,
+      "cta": "Razgovarajmo o ideji"
+    },
+    {
+      "number": "03",
+      "name": "Bespoke",
+      "subtitle": "INDIVIDUALNI KONCEPT",
+      "title": "Vaša zamisao. Vaš događaj.",
+      "description": "Za događaje kojima je potreban individualan pristup planiranju i organizaciji.",
+      "topics": [
+        "Specifičan format događaja",
+        "Posebne potrebe gostiju",
+        "Individualni plan i detalji"
+      ],
+      "featured": false,
+      "cta": "Pošaljite svoj upit"
+    }
+  ],
+  "note": "Prikazani koncepti nisu stvarni komercijalni paketi. Cene, dostupnost i uključene usluge utvrđuju se isključivo na osnovu ponude konkretne kompanije."
+},
+"advantages": {
+  "eyebrow": "05 / VAŽNI DETALJI",
+  "title": "Dobar događaj počinje dobrim planom.",
+  "description": "Pri izboru prostora važno je razmotriti više od samog izgleda. Predstavljamo ključne teme koje pomažu da organizacija bude jasnija.",
+  "items": [
+    {
+      "number": "01",
+      "title": "Pravi raspored",
+      "description": "Broj gostiju i format proslave utiču na izbor rasporeda i organizaciju prostora."
+    },
+    {
+      "number": "02",
+      "title": "Atmosfera i stil",
+      "description": "Osvetljenje, dekoracija i detalji doprinose utisku koji želite da stvorite."
+    },
+    {
+      "number": "03",
+      "title": "Jasna komunikacija",
+      "description": "Dogovor o prioritetima, terminima i očekivanjima važan je deo planiranja."
+    },
+    {
+      "number": "04",
+      "title": "Pažnja prema detaljima",
+      "description": "Dobro razrađeni detalji pomažu da različiti elementi događaja čine skladnu celinu."
+    }
+  ],
+  "note": "Ovo su opšte smernice za planiranje događaja, a ne tvrdnje o uslugama ili opremi demo kompanije."
+},
+
   "sections": [
     {
       "id": "galerija",

@@ -1,0 +1,86 @@
+
+---
+import type { VenueProConfig } from '../../types/venuepro';
+
+interface Props {
+  advantages: VenueProConfig['advantages'];
+  demo: boolean;
+}
+
+const { advantages, demo } = Astro.props;
+---
+
+<section
+  id="prednosti"
+  class="scroll-mt-20 bg-[var(--vp-ink)] py-20 text-white md:py-28"
+>
+  <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+
+    <!-- INTRO -->
+    <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <div>
+        <p class="mb-7 text-[11px] font-bold tracking-[0.2em] text-[#E9D6B6]">
+          {advantages.eyebrow}
+        </p>
+
+        <h2 class="max-w-[840px] font-display text-[clamp(3rem,5.5vw,5.9rem)] leading-[1.06] tracking-[-0.06em]">
+          {advantages.title}
+        </h2>
+      </div>
+
+      <p class="max-w-[470px] text-base leading-8 text-white/60 lg:ml-auto">
+        {advantages.description}
+      </p>
+    </div>
+
+    <!-- FOUR PRINCIPLES -->
+    <div class="mt-16 grid gap-x-12 lg:mt-20 lg:grid-cols-2">
+
+      {advantages.items.map((item) => (
+        <article class="flex gap-6 border-t border-white/20 py-9 sm:gap-9 sm:py-11">
+
+          <span class="shrink-0 font-display text-3xl italic text-[#E9D6B6] sm:text-4xl">
+            {item.number}
+          </span>
+
+          <div>
+            <h3 class="max-w-[410px] font-display text-[clamp(1.8rem,2.8vw,2.8rem)] leading-[1.18] tracking-[-0.04em]">
+              {item.title}
+            </h3>
+
+            <p class="mt-5 max-w-[460px] text-sm leading-8 text-white/60">
+              {item.description}
+            </p>
+          </div>
+
+        </article>
+      ))}
+
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div class="mt-10 flex flex-col justify-between gap-8 border-t border-white/20 pt-9 md:flex-row md:items-center">
+
+      <div class="max-w-[600px]">
+        <h3 class="font-display text-2xl tracking-tight sm:text-3xl">
+          Svaki detalj počinje razgovorom.
+        </h3>
+
+        {demo && (
+          <p class="mt-4 text-xs leading-7 text-white/50">
+            {advantages.note}
+          </p>
+        )}
+      </div>
+
+      <a
+        href="#upit"
+        class="inline-flex min-h-14 shrink-0 items-center justify-center gap-5 self-start bg-[#E9D6B6] px-7 py-4 text-sm font-semibold text-[var(--vp-ink)] transition-colors hover:bg-white"
+      >
+        Pošaljite upit
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+  </div>
+</section>
