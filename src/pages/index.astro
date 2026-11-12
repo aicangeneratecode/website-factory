@@ -17,6 +17,7 @@ const templates = [
     category: 'RENOVIRANJE I ADAPTACIJE',
     description:
       'Moderan sajt za firme koje se bave renoviranjem, adaptacijama i završnim radovima.',
+    image: '/images/projectpro/hero.jpg',
     label: 'Dostupan demo',
     href: '/projectpro',
     available: true
@@ -27,9 +28,11 @@ const templates = [
     category: 'PROSLAVE I DOGAĐAJI',
     description:
       'Elegantna prezentacija prostora za venčanja, proslave i poslovne događaje.',
-    label: 'U pripremi',
-    href: '#sabloni',
-    available: false
+    image: '/images/venuepro/hero.jpg',
+    label: 'Dostupan demo',
+    href: '/venuepro',
+    available: true
+
   },
   {
     number: '03',
@@ -37,6 +40,7 @@ const templates = [
     category: 'FIZIOTERAPIJA I REHABILITACIJA',
     description:
       'Profesionalan sajt za fizioterapeutske centre i rehabilitacione ordinacije.',
+    image: null,
     label: 'U pripremi',
     href: '#sabloni',
     available: false
@@ -185,17 +189,18 @@ const templates = [
                       ? 'bg-[#D7E1DD]'
                       : 'bg-[#D5CFC4]'
                 ]}>
-                  {template.available ? (
-                    <img
-                      src="/images/projectpro/hero.jpg"
-                      alt="Savremeni enterijer — ilustracija ProjectPro šablona"
-                      width="1200"
-                      height="800"
-                      loading="lazy"
-                      decoding="async"
-                      class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                  ) : (
+                    {template.available && template.image ? (
+                      <img
+                        src={template.image}
+                        alt={`Ilustrativna fotografija za ${template.name} šablon`}
+                        width="1200"
+                        height="800"
+                        loading="lazy"
+                        decoding="async"
+                        class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                      />
+                    ) : (
+
                     <div
                       aria-hidden="true"
                       class="absolute inset-0 flex items-center justify-center"

@@ -1,0 +1,10 @@
+
+---
+import config from '../../sites/venue-demo/site.json';
+import VenuePro from '../templates/VenuePro.astro';
+import type { VenueProConfig } from '../types/venuepro';
+
+const venueConfig: VenueProConfig = config;
+---
+
+<VenuePro config={venueConfig} />

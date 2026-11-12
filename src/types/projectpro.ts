@@ -116,11 +116,4 @@ export interface ProjectProConfig {
     startOptions: string[];
     disclaimer: string;
   };
-
-  sections: {
-    id: string;
-    number: string;
-    title: string;
-    description: string;
-  }[];
 }

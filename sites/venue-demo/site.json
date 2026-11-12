@@ -1,0 +1,93 @@
+
+{
+  "template": "VenuePro",
+  "demo": true,
+  "brand": {
+    "name": "LUMERA",
+    "descriptor": "PROSLAVE I DOGAĐAJI",
+    "monogram": "L.",
+    "city": "BEOGRAD"
+  },
+  "seo": {
+    "title": "LUMERA | Proslave i događaji u Beogradu",
+    "description": "Demo koncept elegantnog sajta za prostore namenjene venčanjima, proslavama i poslovnim događajima."
+  },
+  "theme": {
+    "background": "#F7F4EF",
+    "surface": "#FFFFFF",
+    "ink": "#292824",
+    "muted": "#77746F",
+    "accent": "#A98C64"
+  },
+  "navigation": [
+    { "label": "Galerija", "href": "#galerija" },
+    { "label": "Događaji", "href": "#dogadjaji" },
+    { "label": "Paketi", "href": "#paketi" },
+    { "label": "Lokacija", "href": "#lokacija" }
+  ],
+  "hero": {
+    "eyebrow": "PROSLAVE I DOGAĐAJI · BEOGRAD",
+    "headline": "Vaši posebni trenuci",
+    "highlight": "zaslužuju posebno mesto.",
+    "description": "Pronađite inspiraciju za proslavu koja odražava vaš stil, vaše želje i vašu priču.",
+    "image": "/images/venuepro/hero.jpg",
+    "imageAlt": "Elegantno dekorisan prostor za svečani događaj — ilustrativna fotografija",
+    "primary": {
+      "label": "Pošaljite upit",
+      "href": "#upit"
+    },
+    "secondary": {
+      "label": "Pogledajte galeriju",
+      "href": "#galerija"
+    }
+  },
+  "intro": {
+    "eyebrow": "DOBRO DOŠLI",
+    "title": "Trenuci koji ostaju u sećanju.",
+    "description": "Svaka proslava ima svoj karakter. Pažljivo osmišljen prostor, atmosfera i detalji stvaraju okvir za trenutke koje želimo da pamtimo."
+  },
+  "sections": [
+    {
+      "id": "galerija",
+      "number": "01",
+      "title": "Galerija prostora",
+      "description": "Velike fotografije ambijenta i detalja."
+    },
+    {
+      "id": "dogadjaji",
+      "number": "02",
+      "title": "Vrste događaja",
+      "description": "Venčanja, rođendani i poslovni događaji."
+    },
+    {
+      "id": "kapacitet",
+      "number": "03",
+      "title": "Kapacitet i raspored",
+      "description": "Informacije o prostoru i mogućnostima organizacije."
+    },
+    {
+      "id": "paketi",
+      "number": "04",
+      "title": "Paketi za proslave",
+      "description": "Opcije i sadržaj ponude."
+    },
+    {
+      "id": "prednosti",
+      "number": "05",
+      "title": "Zašto odabrati prostor",
+      "description": "Prednosti i sadržaji prostora."
+    },
+    {
+      "id": "lokacija",
+      "number": "06",
+      "title": "Lokacija i dolazak",
+      "description": "Prikaz lokacije i kontakt informacije."
+    },
+    {
+      "id": "upit",
+      "number": "07",
+      "title": "Pošaljite upit za datum",
+      "description": "Forma za upit o dostupnosti željenog termina."
+    }
+  ]
+}
