@@ -2,6 +2,8 @@
 ---
 import '../styles/global.css';
 import type { VenueProConfig } from '../types/venuepro';
+import VenueGallery from '../components/venuepro/VenueGallery.astro';
+
 
 interface Props {
   config: VenueProConfig;
@@ -238,6 +240,12 @@ const shouldIndex =
         </div>
       </section>
 
+      <!-- VENUE GALLERY -->
+      <VenueGallery
+        gallery={config.gallery}
+        demo={config.demo}
+        />
+
       <!-- TEMPORARY SECTION STRUCTURE -->
       <section class="bg-white px-6 py-20 lg:px-12 lg:py-28">
         <div class="mx-auto max-w-[1344px]">
@@ -246,7 +254,10 @@ const shouldIndex =
           </p>
 
           <div class="mt-12 grid gap-5 md:grid-cols-2">
-            {config.sections.map((section) => (
+           
+        {config.sections
+            .filter((section) => section.id !== 'galerija')
+            .map((section) => (
               <section
                 id={section.id}
                 class="scroll-mt-24 border border-[#E7E0D6] bg-[var(--vp-bg)] p-8 md:p-10"

@@ -46,6 +46,51 @@
     "title": "Trenuci koji ostaju u sećanju.",
     "description": "Svaka proslava ima svoj karakter. Pažljivo osmišljen prostor, atmosfera i detalji stvaraju okvir za trenutke koje želimo da pamtimo."
   },
+
+  "gallery": {
+    "eyebrow": "01 / GALERIJA",
+    "title": "Ambijent koji ostavlja utisak.",
+    "description": "Istražite inspirativne primere prostora, dekoracije i atmosfere za posebne događaje.",
+    "items": [
+      {
+        "id": "svecana-sala",
+        "title": "Svečana atmosfera",
+        "subtitle": "INSPIRACIJA / ENTERIJER",
+        "image": "/images/venuepro/gallery-01.jpg",
+        "imageAlt": "Elegantna svečana sala sa dekorisanim stolovima"
+      },
+      {
+        "id": "detalji",
+        "title": "Pažljivo odabrani detalji",
+        "subtitle": "INSPIRACIJA / DEKORACIJA",
+        "image": "/images/venuepro/gallery-02.jpg",
+        "imageAlt": "Cvetna dekoracija i svečano postavljen sto"
+      },
+      {
+        "id": "osvetljenje",
+        "title": "Posebna atmosfera",
+        "subtitle": "INSPIRACIJA / AMBIJENT",
+        "image": "/images/venuepro/gallery-03.jpg",
+        "imageAlt": "Svečani prostor sa dekorativnim osvetljenjem"
+      },
+      {
+        "id": "proslave",
+        "title": "Prostor za slavlje",
+        "subtitle": "INSPIRACIJA / PROSLAVE",
+        "image": "/images/venuepro/gallery-04.jpg",
+        "imageAlt": "Enterijer prostora pripremljenog za proslavu"
+      },
+      {
+        "id": "trenuci",
+        "title": "Trenuci za pamćenje",
+        "subtitle": "INSPIRACIJA / DOGAĐAJI",
+        "image": "/images/venuepro/gallery-05.jpg",
+        "imageAlt": "Svečano uređena sala za poseban događaj"
+      }
+    ],
+    "note": "Fotografije su ilustrativni primeri i ne predstavljaju stvarni prostor demo kompanije."
+  },
+
   "sections": [
     {
       "id": "galerija",

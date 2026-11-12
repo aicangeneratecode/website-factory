@@ -1,0 +1,122 @@
+
+---
+import type { VenueProConfig } from '../../types/venuepro';
+
+interface Props {
+  gallery: VenueProConfig['gallery'];
+  demo: boolean;
+}
+
+const { gallery, demo } = Astro.props;
+
+const positions = [
+  'lg:col-span-7 lg:row-span-2',
+  'lg:col-span-5',
+  'lg:col-span-5',
+  'lg:col-span-5',
+  'lg:col-span-7'
+];
+---
+
+<section
+  id="galerija"
+  class="scroll-mt-20 bg-[var(--vp-bg)] py-20 md:py-28"
+>
+  <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+
+    <!-- SECTION HEADER -->
+    <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+
+      <div>
+        <p class="mb-7 text-[11px] font-bold tracking-[0.22em] text-[var(--vp-accent)]">
+          {gallery.eyebrow}
+        </p>
+
+        <h2 class="max-w-[780px] font-display text-[clamp(3rem,5.5vw,5.8rem)] leading-[1.05] tracking-[-0.055em]">
+          {gallery.title}
+        </h2>
+      </div>
+
+      <p class="max-w-[420px] text-base leading-8 text-[var(--vp-muted)] lg:ml-auto">
+        {gallery.description}
+      </p>
+    </div>
+
+    <!-- ASYMMETRIC GALLERY -->
+    <div class="mt-14 grid gap-4 lg:auto-rows-[280px] lg:grid-cols-12">
+
+      {gallery.items.map((item, index) => (
+        <figure
+          class:list={[
+            'group relative h-[360px] min-w-0 overflow-hidden bg-[#DED6CA] lg:h-full',
+            positions[index] ?? 'lg:col-span-6'
+          ]}
+        >
+
+          <!-- IMAGE -->
+          <img
+            src={item.image}
+            alt={item.imageAlt}
+            width="1600"
+            height="1100"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+
+          <!-- GRADIENT -->
+          <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
+          ></div>
+
+          <!-- DEMO LABEL -->
+          {demo && (
+            <span
+              class="absolute right-5 top-5 bg-[#F7F4EF]/95 px-4 py-2 text-[10px] font-bold tracking-[0.13em] text-[var(--vp-ink)]"
+            >
+              ILUSTRACIJA
+            </span>
+          )}
+
+          <!-- CAPTION -->
+          <figcaption class="absolute bottom-0 left-0 right-0 p-7 text-white md:p-9">
+
+            <p class="mb-3 text-[10px] font-semibold tracking-[0.18em] text-white/75">
+              {item.subtitle}
+            </p>
+
+            <h3 class="max-w-[650px] font-display text-[clamp(1.8rem,3vw,3rem)] leading-tight tracking-[-0.035em]">
+              {item.title}
+            </h3>
+
+            <div
+              class="mt-5 h-px w-14 bg-[#E9D6B6] transition-all duration-500 group-hover:w-24"
+              aria-hidden="true"
+            ></div>
+          </figcaption>
+
+        </figure>
+      ))}
+
+    </div>
+
+    <!-- GALLERY FOOTER -->
+    <div class="mt-10 flex flex-col justify-between gap-7 border-t border-black/10 pt-8 md:flex-row md:items-center">
+
+      <p class="max-w-[650px] text-xs leading-7 text-[var(--vp-muted)]">
+        {demo
+          ? gallery.note
+          : 'Pogledajte detalje prostora i atmosferu koju možete kreirati za svoj događaj.'}
+      </p>
+
+      <a
+        href="#upit"
+        class="inline-flex items-center gap-4 self-start border-b border-[var(--vp-accent)] pb-2 text-sm font-semibold text-[var(--vp-ink)] transition hover:text-[var(--vp-accent)]"
+      >
+        Pošaljite upit za vaš događaj
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+  </div>
+</section>
