@@ -4,6 +4,7 @@ import '../styles/global.css';
 import type { VenueProConfig } from '../types/venuepro';
 import VenueGallery from '../components/venuepro/VenueGallery.astro';
 import VenueEvents from '../components/venuepro/VenueEvents.astro';
+import VenueCapacity from '../components/venuepro/VenueCapacity.astro';
 
 
 interface Props {
@@ -241,15 +242,21 @@ const shouldIndex =
         </div>
       </section>
 
-      <!-- VENUE GALLERY -->
-      <VenueGallery
-        gallery={config.gallery}
-        demo={config.demo}
-        />
+    <!-- VENUE GALLERY -->
+    <VenueGallery
+    gallery={config.gallery}
+    demo={config.demo}
+    />
             
     <!-- EVENT TYPES -->
     <VenueEvents
     events={config.events}
+    demo={config.demo}
+    />
+
+    <!-- CAPACITY AND LAYOUTS -->
+    <VenueCapacity
+    capacity={config.capacity}
     demo={config.demo}
     />
 

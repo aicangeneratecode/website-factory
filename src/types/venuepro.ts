@@ -83,6 +83,22 @@ export interface VenueProConfig {
     note: string;
   };
 
+  capacity: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    layouts: {
+      id: 'banquet' | 'cocktail' | 'conference';
+      number: string;
+      label: string;
+      title: string;
+      description: string;
+      features: string[];
+    }[];
+    note: string;
+    footerText: string;
+  };
+
   sections: {
     id: string;
     number: string;

@@ -145,6 +145,52 @@
     "note": "Prikazani sadržaj i fotografije služe kao inspiracija. LUMERA je demonstracioni koncept, a ne stvarni prostor za događaje."
   },
 
+  "capacity": {
+    "eyebrow": "03 / PROSTOR I RASPORED",
+    "title": "Prostor koji prati vaš događaj.",
+    "description": "Različite prilike traže različitu organizaciju. Istražite primere rasporeda i zamislite atmosferu svog događaja.",
+    "layouts": [
+      {
+        "id": "banquet",
+        "number": "01",
+        "label": "Svečani raspored",
+        "title": "Slavlje za stolom.",
+        "description": "Primer rasporeda sa okruglim stolovima, osmišljen za svečana okupljanja i zajedničke trenutke.",
+        "features": [
+          "Okrugli stolovi",
+          "Prostor između stolova",
+          "Prilagođavanje broju gostiju"
+        ]
+      },
+      {
+        "id": "cocktail",
+        "number": "02",
+        "label": "Koktel raspored",
+        "title": "Prostor za susrete.",
+        "description": "Otvorenija organizacija prostora za druženje, razgovore i neformalne događaje.",
+        "features": [
+          "Barski stolovi",
+          "Slobodno kretanje",
+          "Zone za druženje"
+        ]
+      },
+      {
+        "id": "conference",
+        "number": "03",
+        "label": "Konferencijski raspored",
+        "title": "Fokus na događaj.",
+        "description": "Primer postavke sa redovima sedenja za prezentacije, predavanja i poslovne susrete.",
+        "features": [
+          "Redovi sedenja",
+          "Usmeren pogled ka prezentaciji",
+          "Organizovani prolazi"
+        ]
+      }
+    ],
+    "note": "Prikazane šeme su ilustrativne. Ne predstavljaju stvarni tlocrt, dimenzije ili potvrđeni kapacitet prostora.",
+    "footerText": "Konačan kapacitet i raspored zavise od karakteristika konkretnog prostora, opreme i vrste događaja."
+  },
+
   "sections": [
     {
       "id": "galerija",

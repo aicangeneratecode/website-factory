@@ -1,0 +1,341 @@
+
+---
+import type { VenueProConfig } from '../../types/venuepro';
+
+interface Props {
+  capacity: VenueProConfig['capacity'];
+  demo: boolean;
+}
+
+const { capacity, demo } = Astro.props;
+
+const banquetTables = [
+  { x: 140, y: 112 },
+  { x: 300, y: 112 },
+  { x: 460, y: 112 },
+  { x: 140, y: 270 },
+  { x: 300, y: 270 },
+  { x: 460, y: 270 }
+];
+
+const cocktailTables = [
+  { x: 110, y: 100 },
+  { x: 300, y: 92 },
+  { x: 490, y: 100 },
+  { x: 195, y: 192 },
+  { x: 405, y: 192 },
+  { x: 110, y: 285 },
+  { x: 300, y: 290 },
+  { x: 490, y: 285 }
+];
+
+const conferenceSeats = Array.from(
+  { length: 28 },
+  (_, index) => ({
+    x: 90 + (index % 7) * 62,
+    y: 120 + Math.floor(index / 7) * 58
+  })
+);
+---
+
+<section
+  id="kapacitet"
+  class="scroll-mt-20 bg-[var(--vp-surface)] py-20 md:py-28"
+>
+  <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+
+    <!-- HEADING -->
+    <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+      <div>
+        <p class="mb-7 text-[11px] font-bold tracking-[0.22em] text-[var(--vp-accent)]">
+          {capacity.eyebrow}
+        </p>
+
+        <h2 class="max-w-[850px] font-display text-[clamp(3rem,5.5vw,5.9rem)] leading-[1.06] tracking-[-0.06em]">
+          {capacity.title}
+        </h2>
+      </div>
+
+      <p class="max-w-[440px] text-base leading-8 text-[var(--vp-muted)] lg:ml-auto">
+        {capacity.description}
+      </p>
+    </div>
+
+    <!-- INTERACTIVE LAYOUT SELECTOR -->
+    <div
+      data-venue-layouts
+      class="mt-14 grid gap-7 lg:grid-cols-[0.76fr_1.24fr] lg:gap-10"
+    >
+
+      <!-- OPTIONS -->
+      <div class="space-y-3" aria-label="Izaberite raspored">
+
+        {capacity.layouts.map((layout, index) => (
+          <button
+            type="button"
+            data-layout-button={String(index)}
+            aria-pressed={index === 0 ? 'true' : 'false'}
+            aria-controls={`vp-layout-${layout.id}`}
+            class="vp-layout-button flex w-full items-center justify-between gap-4 border border-[#DED5C9] px-6 py-7 text-left transition-colors duration-200 sm:px-8"
+          >
+            <span>
+              <span class="vp-layout-number mb-3 block text-[10px] font-bold tracking-[0.16em]">
+                RASPORED {layout.number}
+              </span>
+
+              <span class="font-display text-[clamp(1.45rem,2.2vw,2rem)] leading-tight">
+                {layout.label}
+              </span>
+            </span>
+
+            <span
+              aria-hidden="true"
+              class="shrink-0 text-xl"
+            >
+              ↗
+            </span>
+          </button>
+        ))}
+
+        <div class="border-t border-[#DED5C9] pt-6">
+          <p class="text-xs leading-7 text-[var(--vp-muted)]">
+            {capacity.footerText}
+          </p>
+        </div>
+      </div>
+
+      <!-- DISPLAY PANELS -->
+      <div class="min-w-0">
+        {capacity.layouts.map((layout, index) => (
+          <div
+            id={`vp-layout-${layout.id}`}
+            data-layout-panel={String(index)}
+            role="region"
+            aria-label={layout.label}
+            hidden={index !== 0}
+            class="min-w-0 border border-[#E4DACE] bg-[var(--vp-bg)]"
+          >
+
+            <!-- SCHEMATIC -->
+            <div class="p-4 sm:p-8">
+              <div class="border border-[#E2D8CB] bg-white p-3 sm:p-6">
+
+                <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+                  <span class="text-[10px] font-bold tracking-[0.15em] text-[var(--vp-accent)]">
+                    PRIMER RASPOREDA
+                  </span>
+
+                  <span class="text-[10px] font-medium text-[var(--vp-muted)]">
+                    ILUSTRATIVNA ŠEMA
+                  </span>
+                </div>
+
+                <svg
+                  viewBox="0 0 600 390"
+                  role="img"
+                  aria-label={`Ilustrativna šema: ${layout.label}`}
+                  class="block h-auto w-full"
+                >
+                  <!-- Room outline -->
+                  <rect
+                    x="24"
+                    y="22"
+                    width="552"
+                    height="345"
+                    rx="8"
+                    fill="#F7F4EF"
+                    stroke="#D2C7B8"
+                    stroke-width="2"
+                  />
+
+                  {layout.id === 'banquet' && (
+                    <>
+                      {banquetTables.map((table) => (
+                        <g>
+                          <circle
+                            cx={table.x}
+                            cy={table.y}
+                            r="46"
+                            fill="#E7DCCF"
+                            stroke="#A98C64"
+                            stroke-width="2"
+                          />
+
+                          <circle
+                            cx={table.x}
+                            cy={table.y}
+                            r="19"
+                            fill="#F7F4EF"
+                          />
+
+                          <circle
+                            cx={table.x}
+                            cy={table.y}
+                            r="5"
+                            fill="#A98C64"
+                          />
+                        </g>
+                      ))}
+                    </>
+                  )}
+
+                  {layout.id === 'cocktail' && (
+                    <>
+                      {cocktailTables.map((table) => (
+                        <g>
+                          <circle
+                            cx={table.x}
+                            cy={table.y}
+                            r="25"
+                            fill="#D5C2AA"
+                            stroke="#A98C64"
+                            stroke-width="2"
+                          />
+
+                          <circle
+                            cx={table.x}
+                            cy={table.y}
+                            r="10"
+                            fill="#F7F4EF"
+                          />
+                        </g>
+                      ))}
+                    </>
+                  )}
+
+                  {layout.id === 'conference' && (
+                    <>
+                      <rect
+                        x="203"
+                        y="48"
+                        width="194"
+                        height="34"
+                        rx="3"
+                        fill="#A98C64"
+                      />
+
+                      {conferenceSeats.map((seat) => (
+                        <rect
+                          x={seat.x}
+                          y={seat.y}
+                          width="34"
+                          height="25"
+                          rx="5"
+                          fill="#D5C2AA"
+                          stroke="#A98C64"
+                          stroke-width="1.5"
+                        />
+                      ))}
+                    </>
+                  )}
+                </svg>
+              </div>
+            </div>
+
+            <!-- PANEL INFORMATION -->
+            <div class="border-t border-[#E4DACE] px-6 py-8 sm:px-9 sm:py-10">
+
+              <p class="mb-4 text-[10px] font-bold tracking-[0.16em] text-[var(--vp-accent)]">
+                {layout.label.toUpperCase()}
+              </p>
+
+              <h3 class="font-display text-[clamp(2rem,3vw,3rem)] leading-[1.15] tracking-[-0.045em]">
+                {layout.title}
+              </h3>
+
+              <p class="mt-5 max-w-[620px] text-sm leading-8 text-[var(--vp-muted)]">
+                {layout.description}
+              </p>
+
+              <ul class="mt-7 flex flex-wrap gap-x-6 gap-y-3">
+                {layout.features.map((feature) => (
+                  <li class="flex items-center gap-3 text-xs font-medium leading-6">
+                    <span
+                      class="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--vp-accent)]"
+                      aria-hidden="true"
+                    ></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- DISCLAIMER AND CTA -->
+    <div class="mt-12 flex flex-col justify-between gap-7 border-t border-[#DDD4C8] pt-8 md:flex-row md:items-center">
+      <p class="max-w-[750px] text-xs leading-7 text-[var(--vp-muted)]">
+        {demo ? capacity.note : capacity.footerText}
+      </p>
+
+      <a
+        href="#upit"
+        class="inline-flex min-h-14 shrink-0 items-center justify-center gap-5 self-start bg-[var(--vp-ink)] px-7 py-4 text-sm font-semibold text-white transition-colors hover:bg-[var(--vp-accent)]"
+      >
+        Pošaljite upit
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vp-layout-button {
+    background: var(--vp-bg);
+    color: var(--vp-ink);
+    cursor: pointer;
+  }
+
+  .vp-layout-button:hover {
+    border-color: var(--vp-accent);
+  }
+
+  .vp-layout-number {
+    color: var(--vp-accent);
+  }
+
+  .vp-layout-button[aria-pressed="true"] {
+    background: var(--vp-ink);
+    color: white;
+    border-color: var(--vp-ink);
+  }
+
+  .vp-layout-button[aria-pressed="true"] .vp-layout-number {
+    color: #e9d6b6;
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>('[data-venue-layouts]')
+    .forEach((root) => {
+      const buttons = Array.from(
+        root.querySelectorAll<HTMLButtonElement>(
+          '[data-layout-button]'
+        )
+      );
+
+      const panels = Array.from(
+        root.querySelectorAll<HTMLElement>(
+          '[data-layout-panel]'
+        )
+      );
+
+      buttons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          buttons.forEach((item, itemIndex) => {
+            item.setAttribute(
+              'aria-pressed',
+              String(itemIndex === index)
+            );
+          });
+
+          panels.forEach((panel, panelIndex) => {
+            panel.hidden = panelIndex !== index;
+          });
+        });
+      });
+    });
+</script>
