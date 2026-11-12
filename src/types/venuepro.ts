@@ -128,10 +128,27 @@ export interface VenueProConfig {
     note: string;
   };
 
-  sections: {
-    id: string;
-    number: string;
+  location: {
+    eyebrow: string;
     title: string;
     description: string;
-  }[];
+    city: string;
+    address: string;
+    mapsUrl: string;
+    details: {
+      label: string;
+      value: string;
+    }[];
+    note: string;
+  };
+
+  inquiry: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    recipientEmail: string;
+    eventTypes: string[];
+    note: string;
+  };
+
 }

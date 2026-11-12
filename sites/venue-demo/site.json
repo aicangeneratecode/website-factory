@@ -270,48 +270,40 @@
   "note": "Ovo su opšte smernice za planiranje događaja, a ne tvrdnje o uslugama ili opremi demo kompanije."
 },
 
-  "sections": [
+"location": {
+  "eyebrow": "06 / LOKACIJA I DOLAZAK",
+  "title": "Mesto za vaše posebne trenutke.",
+  "description": "Lokacija je važan deo svakog događaja. Prilikom planiranja proverite dostupnost prostora, način dolaska i mogućnosti za goste.",
+  "city": "Beograd",
+  "address": "",
+  "mapsUrl": "",
+  "details": [
     {
-      "id": "galerija",
-      "number": "01",
-      "title": "Galerija prostora",
-      "description": "Velike fotografije ambijenta i detalja."
+      "label": "TAČNA ADRESA",
+      "value": "Dodaje se nakon potvrde lokacije."
     },
     {
-      "id": "dogadjaji",
-      "number": "02",
-      "title": "Vrste događaja",
-      "description": "Venčanja, rođendani i poslovni događaji."
+      "label": "DOLAZAK I PARKING",
+      "value": "Informacije se proveravaju za konkretan prostor."
     },
     {
-      "id": "kapacitet",
-      "number": "03",
-      "title": "Kapacitet i raspored",
-      "description": "Informacije o prostoru i mogućnostima organizacije."
-    },
-    {
-      "id": "paketi",
-      "number": "04",
-      "title": "Paketi za proslave",
-      "description": "Opcije i sadržaj ponude."
-    },
-    {
-      "id": "prednosti",
-      "number": "05",
-      "title": "Zašto odabrati prostor",
-      "description": "Prednosti i sadržaji prostora."
-    },
-    {
-      "id": "lokacija",
-      "number": "06",
-      "title": "Lokacija i dolazak",
-      "description": "Prikaz lokacije i kontakt informacije."
-    },
-    {
-      "id": "upit",
-      "number": "07",
-      "title": "Pošaljite upit za datum",
-      "description": "Forma za upit o dostupnosti željenog termina."
+      "label": "OBILAZAK PROSTORA",
+      "value": "Termin obilaska dogovara se sa organizatorom."
     }
-  ]
+  ],
+  "note": "LUMERA je demonstracioni koncept. Nije navedena stvarna adresa niti je označena stvarna lokacija."
+},
+"inquiry": {
+  "eyebrow": "07 / UPIT ZA DATUM",
+  "title": "Hajde da osmislimo vaš poseban dan.",
+  "description": "Podelite osnovne informacije o događaju i pripremite upit za proveru termina i mogućnosti organizacije.",
+  "recipientEmail": "",
+  "eventTypes": [
+    "Venčanje",
+    "Privatna proslava",
+    "Poslovni događaj",
+    "Drugi događaj"
+  ],
+  "note": "Slanje upita ne znači da je datum dostupan ili da je rezervacija potvrđena."
+}
 }

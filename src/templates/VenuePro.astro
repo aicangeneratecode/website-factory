@@ -7,6 +7,8 @@ import VenueEvents from '../components/venuepro/VenueEvents.astro';
 import VenueCapacity from '../components/venuepro/VenueCapacity.astro';
 import VenuePackages from '../components/venuepro/VenuePackages.astro';
 import VenueAdvantages from '../components/venuepro/VenueAdvantages.astro';
+import VenueLocation from '../components/venuepro/VenueLocation.astro';
+import VenueInquiry from '../components/venuepro/VenueInquiry.astro';
 
 
 interface Props {
@@ -271,6 +273,18 @@ const shouldIndex =
     <!-- ADVANTAGES -->
     <VenueAdvantages
     advantages={config.advantages}
+    demo={config.demo}
+    />
+
+    <!-- LOCATION -->
+    <VenueLocation
+    location={config.location}
+    demo={config.demo}
+    />
+
+    <!-- DATE INQUIRY -->
+    <VenueInquiry
+    inquiry={config.inquiry}
     demo={config.demo}
     />
 

@@ -1,0 +1,440 @@
+
+---
+import type { VenueProConfig } from '../../types/venuepro';
+
+interface Props {
+  inquiry: VenueProConfig['inquiry'];
+  demo: boolean;
+}
+
+const { inquiry, demo } = Astro.props;
+
+const inputClass =
+  'w-full min-w-0 border border-[#D8CDBF] bg-white px-4 py-3.5 text-sm text-[#292824] outline-none focus:border-[#A98C64]';
+---
+
+<section
+  id="upit"
+  class="scroll-mt-20 bg-white py-20 md:py-28"
+>
+  <div class="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-12">
+
+    <!-- TEXT CONTENT -->
+    <div class="lg:pt-8">
+      <p class="mb-7 text-[11px] font-bold tracking-[0.2em] text-[var(--vp-accent)]">
+        {inquiry.eyebrow}
+      </p>
+
+      <h2 class="font-display text-[clamp(3rem,5.3vw,5.8rem)] leading-[1.06] tracking-[-0.06em]">
+        {inquiry.title}
+      </h2>
+
+      <p class="mt-8 max-w-[470px] text-base leading-8 text-[var(--vp-muted)]">
+        {inquiry.description}
+      </p>
+
+      <div class="mt-12 border-t border-[#D8CDBF] pt-8">
+        <p class="text-xs font-bold tracking-[0.16em] text-[var(--vp-accent)]">
+          KAKO FUNKCIONIŠE
+        </p>
+
+        <div class="mt-7 space-y-6">
+          <div class="flex gap-5">
+            <span class="font-display text-2xl italic text-[var(--vp-accent)]">01</span>
+            <p class="text-sm leading-7 text-[var(--vp-muted)]">
+              Unesite datum i osnovne podatke o događaju.
+            </p>
+          </div>
+
+          <div class="flex gap-5">
+            <span class="font-display text-2xl italic text-[var(--vp-accent)]">02</span>
+            <p class="text-sm leading-7 text-[var(--vp-muted)]">
+              Pregledajte pripremljeni upit.
+            </p>
+          </div>
+
+          <div class="flex gap-5">
+            <span class="font-display text-2xl italic text-[var(--vp-accent)]">03</span>
+            <p class="text-sm leading-7 text-[var(--vp-muted)]">
+              Pošaljite poruku i sačekajte potvrdu dostupnosti.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-10 border-l-2 border-[var(--vp-accent)] pl-5 text-xs leading-7 text-[var(--vp-muted)]">
+        {inquiry.note}
+      </p>
+    </div>
+
+    <!-- INQUIRY FORM -->
+    <div class="min-w-0">
+      <form
+        data-venue-inquiry
+        data-demo={String(demo)}
+        data-recipient={inquiry.recipientEmail}
+        class="border border-[#E7DFD3] bg-[var(--vp-bg)] p-6 sm:p-9 lg:p-11"
+      >
+        <div class="mb-9 flex flex-wrap items-center justify-between gap-4">
+          <h3 class="font-display text-3xl tracking-[-0.04em]">
+            Vaš događaj
+          </h3>
+
+          {demo && (
+            <span class="border border-[var(--vp-accent)] px-3 py-2 text-[10px] font-bold tracking-[0.12em] text-[var(--vp-accent)]">
+              DEMO
+            </span>
+          )}
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+
+          <div class="sm:col-span-2">
+            <label for="vp-event-type" class="mb-2 block text-xs font-semibold">
+              Vrsta događaja *
+            </label>
+
+            <select
+              id="vp-event-type"
+              name="eventType"
+              required
+              class={inputClass}
+            >
+              <option value="" selected disabled>
+                Izaberite vrstu događaja
+              </option>
+
+              {inquiry.eventTypes.map((type) => (
+                <option value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label for="vp-date" class="mb-2 block text-xs font-semibold">
+              Željeni datum *
+            </label>
+
+            <input
+              id="vp-date"
+              name="eventDate"
+              type="date"
+              required
+              class={inputClass}
+            />
+          </div>
+
+          <div>
+            <label for="vp-guests" class="mb-2 block text-xs font-semibold">
+              Broj gostiju *
+            </label>
+
+            <input
+              id="vp-guests"
+              name="guests"
+              type="number"
+              min="1"
+              max="10000"
+              step="1"
+              required
+              placeholder="npr. 120"
+              class={inputClass}
+            />
+          </div>
+
+          <div>
+            <label for="vp-name" class="mb-2 block text-xs font-semibold">
+              Ime i prezime *
+            </label>
+
+            <input
+              id="vp-name"
+              name="name"
+              type="text"
+              maxlength="100"
+              autocomplete="name"
+              required
+              placeholder="Vaše ime"
+              class={inputClass}
+            />
+          </div>
+
+          <div>
+            <label for="vp-phone" class="mb-2 block text-xs font-semibold">
+              Telefon
+            </label>
+
+            <input
+              id="vp-phone"
+              name="phone"
+              type="tel"
+              maxlength="40"
+              autocomplete="tel"
+              placeholder="+381..."
+              class={inputClass}
+            />
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="vp-email" class="mb-2 block text-xs font-semibold">
+              E-mail adresa *
+            </label>
+
+            <input
+              id="vp-email"
+              name="email"
+              type="email"
+              maxlength="150"
+              autocomplete="email"
+              required
+              placeholder="ime@example.com"
+              class={inputClass}
+            />
+          </div>
+
+          <div class="sm:col-span-2">
+            <label for="vp-details" class="mb-2 block text-xs font-semibold">
+              Dodatne želje
+            </label>
+
+            <textarea
+              id="vp-details"
+              name="details"
+              rows="4"
+              maxlength="800"
+              placeholder="Opišite kakav događaj planirate..."
+              class={`${inputClass} resize-y`}
+            ></textarea>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="flex cursor-pointer items-start gap-3 text-xs leading-6 text-[var(--vp-muted)]">
+              <input
+                type="checkbox"
+                name="acknowledgement"
+                value="yes"
+                required
+                class="mt-1 h-4 w-4 shrink-0 accent-[#A98C64]"
+              />
+
+              <span>
+                Razumem da je ovo samo upit i da izabrani datum nije rezervisan. *
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <p class="mt-6 text-xs leading-6 text-[var(--vp-muted)]">
+          * Obavezna polja. Forma ne šalje podatke automatski.
+        </p>
+
+        <button
+          type="submit"
+          class="mt-7 flex min-h-14 w-full items-center justify-center gap-5 bg-[var(--vp-ink)] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[var(--vp-accent)]"
+        >
+          Pripremite upit
+          <span aria-hidden="true">↗</span>
+        </button>
+
+        <!-- PREVIEW -->
+        <div
+          data-inquiry-result
+          hidden
+          class="mt-9 border-t border-[#D8CDBF] pt-8"
+        >
+          <h4 class="font-display text-2xl tracking-tight">
+            Pregled vašeg upita
+          </h4>
+
+          <p
+            data-inquiry-status
+            role="status"
+            aria-live="polite"
+            class="mt-4 text-sm leading-7 text-[var(--vp-muted)]"
+          ></p>
+
+          <textarea
+            data-inquiry-preview
+            aria-label="Pripremljeni tekst upita"
+            readonly
+            rows="12"
+            class="mt-5 w-full resize-y border border-[#D8CDBF] bg-white p-4 text-sm leading-7"
+          ></textarea>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            <button
+              type="button"
+              data-inquiry-copy
+              class="min-h-12 border border-[var(--vp-ink)] px-5 py-3 text-sm font-semibold"
+            >
+              Kopirajte tekst
+            </button>
+
+            <a
+              data-inquiry-mail
+              href="#upit"
+              hidden
+              class="inline-flex min-h-12 items-center bg-[var(--vp-ink)] px-5 py-3 text-sm font-semibold text-white"
+            >
+              Otvorite e-poštu ↗
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document
+    .querySelectorAll<HTMLFormElement>('[data-venue-inquiry]')
+    .forEach((form) => {
+      const result = form.querySelector<HTMLElement>(
+        '[data-inquiry-result]'
+      );
+
+      const preview = form.querySelector<HTMLTextAreaElement>(
+        '[data-inquiry-preview]'
+      );
+
+      const status = form.querySelector<HTMLElement>(
+        '[data-inquiry-status]'
+      );
+
+      const mailLink = form.querySelector<HTMLAnchorElement>(
+        '[data-inquiry-mail]'
+      );
+
+      const copyButton = form.querySelector<HTMLButtonElement>(
+        '[data-inquiry-copy]'
+      );
+
+      const dateInput = form.querySelector<HTMLInputElement>(
+        '[name="eventDate"]'
+      );
+
+      if (
+        !result ||
+        !preview ||
+        !status ||
+        !mailLink ||
+        !copyButton ||
+        !dateInput
+      ) {
+        return;
+      }
+
+      const today = new Date();
+
+      const pad = (value: number) =>
+        String(value).padStart(2, '0');
+
+      const minDate = [
+        today.getFullYear(),
+        pad(today.getMonth() + 1),
+        pad(today.getDate())
+      ].join('-');
+
+      dateInput.min = minDate;
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const data = new FormData(form);
+
+        const value = (key: string) =>
+          String(data.get(key) ?? '').trim();
+
+        const rawDate = value('eventDate');
+
+        if (rawDate < minDate) {
+          dateInput.setCustomValidity(
+            'Izaberite današnji ili neki budući datum.'
+          );
+          dateInput.reportValidity();
+          return;
+        }
+
+        dateInput.setCustomValidity('');
+
+        const [year, month, day] = rawDate.split('-');
+
+        const formattedDate = `${day}.${month}.${year}.`;
+
+        const message = [
+          'Poštovani,',
+          '',
+          'Želim da proverim mogućnost organizacije događaja.',
+          '',
+          `Vrsta događaja: ${value('eventType')}`,
+          `Željeni datum: ${formattedDate}`,
+          `Broj gostiju: ${value('guests')}`,
+          '',
+          `Ime i prezime: ${value('name')}`,
+          `Telefon: ${value('phone') || 'Nije naveden'}`,
+          `E-mail: ${value('email')}`,
+          '',
+          'Dodatne želje:',
+          value('details') || 'Nisu navedene.',
+          '',
+          'Molim vas za informacije o dostupnosti termina.',
+          '',
+          'Hvala!'
+        ].join('\n');
+
+        preview.value = message;
+        result.hidden = false;
+
+        const demo = form.dataset.demo === 'true';
+        const recipient = form.dataset.recipient?.trim() ?? '';
+
+        const validRecipient =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient);
+
+        if (!demo && validRecipient) {
+          const subject = 'Upit za termin događaja';
+
+          mailLink.href =
+            `mailto:${recipient}` +
+            `?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(message)}`;
+
+          mailLink.hidden = false;
+
+          status.textContent =
+            'Upit je pripremljen. Otvorite e-poštu i potvrdite slanje. Datum još nije rezervisan.';
+        } else {
+          mailLink.hidden = true;
+
+          status.textContent = demo
+            ? 'Ovo je demonstracija. Upit nije poslat i datum nije rezervisan.'
+            : 'Adresa za prijem nije podešena. Možete kopirati tekst upita.';
+        }
+
+        result.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      });
+
+      dateInput.addEventListener('input', () => {
+        dateInput.setCustomValidity('');
+      });
+
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(preview.value);
+
+          status.textContent = 'Tekst je kopiran.';
+        } catch {
+          preview.focus();
+          preview.select();
+
+          status.textContent =
+            'Tekst je označen. Kopirajte ga pomoću Ctrl+C.';
+        }
+      });
+    });
+</script>
