@@ -290,52 +290,6 @@ const shouldIndex =
 
 
 
-      <!-- TEMPORARY SECTION STRUCTURE -->
-      <section class="bg-white px-6 py-20 lg:px-12 lg:py-28">
-        <div class="mx-auto max-w-[1344px]">
-          <p class="text-xs font-bold tracking-[0.2em] text-[var(--vp-accent)]">
-            STRUKTURA DEMO SAJTA
-          </p>
-
-          <div class="mt-12 grid gap-5 md:grid-cols-2">
-           
-        {config.sections
-        .filter(
-        (section) =>
-            ![
-            'galerija',
-            'dogadjaji',
-            'kapacitet',
-            'paketi',
-            'prednosti'
-            ].includes(section.id)
-        )
-
-            .map((section) => (
-              <section
-                id={section.id}
-                class="scroll-mt-24 border border-[#E7E0D6] bg-[var(--vp-bg)] p-8 md:p-10"
-              >
-                <span class="font-display text-3xl italic text-[var(--vp-accent)]">
-                  {section.number}
-                </span>
-
-                <h3 class="mt-7 font-display text-3xl tracking-tight">
-                  {section.title}
-                </h3>
-
-                <p class="mt-4 text-sm leading-7 text-[var(--vp-muted)]">
-                  {section.description}
-                </p>
-
-                <span class="mt-9 inline-block border-t border-[#D2C7B8] pt-4 text-[10px] font-bold tracking-widest text-[var(--vp-accent)]">
-                  SADRŽAJ U PRIPREMI
-                </span>
-              </section>
-            ))}
-          </div>
-        </div>
-      </section>
 
     </main>
 
