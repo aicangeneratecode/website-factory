@@ -91,6 +91,60 @@
     "note": "Fotografije su ilustrativni primeri i ne predstavljaju stvarni prostor demo kompanije."
   },
 
+  "events": {
+    "eyebrow": "02 / VRSTE DOGAĐAJA",
+    "title": "Svaki povod ima svoju priču.",
+    "description": "Od intimnih okupljanja do velikih svečanosti, svaki događaj zaslužuje pažljivo osmišljenu atmosferu.",
+    "items": [
+      {
+        "id": "vencanja",
+        "number": "01",
+        "category": "VENČANJA",
+        "title": "Za početak jedne lepe priče.",
+        "description": "Zamislite venčanje u ambijentu koji odgovara vašem stilu. Od prvog utiska do poslednjeg plesa, svaki detalj doprinosi posebnoj atmosferi.",
+        "image": "/images/venuepro/gallery-01.jpg",
+        "imageAlt": "Svečano dekorisana sala za venčanje — ilustrativna fotografija",
+        "topics": [
+          "Raspored prostora",
+          "Atmosfera i dekoracija",
+          "Termin i broj gostiju"
+        ],
+        "cta": "Upit za venčanje"
+      },
+      {
+        "id": "privatne-proslave",
+        "number": "02",
+        "category": "PRIVATNE PROSLAVE",
+        "title": "Razlozi za slavlje.",
+        "description": "Rođendani, jubileji i porodična okupljanja. Prilika da okupite drage ljude i stvorite uspomene u prijatnoj atmosferi.",
+        "image": "/images/venuepro/gallery-04.jpg",
+        "imageAlt": "Elegantno uređen prostor za privatnu proslavu — ilustrativna fotografija",
+        "topics": [
+          "Vrsta proslave",
+          "Željena atmosfera",
+          "Organizacija prostora"
+        ],
+        "cta": "Upit za proslavu"
+      },
+      {
+        "id": "poslovni-dogadjaji",
+        "number": "03",
+        "category": "POSLOVNI DOGAĐAJI",
+        "title": "Susreti koji ostavljaju utisak.",
+        "description": "Kompanijske proslave, poslovna okupljanja i svečani događaji zaslužuju prostor koji prati karakter prilike.",
+        "image": "/images/venuepro/gallery-03.jpg",
+        "imageAlt": "Svečani ambijent za poslovni događaj — ilustrativna fotografija",
+        "topics": [
+          "Format događaja",
+          "Broj učesnika",
+          "Planirani termin"
+        ],
+        "cta": "Poslovni upit"
+      }
+    ],
+    "note": "Prikazani sadržaj i fotografije služe kao inspiracija. LUMERA je demonstracioni koncept, a ne stvarni prostor za događaje."
+  },
+
   "sections": [
     {
       "id": "galerija",

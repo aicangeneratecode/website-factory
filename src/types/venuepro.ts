@@ -65,6 +65,24 @@ export interface VenueProConfig {
     note: string;
   };
 
+  events: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: {
+      id: string;
+      number: string;
+      category: string;
+      title: string;
+      description: string;
+      image: string;
+      imageAlt: string;
+      topics: string[];
+      cta: string;
+    }[];
+    note: string;
+  };
+
   sections: {
     id: string;
     number: string;
