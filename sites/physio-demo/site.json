@@ -1,0 +1,71 @@
+{
+  "brand": "Studio Pokret",
+  "city": "Beograd",
+  "demo": true,
+  "bookingUrl": "",
+  "heroImage": "/images/clinicpro/hero.jpg",
+  "headline": "Stručna podrška na putu ka boljem pokretu.",
+  "description": "Koncept sajta za fizioterapiju i rehabilitaciju u Beogradu.",
+  "services": [
+    {
+      "title": "Fizioterapijska procena",
+      "description": "Prvi razgovor o tegobama, svakodnevnim aktivnostima i ciljevima."
+    },
+    {
+      "title": "Terapijske vežbe",
+      "description": "Prostor za opis individualnog programa vežbi i načina rada."
+    },
+    {
+      "title": "Rehabilitacija",
+      "description": "Prostor za opis praćenja napretka i dogovora o narednim koracima."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Kako da zakažem prvi termin?",
+      "answer": "U stvarnoj verziji sajta dugme za zakazivanje vodi do kanala koji ordinacija koristi."
+    },
+    {
+      "question": "Gde mogu da proverim cenu?",
+      "answer": "Primeri cena prikazani su u odeljku Cenovnik."
+    }
+  ],
+  "team": [
+    {
+      "title": "Fizioterapeut",
+      "description": "Prvi razgovor, procena pokreta i dogovor o ciljevima."
+    },
+    {
+      "title": "Saradnik za terapijske vežbe",
+      "description": "Podrška pri izvođenju vežbi i beleženju napretka."
+    }
+  ],
+  "equipment": [
+    {
+      "title": "Sto za procenu",
+      "description": "Prostor za procenu pokreta u ležećem položaju."
+    },
+    {
+      "title": "Elastične trake i lopte",
+      "description": "Rekviziti za vođene vežbe u sali."
+    },
+    {
+      "title": "Podloge za vežbanje",
+      "description": "Zona za vežbe na podu."
+    }
+  ],
+  "prices": [
+    {
+      "service": "Prva procena",
+      "amount": "3.500 RSD"
+    },
+    {
+      "service": "Individualne terapijske vežbe",
+      "amount": "3.000 RSD"
+    },
+    {
+      "service": "Kontrolna procena",
+      "amount": "2.500 RSD"
+    }
+  ]
+}

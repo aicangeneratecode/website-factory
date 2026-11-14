@@ -104,6 +104,7 @@ const afterLabel = comparison.verifiedPair
 
         <input
           id="pp-compare-range"
+          disabled
           data-compare-range
           type="range"
           min="0"
@@ -111,7 +112,7 @@ const afterLabel = comparison.verifiedPair
           value="50"
           step="1"
           aria-label="Uporedite dve fotografije"
-          class="h-3 w-full cursor-ew-resize accent-[var(--pp-accent)]"
+          class="h-11 w-full cursor-ew-resize accent-[var(--pp-accent)]"
         />
       </div>
     </div>
@@ -145,6 +146,7 @@ const afterLabel = comparison.verifiedPair
     );
 
     if (!stage || !slider) return;
+    slider.disabled = false;
 
     const setValue = (number: number) => {
       const value = Math.max(0, Math.min(100, number));

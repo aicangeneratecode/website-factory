@@ -1,0 +1,157 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  config: {
+    brand: string;
+    city: string;
+    demo: boolean;
+    bookingUrl: string;
+    heroImage?: string;
+    headline: string;
+    description: string;
+    services: { title: string; description: string }[];
+    team?: { title: string; description: string }[];
+    equipment?: { title: string; description: string }[];
+    prices?: { service: string; amount: string }[];
+    faq: { question: string; answer: string }[];
+  };
+}
+
+const { config } = Astro.props;
+const informationSections = [
+  { id: 'tim', title: 'Tim', items: config.team ?? [], demoNote: 'Primer uloga u timu.' },
+  { id: 'oprema', title: 'Prostor i oprema', items: config.equipment ?? [], demoNote: 'Primeri opreme za prikaz šablona.' },
+];
+const prices = config.prices ?? [];
+const bookingUrl = config.demo ? '' : config.bookingUrl;
+---
+<!doctype html>
+<html lang="sr-Latn-RS">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={config.description} />
+    {config.demo && <meta name="robots" content="noindex,nofollow" />}
+    <title>{config.brand} | Fizioterapija i rehabilitacija</title>
+  </head>
+  <body class="bg-[#f5f7f1] text-[#172e28]">
+    <a href="#sadrzaj" class="sr-only focus:not-sr-only focus:absolute focus:z-10 focus:bg-white focus:p-4">Preskoči na sadržaj</a>
+    <header class="border-b border-[#cdd9ce]">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5 lg:px-12">
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <a href="#sadrzaj" class="text-xl font-bold tracking-tight">{config.brand}</a>
+          {config.demo && <span class="text-xs text-[#405a50]">Demo Concept</span>}
+        </div>
+        <nav aria-label="Glavna navigacija" class="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold">
+          <a href="#usluge">Usluge</a>
+          {prices.length > 0 && <a href="#cene">Cenovnik</a>}
+          <a href="#pitanja">Pitanja</a>
+          <a href="#termin">Zakazivanje</a>
+        </nav>
+      </div>
+    </header>
+    <main id="sadrzaj">
+      <section class="mx-auto grid max-w-7xl gap-7 px-6 pb-12 pt-9 md:gap-10 md:py-24 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:px-12">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-[#305c4e]">Fizioterapija i rehabilitacija · {config.city}</p>
+          <h1 class="mt-5 max-w-4xl text-[clamp(2.65rem,6vw,5.8rem)] font-semibold leading-[1.02] tracking-[-0.06em]">{config.headline}</h1>
+          <p class="mt-6 max-w-md leading-7 text-[#405a50]">{config.description}</p>
+          <div class="mt-8 flex flex-wrap items-center gap-5">
+            <a href="#termin" class="rounded-full bg-[#204a3d] px-6 py-4 text-sm font-bold text-white">Zakažite termin</a>
+            <a href="#usluge" class="font-semibold underline underline-offset-4">Naše usluge</a>
+          </div>
+        </div>
+        {config.heroImage && (
+          <figure>
+            <img src={config.heroImage} alt="Svetla sala sa spravama za vežbanje" width="1200" height="800" fetchpriority="high" class="aspect-[4/3] w-full rounded-[2rem] object-cover lg:aspect-[4/5]" />
+            {config.demo && <figcaption class="mt-3 text-sm text-[#405a50]">Ilustrativna fotografija</figcaption>}
+          </figure>
+        )}
+      </section>
+      <section class="mx-auto max-w-7xl px-6 pb-16 lg:px-12">
+        <aside class="rounded-[2rem] bg-[#dce9df] p-7 sm:p-10" aria-labelledby="prva-poseta">
+          <h2 id="prva-poseta" class="text-3xl font-semibold tracking-tight">Prva poseta</h2>
+          <ol class="mt-6 list-decimal space-y-4 pl-6 leading-7 marker:font-bold">
+            <li>Razgovor o tome šta vas dovodi.</li>
+            <li>Procena pokreta prema vašim potrebama.</li>
+            <li>Dogovor o narednim koracima.</li>
+          </ol>
+        </aside>
+      </section>
+
+      <section id="usluge" class="bg-white">
+        <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+          <h2 class="text-4xl font-semibold tracking-tight">Naše usluge</h2>
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            {config.services.map((service) => (
+              <article class="rounded-2xl border border-[#cdd9ce] p-6">
+                <h3 class="text-xl font-semibold">{service.title}</h3>
+                <p class="mt-3 leading-7 text-[#405a50]">{service.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {informationSections.filter(({ items }) => items.length > 0).map(({ id, title, items, demoNote }) => (
+        <section id={id} class="mx-auto max-w-7xl px-6 py-14 lg:px-12">
+          <h2 class="text-4xl font-semibold tracking-tight">{title}</h2>
+          {config.demo && <p class="mt-3 text-sm text-[#405a50]">{demoNote}</p>}
+          <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((item) => (
+              <li class="rounded-2xl bg-[#dce9df] p-6">
+                <h3 class="text-xl font-semibold">{item.title}</h3>
+                <p class="mt-3 leading-7 text-[#405a50]">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+
+      {prices.length > 0 && (
+        <section id="cene" class="bg-white">
+          <div class="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+            <h2 class="text-4xl font-semibold tracking-tight">Cenovnik</h2>
+            {config.demo && <p class="mt-3 text-sm text-[#405a50]">Ilustrativne cene za demo prikaz.</p>}
+            <dl class="mt-8 max-w-3xl divide-y divide-[#cdd9ce] border-y border-[#cdd9ce]">
+              {prices.map(({ service, amount }) => (
+                <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 py-4">
+                  <dt>{service}</dt>
+                  <dd class="whitespace-nowrap font-semibold tabular-nums">{amount}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
+
+      <section id="pitanja" class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+        <h2 class="text-4xl font-semibold tracking-tight">Česta pitanja</h2>
+        <div class="mt-8 max-w-3xl divide-y divide-[#cdd9ce] border-y border-[#cdd9ce]">
+          {config.faq.map(({ question, answer }) => (
+            <details class="py-5">
+              <summary class="cursor-pointer font-semibold">{question}</summary>
+              <p class="mt-3 leading-7 text-[#405a50]">{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section id="termin" class="bg-[#204a3d] text-white">
+        <div class="mx-auto max-w-7xl px-6 py-16 lg:px-12">
+          <h2 class="text-4xl font-semibold tracking-tight">Zakažite prvi termin</h2>
+          {bookingUrl ? (
+            <a href={bookingUrl} class="mt-6 inline-block rounded-full bg-white px-6 py-4 font-semibold text-[#172e28]">Otvorite zakazivanje</a>
+          ) : (
+            <p class="mt-5 max-w-lg leading-7">{config.demo ? 'Demo prikaz zakazivanja za izmišljeni studio.' : 'Online zakazivanje trenutno nije dostupno.'}</p>
+          )}
+        </div>
+      </section>
+    </main>
+    <footer class="mx-auto flex max-w-7xl flex-wrap justify-between gap-4 px-6 py-6 text-sm lg:px-12">
+      <span>{config.brand}{config.demo && ' · Demo Concept'}</span>
+      {config.demo && <a href="/" class="underline underline-offset-4">Svi šabloni</a>}
+    </footer>
+  </body>
+</html>

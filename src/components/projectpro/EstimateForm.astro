@@ -237,11 +237,17 @@ const { estimate, demo } = Astro.props;
 
         <button
           type="submit"
+          disabled
+          data-prepare-request
           class="mt-7 flex min-h-14 w-full items-center justify-center gap-5 bg-[var(--pp-accent)] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[var(--pp-ink)]"
         >
           Pripremite upit
           <span aria-hidden="true">↗</span>
         </button>
+
+        <noscript>
+          <p>Za pripremu upita omogućite JavaScript u pregledaču.</p>
+        </noscript>
 
         <!-- RESULT -->
         <div
@@ -382,7 +388,9 @@ const { estimate, demo } = Astro.props;
         }
 
         result.scrollIntoView({
-          behavior: 'smooth',
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'instant'
+            : 'smooth',
           block: 'nearest'
         });
       });
@@ -399,5 +407,7 @@ const { estimate, demo } = Astro.props;
             'Označen je tekst. Kopirajte ga pomoću Ctrl+C.';
         }
       });
+      const submit = form.querySelector<HTMLButtonElement>('[data-prepare-request]');
+      if (submit) submit.disabled = false;
     });
 </script>

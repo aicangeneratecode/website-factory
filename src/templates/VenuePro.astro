@@ -213,12 +213,14 @@ const shouldIndex =
 
           <div class="mt-16 flex flex-wrap justify-between gap-4 border-t border-white/25 pt-6">
             <span class="text-[10px] font-semibold tracking-[0.2em] text-white/70">
-              {brand.city} · DEMO CONCEPT
+              {brand.city}{config.demo && ' · DEMO CONCEPT'}
             </span>
 
-            <span class="text-[10px] font-semibold tracking-[0.2em] text-white/70">
-              ILUSTRATIVNA FOTOGRAFIJA
-            </span>
+            {config.demo && (
+              <span class="text-[10px] font-semibold tracking-[0.2em] text-white/70">
+                ILUSTRATIVNA FOTOGRAFIJA
+              </span>
+            )}
           </div>
         </div>
       </section>
@@ -296,8 +298,8 @@ const shouldIndex =
     <!-- FOOTER -->
     <footer class="bg-[var(--vp-ink)] px-6 py-9 text-white lg:px-12">
       <div class="mx-auto flex max-w-[1344px] flex-wrap justify-between gap-4 text-xs">
-        <span>{brand.name} — Demo Concept</span>
-        <span>Prikaz dizajna · Nije stvarna kompanija</span>
+        <span>{brand.name}{config.demo && ' — Demo Concept'}</span>
+        {config.demo && <span>Prikaz dizajna · Nije stvarna kompanija</span>}
       </div>
     </footer>
   </body>
@@ -322,8 +324,9 @@ const shouldIndex =
       });
 
       menu.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
+        if (event.key === 'Escape' && menu.open) {
           menu.open = false;
+          menu.querySelector('summary')?.focus();
         }
       });
     });
