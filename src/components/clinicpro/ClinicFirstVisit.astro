@@ -1,0 +1,27 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  firstVisit?: ClinicProConfig['firstVisit'];
+}
+
+const firstVisit = Astro.props.firstVisit?.length ? Astro.props.firstVisit : [
+  { title: 'Razgovor', description: 'Recite nam šta vas dovodi i šta želite da postignete.' },
+  { title: 'Procena pokreta', description: 'Prolazimo kroz pokrete koji su važni za vaše svakodnevne aktivnosti.' },
+  { title: 'Naredni koraci', description: 'Razgovaramo o mogućnostima i dogovaramo plan.' },
+];
+---
+<section aria-labelledby="prva-poseta" class="mx-auto max-w-7xl px-6 pb-16 lg:px-12">
+  <div class="clinic-panel bg-[#dce9df] p-7 sm:p-10">
+    <h2 id="prva-poseta" class="clinic-display text-4xl tracking-tight">Kako izgleda prva poseta</h2>
+    <ol class="mt-8 grid gap-6 lg:grid-cols-3">
+      {firstVisit.map(({ title, description }, index) => (
+        <li class="grid grid-cols-[2.25rem_minmax(0,1fr)] gap-x-3 border-t border-[#a9beb0] pt-4">
+          <span class="grid size-9 place-items-center rounded-full bg-white text-sm font-bold text-[#305c4e]" aria-hidden="true">{index + 1}</span>
+          <h3 class="self-center text-lg font-semibold">{title}</h3>
+          <p class="col-start-2 mt-2 leading-7 text-[#405a50]">{description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

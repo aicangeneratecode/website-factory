@@ -1,0 +1,41 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  services: ClinicProConfig['services'];
+  demo?: boolean;
+  hasPrices: boolean;
+}
+
+const { services, hasPrices, demo } = Astro.props;
+---
+<section id="usluge" aria-labelledby="usluge-naslov" class="bg-[#18362e] text-[#f5f7f1]">
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+    <h2 id="usluge-naslov" class="clinic-display text-5xl tracking-tight lg:text-7xl">Naše usluge</h2>
+    <div class="mt-9 grid gap-5 lg:grid-cols-[1.2fr_1fr]">
+      {services.map((service, index) => (
+        <article class:list={[
+          'group relative isolate flex min-h-68 min-w-0 flex-col justify-end overflow-hidden clinic-panel bg-[#28463d]',
+          index === 0 && services.length >= 3 && 'lg:row-span-2 lg:min-h-[36rem]',
+        ]}>
+          {service.image && (
+            <>
+              <img src={service.image.src} alt={service.image.alt} loading="lazy" decoding="async" class="absolute inset-0 -z-20 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-105" />
+              <div aria-hidden="true" class="absolute inset-0 -z-10 bg-linear-to-t from-[#102a23] via-[#102a23]/90 via-45% to-transparent"></div>
+            </>
+          )}
+          <div class="max-w-lg px-6 pb-6 pt-28 sm:px-8 sm:pb-8">
+            {service.focus && <p class="mb-2 text-sm font-semibold text-[#d6e9db]">{service.focus}</p>}
+            <h3 class:list={['clinic-display text-3xl leading-tight', index === 0 && 'lg:text-5xl']}>{service.title}</h3>
+            <p class="mt-3 leading-7 text-[#f5f7f1]">{service.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#f5f7f1]/25 pt-6">
+      <a href="#termin" class="inline-flex min-h-11 items-center clinic-action bg-[#e3efe5] px-6 py-3 text-sm font-bold text-[#18362e] hover:bg-white transition-colors duration-200">Zakažite termin</a>
+      {hasPrices && <a href="#cene" class="inline-flex min-h-11 items-center text-sm font-semibold underline">Pogledajte cenovnik</a>}
+      {demo && services.some(({ image }) => image) && <p class="text-sm text-[#d6e9db] lg:ml-auto">Ilustrativne fotografije.</p>}
+    </div>
+  </div>
+</section>

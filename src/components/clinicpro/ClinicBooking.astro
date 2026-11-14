@@ -1,0 +1,130 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  bookingUrl: ClinicProConfig['bookingUrl'];
+  copy?: ClinicProConfig['bookingCopy'];
+  demo: boolean;
+  prices: NonNullable<ClinicProConfig['prices']>;
+}
+
+const { bookingUrl, copy, demo, prices } = Astro.props;
+---
+<section id="termin" aria-labelledby="termin-naslov" class="bg-[#18362e] text-[#f5f7f1]">
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+    <div class="grid items-center gap-9 border-y border-white/25 py-9 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-14">
+      <div>
+        <h2 id="termin-naslov" class="clinic-display max-w-xl text-5xl leading-none tracking-tight lg:text-7xl">
+          {copy?.title ?? 'Zakažite prvi termin'}
+        </h2>
+        {copy?.description && <p class="mt-6 max-w-md leading-7 text-[#d6e9db]">{copy.description}</p>}
+        <a href="#prva-poseta" class="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline">
+          Kako izgleda prva poseta <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="clinic-panel bg-[#e6ede3] p-6 text-[#18362e] sm:p-9">
+        {bookingUrl && !demo ? (
+          <a href={bookingUrl} class="inline-flex min-h-12 items-center gap-3 clinic-action bg-[#18362e] px-6 py-3 font-semibold text-white hover:bg-[#285347] transition-colors duration-200">
+            {copy?.actionLabel ?? 'Otvorite zakazivanje'} <span aria-hidden="true">↗</span>
+          </a>
+        ) : demo && prices.length > 0 ? (
+          <div data-clinic-demo-booking>
+            <h3 class="clinic-display text-3xl">Isprobajte zakazivanje</h3>
+            <p class="mt-3 leading-7 text-[#405a50]">Izaberite uslugu i datum, pa unesite ime i telefon. Za demo koristite probne podatke.</p>
+            <form class="mt-6" aria-describedby="clinic-booking-note">
+              <fieldset disabled class="grid min-w-0 gap-4 sm:grid-cols-2">
+                <legend class="sr-only">Podaci za pregled termina</legend>
+                <label class="grid min-w-0 gap-2 text-sm font-semibold">
+                  Ime i prezime
+                  <input type="text" name="name" required maxlength="100" autocomplete="name" placeholder="npr. Ana Jovanović" class="clinic-field w-full min-w-0 border border-[#a9beb0] bg-white px-3" />
+                </label>
+                <label class="grid min-w-0 gap-2 text-sm font-semibold">
+                  Telefon
+                  <input type="tel" name="phone" required maxlength="30" autocomplete="tel" placeholder="npr. +381 60 123 4567" class="clinic-field w-full min-w-0 border border-[#a9beb0] bg-white px-3" />
+                </label>
+                <label class="grid min-w-0 gap-2 text-sm font-semibold sm:col-span-2">
+                  Usluga
+                  <select name="service" required class="min-h-12 w-full clinic-field border border-[#a9beb0] bg-white px-3">
+                    <option value="">Izaberite uslugu</option>
+                    {prices.map(({ service, amount }, index) => <option value={index}>{service} · {amount}</option>)}
+                  </select>
+                </label>
+                <label class="grid min-w-0 gap-2 text-sm font-semibold sm:col-span-2">
+                  Željeni datum
+                  <input type="date" name="date" required class="min-h-12 w-full min-w-0 clinic-field border border-[#a9beb0] bg-white px-3" />
+                </label>
+                <p id="clinic-booking-note" class="text-sm leading-6 text-[#405a50] sm:col-span-2">Podaci se ne šalju. Termin se ne rezerviše.</p>
+                <button type="submit" class="min-h-12 sm:col-span-2 clinic-action bg-[#18362e] px-5 py-3 text-sm font-bold text-white hover:bg-[#285347] disabled:opacity-60 transition-colors duration-200">Prikažite pregled</button>
+              </fieldset>
+            </form>
+            <noscript><p class="mt-4 text-sm">Za demo pregled potreban je JavaScript.</p></noscript>
+            <p role="status" class="mt-4 whitespace-pre-line rounded-[10px] bg-white p-4 text-sm leading-7 [overflow-wrap:anywhere] empty:hidden"></p>
+          </div>
+        ) : (
+          <>
+            <p class="clinic-display text-2xl leading-tight">
+              {demo ? 'Zakazivanje u demo prikazu' : 'Online zakazivanje trenutno nije dostupno'}
+            </p>
+            {demo && <p class="mt-3 leading-7 text-[#405a50]">Ovo je prikaz izmišljenog studija. Zakazivanje termina nije aktivno.</p>}
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const booking = document.querySelector<HTMLElement>('[data-clinic-demo-booking]');
+  const form = booking?.querySelector('form');
+  const service = form?.querySelector('select');
+  const date = form?.querySelector<HTMLInputElement>('input[type="date"]');
+  const fields = form?.querySelector('fieldset');
+  const name = form?.querySelector<HTMLInputElement>('[name="name"]');
+  const phone = form?.querySelector<HTMLInputElement>('[name="phone"]');
+  const status = booking?.querySelector<HTMLElement>('[role="status"]');
+
+  if (form && service && date && fields && name && phone && status) {
+    const clinicDate = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Belgrade' });
+    const refreshMinimum = () => { date.min = clinicDate.format(new Date()); };
+    refreshMinimum();
+    date.addEventListener('focus', refreshMinimum);
+    fields.disabled = false;
+
+    form.addEventListener('input', () => {
+      status.textContent = '';
+      name.setCustomValidity('');
+      phone.setCustomValidity('');
+    });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      refreshMinimum();
+      const visitor = name.value.trim();
+      const contact = phone.value.trim();
+      const digits = contact.replace(/\D/g, '').length;
+      name.setCustomValidity(visitor ? '' : 'Unesite ime i prezime.');
+      phone.setCustomValidity(/^\+?[0-9 ()./-]+$/.test(contact) && digits >= 7 && digits <= 15
+        ? ''
+        : 'Unesite ispravan broj telefona.');
+      if (!form.reportValidity()) return;
+      const [year, month, day] = date.value.split('-');
+      const label = service.selectedOptions[0]?.text;
+      status.textContent = [
+        'Pregled upita',
+        `Usluga: ${label}`,
+        `Željeni datum: ${day}.${month}.${year}.`,
+        `Ime i prezime: ${visitor}`,
+        `Telefon: ${contact}`,
+        'Demo termin nije rezervisan.',
+      ].join('\n');
+    });
+
+    for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-clinic-service]')) {
+      link.addEventListener('click', () => {
+        service.value = link.dataset.clinicService ?? '';
+        status.textContent = '';
+        requestAnimationFrame(() => date.focus({ preventScroll: true }));
+      });
+    }
+  }
+</script>

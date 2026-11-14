@@ -1,0 +1,77 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  team: NonNullable<ClinicProConfig['team']>;
+  demo: boolean;
+}
+
+const { team, demo } = Astro.props;
+---
+<section data-clinic-team id="tim" aria-labelledby="tim-naslov" class="bg-[#e6ede3]">
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+    <div class="flex flex-wrap items-end justify-between gap-5 border-b border-[#a9beb0] pb-6">
+      <h2 id="tim-naslov" class="clinic-display text-5xl tracking-tight lg:text-7xl">Tim</h2>
+      {demo && <p class="max-w-sm text-sm leading-6 text-[#405a50]">Primeri uloga u izmišljenom studiju. {team.some(({ image }) => image) && 'Portreti su ilustrativne fotografije.'}</p>}
+    </div>
+
+    <div data-team-controls hidden class="mt-5 flex items-center justify-end gap-3">
+      <button type="button" data-team-prev aria-controls="clinic-team-track" aria-label="Prethodni profil" class="clinic-action min-w-11 cursor-pointer border border-[#a9beb0] bg-[#dae7dc] text-[#24483c] transition-colors enabled:hover:bg-[#c8ddce] disabled:cursor-default disabled:opacity-50">←</button>
+      <button type="button" data-team-next aria-controls="clinic-team-track" aria-label="Sledeći profil" class="clinic-action min-w-11 cursor-pointer border border-[#a9beb0] bg-[#dae7dc] text-[#24483c] transition-colors enabled:hover:bg-[#c8ddce] disabled:cursor-default disabled:opacity-50">→</button>
+    </div>
+    <ul id="clinic-team-track" tabindex="0" aria-labelledby="tim-naslov" class="clinic-team-track mt-5 grid snap-x snap-mandatory auto-cols-[100%] grid-flow-col gap-6 overflow-x-auto pb-3 sm:auto-cols-[calc((100%-1.5rem)/2)]">
+      {team.map(({ name, title, description, image }) => (
+        <li class="flex min-w-0 snap-start flex-col">
+          {image && (
+            <div class="group overflow-hidden clinic-panel">
+              <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="aspect-[4/5] w-full bg-[#cdd9ce] object-cover object-[center_30%] lg:aspect-[5/4] motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-105" />
+            </div>
+          )}
+          <div class="flex-1 border-b border-[#a9beb0] py-5">
+            <h3 class="clinic-display text-3xl leading-tight">{name || title}</h3>
+            {name && <p class="mt-2 text-sm font-semibold text-[#305c4e]">{title}</p>}
+            <p class="mt-3 max-w-md leading-7 text-[#405a50]">{description}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  const teamSection = document.querySelector('[data-clinic-team]');
+  const track = teamSection?.querySelector<HTMLElement>('#clinic-team-track');
+  const controls = teamSection?.querySelector<HTMLElement>('[data-team-controls]');
+  const prev = teamSection?.querySelector<HTMLButtonElement>('[data-team-prev]');
+  const next = teamSection?.querySelector<HTMLButtonElement>('[data-team-next]');
+
+  if (track && controls && prev && next) {
+    const updateControls = () => {
+      const end = track.scrollWidth - track.clientWidth;
+      controls.hidden = end <= 1;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= end - 1;
+    };
+
+    const move = (direction: number) => {
+      const [first, second] = track.children;
+      if (!(first instanceof HTMLElement) || !(second instanceof HTMLElement)) return;
+      const step = second.offsetLeft - first.offsetLeft;
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+      track.scrollBy({ left: step * direction, behavior });
+    };
+
+    prev.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    track.addEventListener('scroll', updateControls, { passive: true });
+    new ResizeObserver(updateControls).observe(track);
+    updateControls();
+  }
+</script>
+
+<style>
+  .clinic-team-track {
+    scrollbar-width: thin;
+    scrollbar-color: #718e7c #d6e3d8;
+  }
+</style>

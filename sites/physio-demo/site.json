@@ -3,43 +3,140 @@
   "city": "Beograd",
   "demo": true,
   "bookingUrl": "",
-  "heroImage": "/images/clinicpro/hero.jpg",
+  "bookingCopy": {
+    "title": "Zakažite prvi termin",
+    "description": "Prvi termin je prilika da razgovaramo o vašim ciljevima i dogovorimo naredne korake.",
+    "actionLabel": "Otvorite zakazivanje"
+  },
+  "heroImage": "/images/clinicpro/hero-session.jpg",
+  "heroImageAlt": "Fizioterapeutkinja pomaže osobi tokom procene pokreta",
+  "heroCopy": {
+    "specialty": "Fizioterapija i rehabilitacija",
+    "bookingLabel": "Zakažite termin",
+    "firstVisitLabel": "Kako izgleda prva poseta"
+  },
   "headline": "Stručna podrška na putu ka boljem pokretu.",
-  "description": "Koncept sajta za fizioterapiju i rehabilitaciju u Beogradu.",
+  "description": "Saznajte kako izgleda prva poseta, od razgovora o vašim potrebama do dogovora o narednim koracima.",
+  "firstVisit": [
+    {
+      "title": "Razgovor",
+      "description": "Razgovaramo o tome šta vas dovodi, koje aktivnosti su vam važne i šta želite da postignete."
+    },
+    {
+      "title": "Procena pokreta",
+      "description": "Prolazimo kroz pokrete koji su važni za vaše svakodnevne aktivnosti."
+    },
+    {
+      "title": "Dogovor o planu",
+      "description": "Sumiramo šta smo primetili i dogovaramo naredne korake."
+    }
+  ],
   "services": [
     {
       "title": "Fizioterapijska procena",
-      "description": "Prvi razgovor o tegobama, svakodnevnim aktivnostima i ciljevima."
+      "description": "Razgovaramo o tegobama i posmatramo kako izvodite pokrete koji su vam važni.",
+      "focus": "Razgovor i procena pokreta",
+      "image": {
+        "src": "/images/clinicpro/assessment.jpg",
+        "alt": "Razgovor sa fizioterapeutom tokom posete"
+      }
     },
     {
       "title": "Terapijske vežbe",
-      "description": "Prostor za opis individualnog programa vežbi i načina rada."
+      "description": "Prolazimo kroz odabrane vežbe i prilagođavamo način izvođenja i tempo.",
+      "focus": "Vođeno izvođenje vežbi",
+      "image": {
+        "src": "/images/clinicpro/exercise.jpg",
+        "alt": "Vođena vežba na terapijskom stolu"
+      }
     },
     {
       "title": "Rehabilitacija",
-      "description": "Prostor za opis praćenja napretka i dogovora o narednim koracima."
+      "description": "Na kontrolama razgovaramo o promenama i po potrebi prilagođavamo plan.",
+      "focus": "Praćenje kroz više poseta",
+      "image": {
+        "src": "/images/clinicpro/rehab.jpg",
+        "alt": "Vežbanje uz podršku terapeuta u sali"
+      }
     }
   ],
   "faq": [
     {
-      "question": "Kako da zakažem prvi termin?",
-      "answer": "U stvarnoj verziji sajta dugme za zakazivanje vodi do kanala koji ordinacija koristi."
+      "question": "Šta mogu da očekujem na prvoj poseti?",
+      "answer": "Prva poseta počinje razgovorom o vašim ciljevima. Zatim sledi procena pokreta i dogovor o narednim koracima.",
+      "link": {
+        "href": "#prva-poseta",
+        "label": "Koraci prve posete"
+      }
     },
     {
       "question": "Gde mogu da proverim cenu?",
-      "answer": "Primeri cena prikazani su u odeljku Cenovnik."
+      "answer": "Pogledajte odeljak Cenovnik za primere cena prve procene, terapijskih vežbi i kontrolne procene.",
+      "link": {
+        "href": "#cene",
+        "label": "Pogledajte cenovnik"
+      }
+    },
+    {
+      "question": "Kako da zakažem prvi termin?",
+      "answer": "Dugme „Zakažite termin” vodi do odeljka za zakazivanje. Ovo je demo izmišljenog studija, pa zakazivanje nije aktivno.",
+      "link": {
+        "href": "#termin",
+        "label": "Otvori demo zakazivanja"
+      }
+    },
+    {
+      "question": "Mogu li da pogledam prostor pre dolaska?",
+      "answer": "U odeljku Prostor i oprema možete videti ilustrativni prikaz sale i primere opreme.",
+      "link": {
+        "href": "#oprema",
+        "label": "Pogledajte prostor i opremu"
+      }
+    },
+    {
+      "question": "Koja je razlika između prve i kontrolne procene?",
+      "answer": "Prva procena služi za razgovor o ciljevima i dogovor o planu. Na kontrolnoj proceni pregledamo promene od prethodne posete."
     }
   ],
   "team": [
     {
       "title": "Fizioterapeut",
-      "description": "Prvi razgovor, procena pokreta i dogovor o ciljevima."
+      "description": "Vodi prvi razgovor, procenjuje pokret i sa vama dogovara ciljeve.",
+      "image": {
+        "src": "/images/clinicpro/team-physio.jpg",
+        "alt": "Ilustrativni portret nasmejanog muškarca u plavoj radnoj odeći"
+      }
     },
     {
       "title": "Saradnik za terapijske vežbe",
-      "description": "Podrška pri izvođenju vežbi i beleženju napretka."
+      "description": "Pomaže vam tokom vežbi i beleži zapažanja za sledeću posetu.",
+      "image": {
+        "src": "/images/clinicpro/team-exercise.jpg",
+        "alt": "Ilustrativni portret nasmejane žene u tamnoj radnoj odeći"
+      }
+    },
+    {
+      "title": "Saradnik za vežbe pokretljivosti",
+      "description": "Pomaže pri izvođenju dogovorenih vežbi i prilagođavanju njihovog tempa.",
+      "image": {
+        "src": "/images/clinicpro/team-mobility.jpg",
+        "alt": "Ilustrativni portret muškarca u belom mantilu"
+      }
+    },
+    {
+      "title": "Fizioterapeut za kontrolne posete",
+      "description": "Na kontrolnim posetama prati promene i sa vama dogovara naredne korake.",
+      "image": {
+        "src": "/images/clinicpro/team-followup.jpg",
+        "alt": "Ilustrativni portret žene u zelenoj radnoj odeći"
+      }
     }
   ],
+  "equipmentImage": {
+    "src": "/images/clinicpro/studio.jpg",
+    "alt": "Sprave za vežbanje uz velike prozore u svetloj sali"
+  },
+  "equipmentIntro": "Od stola za procenu do prostora za vežbe, pogledajte kako se oprema koristi tokom posete.",
   "equipment": [
     {
       "title": "Sto za procenu",
@@ -57,15 +154,19 @@
   "prices": [
     {
       "service": "Prva procena",
-      "amount": "3.500 RSD"
+      "amount": "3.500 RSD",
+      "description": "Razgovor o vašim potrebama, procena pokreta i dogovor o narednim koracima.",
+      "featured": true
     },
     {
       "service": "Individualne terapijske vežbe",
-      "amount": "3.000 RSD"
+      "amount": "3.000 RSD",
+      "description": "Vođeno izvođenje vežbi uz prilagođavanje tempa i načina izvođenja."
     },
     {
       "service": "Kontrolna procena",
-      "amount": "2.500 RSD"
+      "amount": "2.500 RSD",
+      "description": "Pregled napretka i dogovor o eventualnim promenama plana."
     }
   ]
 }

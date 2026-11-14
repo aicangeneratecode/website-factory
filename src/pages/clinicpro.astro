@@ -1,5 +1,8 @@
 ---
 import config from '../../sites/physio-demo/site.json';
 import ClinicPro from '../templates/ClinicPro.astro';
+import type { ClinicProConfig } from '../types/clinicpro';
+
+const clinicConfig: ClinicProConfig = config;
 ---
-<ClinicPro config={config} />
+<ClinicPro config={clinicConfig} />

@@ -1,0 +1,43 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  equipment: NonNullable<ClinicProConfig['equipment']>;
+  image?: ClinicProConfig['equipmentImage'];
+  intro?: string;
+  demo: boolean;
+}
+
+const { equipment, image, intro, demo } = Astro.props;
+---
+<section id="oprema" aria-labelledby="oprema-naslov" class="bg-[#f7f5ef]">
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+    <div class="grid items-end gap-5 border-b border-[#cdd9ce] pb-7 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
+      <h2 id="oprema-naslov" class="clinic-display text-5xl tracking-tight lg:text-7xl">Prostor i oprema</h2>
+      {intro && <p class="max-w-md leading-7 text-[#405a50]">{intro}</p>}
+    </div>
+
+    <div class="mt-8 grid gap-6">
+      {image && (
+        <figure class="min-w-0">
+          <div class="group overflow-hidden clinic-panel">
+            <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="aspect-[4/3] w-full bg-[#dce9df] object-cover object-[center_58%] sm:aspect-[2/1] lg:aspect-[2.65/1] motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-105" />
+          </div>
+          {demo && <figcaption class="mt-2 text-sm text-[#405a50]">Ilustrativna fotografija prostora.</figcaption>}
+        </figure>
+      )}
+
+      <div>
+        <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {equipment.map(({ title, description }) => (
+            <li class="clinic-panel border border-[#cdd9ce] bg-[#e6ede3] p-6 lg:p-8">
+              <h3 class="clinic-display text-2xl leading-tight lg:text-3xl">{title}</h3>
+              <p class="mt-2 leading-7 text-[#405a50]">{description}</p>
+            </li>
+          ))}
+        </ul>
+        {demo && <p class="mt-4 text-sm text-[#405a50]">Oprema je navedena kao primer za demo.</p>}
+      </div>
+    </div>
+  </div>
+</section>

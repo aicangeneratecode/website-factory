@@ -2,6 +2,8 @@
 ---
 import '../styles/global.css';
 import type { ProjectProConfig } from '../types/projectpro';
+import ProjectHero from '../components/projectpro/ProjectHero.astro';
+import ProjectFaq from '../components/projectpro/ProjectFaq.astro';
 import ProjectGallery from '../components/projectpro/ProjectGallery.astro';
 import BeforeAfter from '../components/projectpro/BeforeAfter.astro';
 import ProjectServices from '../components/projectpro/ProjectServices.astro';
@@ -95,7 +97,7 @@ const allowIndexing =
       <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-5 lg:px-12">
         <a href="#pocetna" class="flex items-center gap-3">
           <span class="grid h-11 w-11 place-items-center bg-[var(--pp-ink)] text-xl font-bold text-white">
-            N.
+            {brand.name.trim().charAt(0)}.
           </span>
           <span>
             <strong class="block text-lg font-extrabold tracking-[-0.05em]">
@@ -118,12 +120,12 @@ const allowIndexing =
           ))}
         </nav>
 
-        <a href="#upit" class="pp-header-cta hidden lg:inline-flex">
+        <a href="#upit" class="pp-action pp-header-cta hidden lg:inline-flex">
           {hero.primary.label} <span aria-hidden="true">↗</span>
         </a>
 
         <details class="pp-mobile-menu relative lg:hidden">
-          <summary class="cursor-pointer rounded border border-black/20 px-4 py-2 text-sm font-semibold">
+          <summary class="pp-action cursor-pointer rounded border border-black/20 px-4 py-2 text-sm font-semibold">
             Meni
           </summary>
 
@@ -139,118 +141,23 @@ const allowIndexing =
     </header>
 
     <main id="sadrzaj">
-      <!-- HERO -->
-      <section id="pocetna" class="mx-auto grid max-w-[1440px] items-center gap-12 px-6 pb-20 pt-12 lg:min-h-[760px] lg:grid-cols-[0.94fr_1.06fr] lg:gap-14 lg:px-12">
-        <div class="max-w-[680px]">
+      <ProjectHero hero={hero} demo={config.demo} />
 
-        {config.demo && (
-          <a
-            href="/"
-            class="mb-10 inline-flex items-center gap-3 text-xs font-bold text-[var(--pp-muted)] transition hover:text-[var(--pp-accent)]"
-          >
-            <span aria-hidden="true">←</span>
-            Svi šabloni
-          </a>
-        )}
+      <ProjectServices services={config.services} actionLabel={hero.primary.label} />
 
-          <div class="mb-9 flex flex-wrap items-center gap-3">
-            <span class="h-2 w-2 rounded-full bg-[var(--pp-accent)]"></span>
-            <p class="text-[11px] font-extrabold tracking-[0.17em]">
-              {hero.eyebrow}
-            </p>
-          </div>
+      <ProjectGallery portfolio={config.portfolio} demo={config.demo} />
 
-          <h1 class="font-display text-[clamp(2.6rem,8vw,6.3rem)] leading-[1.04] tracking-[-0.065em] [overflow-wrap:anywhere]">
-            {hero.headline}
-            <span class="mt-2 block text-[var(--pp-accent)]">
-              {hero.highlight}
-            </span>
-          </h1>
+      {config.beforeAfter && <BeforeAfter comparison={config.beforeAfter} />}
 
-          <p class="mt-8 max-w-[500px] text-base leading-[1.9] text-[var(--pp-muted)] lg:text-lg">
-            {hero.description}
-          </p>
+      <ProcessTimeline process={config.process} demo={config.demo} />
 
-          <div class="mt-10 flex flex-wrap items-center gap-7">
-            <a href={hero.primary.href} class="pp-button">
-              {hero.primary.label}
-              <span aria-hidden="true">↗</span>
-            </a>
+      {config.testimonials?.items.some((item) => item.verified) && (
+        <ProjectTestimonials testimonials={config.testimonials} demo={config.demo} />
+      )}
 
-            <a href={hero.secondary.href} class="border-b border-[var(--pp-ink)] pb-2 text-sm font-bold transition hover:opacity-60">
-              {hero.secondary.label} ↗
-            </a>
-          </div>
+      {config.faq && config.faq.items.length > 0 && <ProjectFaq faq={config.faq} />}
 
-          <div class="mt-16 flex flex-wrap gap-4 border-t border-black/15 pt-6 text-[11px] font-bold tracking-[0.08em] text-[var(--pp-muted)]">
-            <span>PLANIRANJE</span>
-            <span class="text-[var(--pp-accent)]">✳</span>
-            <span>RENOVIRANJE</span>
-            <span class="text-[var(--pp-accent)]">✳</span>
-            <span>ZAVRŠNI RADOVI</span>
-          </div>
-        </div>
-
-        <!-- HERO IMAGE -->
-        <div class="relative">
-          <div class="overflow-hidden bg-[#d8d4cb]">
-            <img
-              src={hero.image}
-              alt={hero.imageAlt}
-              width="1200"
-              height="800"
-              fetchpriority="high"
-              class="h-[clamp(18rem,82vw,27.5rem)] w-full object-cover lg:h-[650px]"
-            />
-          </div>
-
-          {config.demo && (
-            <div class="absolute bottom-0 left-0 bg-[var(--pp-ink)] px-6 py-5 text-white lg:px-9 lg:py-7">
-              <p class="text-[10px] font-bold tracking-[0.17em] text-white/60">
-                DEMO CONCEPT
-              </p>
-              <p class="mt-2 font-display text-xl">
-                {hero.caption ?? 'Prostor po vašoj meri.'}
-              </p>
-            </div>
-
-            <div class="absolute right-4 top-4 bg-white/95 px-4 py-2 text-[10px] font-bold tracking-wider text-[var(--pp-ink)]">
-              ILUSTRATIVNA FOTOGRAFIJA
-            </div>
-          )}
-        </div>
-      </section>
-
-
-  <!-- PROJECT GALLERY -->
-  <ProjectGallery
-    portfolio={config.portfolio}
-    demo={config.demo}
-  />
-
-  <!-- BEFORE / AFTER -->
-  {config.beforeAfter && <BeforeAfter comparison={config.beforeAfter} />}
-
-  <!-- SERVICES -->
-  <ProjectServices services={config.services} />
-
-  <!-- PROCESS TIMELINE -->
-  <ProcessTimeline
-    process={config.process}
-    demo={config.demo}
-  />
-
-  <!-- TESTIMONIALS -->
-  {config.testimonials && <ProjectTestimonials
-    testimonials={config.testimonials}
-    demo={config.demo}
-  />}
-
-  <!-- ESTIMATE FORM -->
-  <EstimateForm
-    estimate={config.estimate}
-    demo={config.demo}
-  />
+      <EstimateForm estimate={config.estimate} demo={config.demo} />
     </main>
 
     <footer class="bg-[var(--pp-ink)] px-6 py-8 text-white lg:px-12">
@@ -277,23 +184,21 @@ const allowIndexing =
     background: var(--pp-bg);
   }
 
-  .pp-button {
-    display: inline-flex;
-    min-height: 56px;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 16px 26px;
-    background: var(--pp-accent);
-    color: white;
-    font-size: 14px;
-    font-weight: 750;
-    transition: background 0.2s, transform 0.2s;
+  .pp-body :global(.pp-action),
+  .pp-body :global(.pp-field) {
+    border-radius: 0.625rem;
   }
 
-  .pp-button:hover {
-    background: var(--pp-ink);
-    transform: translateY(-2px);
+  .pp-body :global(.pp-action) {
+    min-height: 44px;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .pp-body :global(.pp-heading) {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-wrap: balance;
   }
 
   .pp-header-cta {
@@ -312,7 +217,6 @@ const allowIndexing =
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .pp-button,
     .pp-header-cta {
       transition: none;
     }

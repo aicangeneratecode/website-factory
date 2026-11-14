@@ -1,0 +1,35 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  config: Pick<ClinicProConfig, 'city' | 'headline' | 'description' | 'heroImage' | 'heroImageAlt' | 'heroCopy' | 'demo'>;
+}
+
+const { config } = Astro.props;
+const copy = config.heroCopy ?? {
+  specialty: 'Fizioterapija i rehabilitacija',
+  bookingLabel: 'Zakažite termin',
+  firstVisitLabel: 'Kako izgleda prva poseta',
+};
+---
+<section aria-labelledby="clinic-hero-title" class="mx-auto max-w-7xl px-4 pb-9 pt-3 sm:px-6 lg:px-12">
+  <div class="clinic-hero group relative isolate overflow-hidden bg-[#153c35] text-[#f5f7f1]">
+    {config.heroImage && (
+      <img src={config.heroImage} alt={config.heroImageAlt ?? ''} width="1440" height="960" fetchpriority="high" decoding="async"
+        class="clinic-hero-photo h-auto w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-105 lg:absolute lg:inset-y-0 lg:right-0 lg:-z-20 lg:h-full lg:w-3/4 lg:object-[center_40%]" />
+    )}
+    {config.heroImage && <div aria-hidden="true" class="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,#153c35_25%,#153c35ed_36%,#153c3570_64%,transparent_100%)] lg:block"></div>}
+    <div class="relative px-6 py-9 sm:px-10 lg:flex lg:min-h-[35rem] lg:flex-col lg:justify-center lg:px-14 lg:py-16">
+      <p class="text-xs font-bold uppercase tracking-widest text-[#d6e9db]">{copy.specialty} <span aria-hidden="true">·</span> {config.city}</p>
+      <h1 id="clinic-hero-title" class="clinic-display mt-5 max-w-[35rem] text-[clamp(2.5rem,5.6vw,5.25rem)] leading-[0.99] tracking-[-0.055em]">{config.headline}</h1>
+      <p class="mt-5 max-w-sm leading-7 text-[#edf6ef]">{config.description}</p>
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href="#termin" class="clinic-action inline-flex items-center gap-3 bg-[#f5f7f1] px-5 py-3 text-[#153c35] transition-colors hover:bg-[#d6e9db]">
+          {copy.bookingLabel} <span aria-hidden="true">↗</span>
+        </a>
+        <a href="#prva-poseta" class="clinic-action inline-flex items-center border border-white/65 px-5 py-3 transition-colors hover:bg-white/15">{copy.firstVisitLabel}</a>
+      </div>
+      {config.demo && config.heroImage && <p class="mt-5 text-xs text-[#d6e9db]">Ilustrativna fotografija</p>}
+    </div>
+  </div>
+</section>

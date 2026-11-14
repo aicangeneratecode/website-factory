@@ -1,0 +1,36 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  faq: ClinicProConfig['faq'];
+}
+
+const { faq } = Astro.props;
+---
+<section id="pitanja" aria-labelledby="pitanja-naslov" class="bg-[#f7f5ef]">
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-12">
+    <div>
+      <h2 id="pitanja-naslov" class="clinic-display text-5xl tracking-tight lg:text-7xl">Česta pitanja</h2>
+      <a href="#prva-poseta" class="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline">
+        Kako izgleda prva poseta <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="divide-y divide-[#a9beb0] border-y border-[#a9beb0]">
+      {faq.map(({ question, answer, link }) => (
+        <details class="group open:bg-[#e9efe5]">
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 px-4 py-4 sm:px-6 text-lg font-semibold transition-colors duration-200 hover:bg-[#e9efe5] [&::-webkit-details-marker]:hidden">
+            {question}
+            <span aria-hidden="true" class="grid size-9 shrink-0 place-items-center rounded-full bg-[#dce9df] text-xl text-[#18362e] group-open:bg-[#18362e] group-open:text-white transition-colors duration-200">
+              <span class="group-open:hidden">+</span>
+              <span class="hidden group-open:inline">−</span>
+            </span>
+          </summary>
+          <div class="px-4 pb-5 sm:px-6">
+            <p class="max-w-xl leading-7 text-[#405a50]">{answer}</p>
+            {link && <a href={link.href} class="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline">{link.label} <span aria-hidden="true">↗</span></a>}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

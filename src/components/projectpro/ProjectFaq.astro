@@ -1,0 +1,36 @@
+---
+import type { ProjectProConfig } from '../../types/projectpro';
+
+interface Props {
+  faq: NonNullable<ProjectProConfig['faq']>;
+}
+
+const { faq } = Astro.props;
+---
+<section id="pitanja" aria-labelledby="pp-faq-title" class="scroll-mt-24 bg-[var(--pp-bg)] py-16 md:py-24">
+  <div class="mx-auto grid max-w-[1440px] gap-8 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-12">
+    <div>
+      <h2 id="pp-faq-title" class="pp-heading text-[clamp(2.6rem,5vw,5rem)] leading-none tracking-tight">{faq.title}</h2>
+      <p class="mt-5 max-w-md leading-7 text-[var(--pp-ink)]">{faq.description}</p>
+      {faq.image && (
+        <div class="group mt-7 overflow-hidden rounded-2xl">
+          <img src={faq.image.src} alt={faq.image.alt} loading="lazy" decoding="async"
+            class="aspect-[3/2] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-105" />
+        </div>
+      )}
+    </div>
+    <div class="space-y-3">
+      {faq.items.map(({ question, answer }) => (
+        <details class="group rounded-2xl border border-black/10 bg-[var(--pp-surface)]">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-5 py-4 font-bold transition-colors hover:bg-black/5 [&::-webkit-details-marker]:hidden">
+            {question}
+            <span aria-hidden="true" class="grid size-8 shrink-0 place-items-center rounded-full bg-[var(--pp-ink)] text-white">
+              <span class="group-open:hidden">+</span><span class="hidden group-open:inline">−</span>
+            </span>
+          </summary>
+          <p class="max-w-xl px-5 pb-5 leading-7">{answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

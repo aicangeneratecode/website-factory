@@ -1,295 +1,104 @@
-
 ---
 import '../styles/global.css';
 
 const base = Astro.site ?? new URL('https://example.com');
 const canonical = new URL('/', base).href;
-const previewImage = new URL('/images/projectpro/hero.jpg', base).href;
-
-const indexable =
-  process.env.SHOWCASE_INDEXABLE === 'true' &&
-  base.hostname !== 'example.com';
+const indexable = process.env.SHOWCASE_INDEXABLE === 'true' && base.hostname !== 'example.com';
+const title = 'Website Factory | Sajtovi za poslovanje u Srbiji';
+const description = 'Tri demo sajta za renoviranje, proslave i fizioterapiju. Istražite usluge, galerije i tok upita na svakom sajtu.';
 
 const templates = [
   {
-    number: '01',
     name: 'ProjectPro',
-    category: 'RENOVIRANJE I ADAPTACIJE',
-    description:
-      'Moderan sajt za firme koje se bave renoviranjem, adaptacijama i završnim radovima.',
+    category: 'Renoviranje i adaptacije',
+    description: 'Od inspiracije i poređenja enterijera do upita za procenu radova.',
     image: '/images/projectpro/hero.jpg',
-    label: 'Dostupan demo',
-    href: '/projectpro',
-    available: true
+    href: '/projectpro/',
   },
   {
-    number: '02',
     name: 'VenuePro',
-    category: 'PROSLAVE I DOGAĐAJI',
-    description:
-      'Elegantna prezentacija prostora za venčanja, proslave i poslovne događaje.',
+    category: 'Proslave i događaji',
+    description: 'Galerija prostora, rasporedi sedenja i upit za željeni datum.',
     image: '/images/venuepro/hero.jpg',
-    label: 'Dostupan demo',
-    href: '/venuepro',
-    available: true
-
+    href: '/venuepro/',
   },
   {
-    number: '03',
     name: 'ClinicPro',
-    category: 'FIZIOTERAPIJA I REHABILITACIJA',
-    description:
-      'Profesionalan sajt za fizioterapeutske centre i rehabilitacione ordinacije.',
-    image: "/images/clinicpro/hero.jpg",
-    label: 'Dostupan demo',
-    href: '/clinicpro',
-    available: true
+    category: 'Fizioterapija i rehabilitacija',
+    description: 'Prvi pregled, predstavljanje tima, cenovnik i demo zakazivanje.',
+    image: '/images/clinicpro/hero-session.jpg',
+    href: '/clinicpro/',
   },
-  {
-    number: '04',
-    name: 'ProjectPro PVC / ALU',
-    category: 'PROZORI I VRATA',
-    description: 'Varijanta za PVC i aluminijumsku stolariju, sa upitom prema broju otvora.',
-    image: '/images/projectpro/hero.jpg',
-    label: 'Dostupan demo',
-    href: '/stolarija',
-    available: true
-  }
 ];
 ---
-
 <!doctype html>
 <html lang="sr-Latn-RS">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Website Factory | Kolekcija web šablona</title>
-
-    <meta
-      name="description"
-      content="Istražite moderne web šablone za građevinske firme, prostore za događaje i fizioterapeutske centre."
-    />
-
-    <meta
-      name="robots"
-      content={indexable ? 'index,follow' : 'noindex,nofollow'}
-    />
-
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={indexable ? 'index,follow' : 'noindex,nofollow'} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="sr_RS" />
-    <meta property="og:title" content="Website Factory | Web šabloni" />
-    <meta
-      property="og:description"
-      content="Demo sajtovi za poslovanje u Srbiji."
-    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={previewImage} />
+    <meta property="og:image" content={new URL(templates[0].image, base).href} />
   </head>
-
-  <body class="bg-[#F5F3EE] text-[#1C2522]">
-    <a
-      href="#sadrzaj"
-      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-4"
-    >
-      Preskoči na sadržaj
-    </a>
-
-    <!-- HEADER -->
-    <header class="border-b border-black/10">
-      <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-5 px-6 py-6 lg:px-12">
-        <a href="/" class="flex items-center gap-3">
-          <span class="grid h-11 w-11 place-items-center bg-[#1C2522] text-sm font-black tracking-tighter text-white">
-            WF.
-          </span>
-
-          <span class="text-lg font-extrabold tracking-[-0.06em]">
-            WEBSITE FACTORY
-          </span>
-        </a>
-
-        <a
-          href="#sabloni"
-          class="border-b border-[#1C2522] pb-1 text-xs font-bold"
-        >
-          Pogledajte šablone ↗
-        </a>
-      </div>
+  <body class="bg-[#f5f2e9] text-[#202b24]">
+    <a href="#sadrzaj" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:p-4">Preskoči na sadržaj</a>
+    <header class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4 sm:px-8 lg:px-12">
+      <a href="/" class="flex min-h-11 items-center gap-3 font-bold">
+        <span aria-hidden="true" class="grid size-9 place-items-center rounded-[10px] bg-[#202b24] text-sm text-[#f5f2e9]">WF</span>
+        Website Factory
+      </a>
+      <nav aria-label="Glavna navigacija">
+        <a href="#sabloni" class="inline-flex min-h-11 items-center text-sm font-bold underline decoration-[#9b5a42] underline-offset-4">Šabloni</a>
+      </nav>
     </header>
-
-    <main id="sadrzaj">
-
-      <!-- INTRO -->
-      <section class="mx-auto max-w-[1440px] px-6 pb-16 pt-20 md:pb-24 md:pt-28 lg:px-12">
-        <p class="text-[11px] font-extrabold tracking-[0.24em] text-[#B86442]">
-          KOLEKCIJA WEB ŠABLONA
-        </p>
-
-        <div class="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-          <h1 class="max-w-[950px] font-display text-[clamp(3.2rem,7vw,7rem)] leading-[1.02] tracking-[-0.065em] [overflow-wrap:anywhere]">
-            Dobar sajt.
-            <span class="block text-[#B86442]">
-              Jasan utisak.
-            </span>
-          </h1>
-
-          <div class="max-w-[450px] lg:pb-3">
-            <p class="text-base leading-8 text-[#6E7973]">
-              Odaberite dizajnerski koncept koji najbolje odgovara vašem poslu.
-              Svaki šablon ima svoj karakter, strukturu i način predstavljanja usluga.
-            </p>
-
-            <a
-              href="#sabloni"
-              class="mt-8 inline-flex min-h-13 items-center gap-5 bg-[#1C2522] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[#B86442]"
-            >
-              Istražite kolekciju
-              <span aria-hidden="true">↗</span>
-            </a>
-          </div>
+    <main id="sadrzaj" class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <section class="grid overflow-hidden rounded-[20px] bg-[#202b24] text-[#f5f2e9] lg:grid-cols-[1fr_0.9fr]">
+        <div class="self-center p-7 sm:p-12 lg:p-14">
+          <h1 class="font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.97] tracking-[-0.055em]">Sajtovi za <em class="font-normal text-[#e5be9a]">vaš posao.</em></h1>
+          <p class="mt-6 max-w-md leading-7 text-[#e6e3d8]">Izaberite demo za svoju delatnost i isprobajte kako posetioci pregledaju ponudu i šalju upit.</p>
+          <a href="#sabloni" class="mt-7 inline-flex min-h-11 items-center gap-4 rounded-[10px] bg-[#e5be9a] px-5 py-3 text-sm font-bold text-[#202b24] transition-colors hover:bg-[#f5f2e9]">Pogledajte šablone <span aria-hidden="true">↓</span></a>
         </div>
-
-        <div class="mt-20 flex flex-wrap items-center justify-between gap-5 border-t border-black/15 pt-6">
-          <span class="text-xs font-semibold tracking-wide text-[#6E7973]">
-            TRI RAZLIČITA KONCEPTA
-          </span>
-
-          <span class="text-xs font-semibold tracking-wide text-[#6E7973]">
-            RESPONZIVAN DIZAJN / SRPSKI JEZIK
-          </span>
+        <div class="relative aspect-[2/1] overflow-hidden bg-[#334238] lg:aspect-auto">
+          <img src={templates[0].image} alt="" width="1200" height="800" fetchpriority="high" class="absolute inset-0 h-full w-full object-cover object-center" />
         </div>
       </section>
-
-      <!-- TEMPLATE CATALOG -->
-      <section
-        id="sabloni"
-        class="scroll-mt-20 bg-white py-20 md:py-28"
-      >
-        <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
-
-          <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p class="mb-5 text-[11px] font-extrabold tracking-[0.2em] text-[#B86442]">
-                ODABERITE SVOJ KONCEPT
-              </p>
-
-              <h2 class="font-display text-[clamp(2.8rem,5vw,5rem)] leading-tight tracking-[-0.055em]">
-                Naši šabloni.
-              </h2>
-            </div>
-
-            <p class="max-w-[400px] text-sm leading-7 text-[#6E7973]">
-              Otvorite demo i istražite kako je organizovan svaki sajt.
-            </p>
-          </div>
-
-          <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {templates.map((template, index) => (
-              <article class="flex min-w-0 flex-col border border-black/10 bg-[#F5F3EE]">
-
-                <!-- VISUAL -->
-                <div class:list={[
-                  'relative h-[300px] overflow-hidden md:h-[370px]',
-                  index === 1
-                    ? 'bg-[#DDD3C5]'
-                    : index === 2
-                      ? 'bg-[#D7E1DD]'
-                      : 'bg-[#D5CFC4]'
-                ]}>
-                    {template.available && template.image ? (
-                      <img
-                        src={template.image}
-                        alt={`Ilustrativna fotografija za ${template.name} šablon`}
-                        width="1200"
-                        height="800"
-                        loading="lazy"
-                        decoding="async"
-                        class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                      />
-                    ) : (
-
-                    <div
-                      aria-hidden="true"
-                      class="absolute inset-0 flex items-center justify-center"
-                    >
-                      <span class="font-display text-[150px] leading-none tracking-[-0.1em] text-[#1C2522]/10">
-                        {template.number}
-                      </span>
-                    </div>
-                  )}
-
-                  <span class="absolute left-5 top-5 bg-white px-4 py-2 text-[10px] font-extrabold tracking-[0.12em] text-[#1C2522]">
-                    {template.label.toUpperCase()}
-                  </span>
+      <section id="sabloni" aria-labelledby="sabloni-naslov" class="py-12 sm:py-18">
+        <h2 id="sabloni-naslov" class="font-display text-4xl tracking-tight sm:text-5xl">Izaberite svoj demo</h2>
+        <ul class="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {templates.map((template) => (
+            <li class="min-w-0">
+              <a href={template.href} class="group flex h-full flex-col overflow-hidden rounded-[20px] border border-[#d7d5c9] bg-[#fffcf6] transition-colors hover:border-[#9b5a42]">
+                <div class="aspect-[4/3] overflow-hidden bg-[#d7d5c9]">
+                  <img src={template.image} alt="" width="1200" height="900" loading="lazy" decoding="async" class="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-105" />
                 </div>
-
-                <!-- DETAILS -->
-                <div class="flex flex-1 flex-col p-7 md:p-8">
-
-                  <p class="text-[10px] font-extrabold tracking-[0.15em] text-[#B86442]">
-                    {template.category}
-                  </p>
-
-                  <h3 class="mt-5 font-display text-[clamp(2.2rem,3vw,3rem)] tracking-[-0.045em]">
-                    {template.name}
-                  </h3>
-
-                  <p class="mt-5 flex-1 text-sm leading-7 text-[#6E7973]">
-                    {template.description}
-                  </p>
-
-                  <div class="mt-9 border-t border-black/10 pt-6">
-                    {template.available ? (
-                      <a
-                        href={template.href}
-                        class="inline-flex items-center gap-4 text-sm font-bold text-[#1C2522] transition-colors hover:text-[#B86442]"
-                      >
-                        Pogledajte demo
-                        <span aria-hidden="true">↗</span>
-                      </a>
-                    ) : (
-                      <span class="text-sm font-semibold text-[#6E7973]">
-                        Uskoro dostupno
-                      </span>
-                    )}
+                <div class="flex flex-1 flex-col p-5 sm:p-6">
+                  <p class="text-sm font-semibold text-[#834a35]">{template.category}</p>
+                  <h3 class="mt-2 font-display text-3xl tracking-tight">{template.name}</h3>
+                  <p class="mt-3 leading-6 text-[#47554b]">{template.description}</p>
+                  <div class="mt-auto pt-6">
+                    <span class="flex min-h-11 items-center justify-between gap-3 border-t border-[#d7d5c9] pt-2 text-sm font-bold">
+                      Pogledajte demo <span aria-hidden="true" class="grid size-8 place-items-center rounded-[10px] bg-[#e9e6da] transition-colors group-hover:bg-[#e5be9a]">↗</span>
+                    </span>
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- CLOSING -->
-      <section class="bg-[#1C2522] px-6 py-20 text-white md:py-24 lg:px-12">
-        <div class="mx-auto flex max-w-[1344px] flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div>
-            <p class="mb-5 text-[11px] font-bold tracking-[0.2em] text-[#DCA18A]">
-              WEBSITE FACTORY
-            </p>
-
-            <h2 class="max-w-[760px] font-display text-[clamp(2.5rem,5vw,5rem)] leading-[1.1] tracking-[-0.05em]">
-              Jedan dobar početak. Mnogo mogućnosti.
-            </h2>
-          </div>
-
-          <a
-            href="#sabloni"
-            class="inline-flex shrink-0 items-center gap-4 self-start border border-white/40 px-6 py-4 text-sm font-bold transition-colors hover:bg-white hover:text-[#1C2522]"
-          >
-            Nazad na šablone ↗
-          </a>
-        </div>
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
-
-    <footer class="bg-[#17201D] px-6 py-7 text-white/60 lg:px-12">
-      <div class="mx-auto flex max-w-[1344px] flex-wrap justify-between gap-3 text-xs">
-        <span>Website Factory</span>
-        <span>Demo kolekcija web šablona</span>
+    <footer class="border-t border-[#d7d5c9]">
+      <div class="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 px-5 py-6 text-sm sm:px-8 lg:px-12">
+        <span class="font-bold">Website Factory</span>
+        <p class="text-[#47554b]">Demo sajtovi sa ilustrativnim sadržajem.</p>
       </div>
     </footer>
   </body>

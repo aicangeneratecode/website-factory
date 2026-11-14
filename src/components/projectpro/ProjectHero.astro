@@ -1,0 +1,43 @@
+---
+import type { ProjectProConfig } from '../../types/projectpro';
+
+interface Props {
+  hero: ProjectProConfig['hero'];
+  demo: boolean;
+}
+
+const { hero, demo } = Astro.props;
+---
+<section id="pocetna" aria-labelledby="pp-hero-title" class="mx-auto max-w-[1440px] px-4 pt-4 sm:px-6 lg:px-12">
+  <div class="group relative isolate flex min-h-[36rem] flex-col justify-between overflow-hidden rounded-3xl bg-[var(--pp-ink)] px-6 py-7 text-white sm:px-10 lg:min-h-[42rem] lg:px-14 lg:py-10">
+    <img src={hero.image} alt={hero.imageAlt} width="1200" height="800" fetchpriority="high"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-[60%_center] motion-safe:transition-transform motion-safe:duration-700 motion-safe:ease-out motion-safe:group-hover:scale-105 lg:object-center" />
+    <div aria-hidden="true" class="absolute inset-0 -z-10 bg-linear-to-t from-black/95 via-black/70 via-55% to-black/40"></div>
+
+    {demo && (
+      <div class="flex flex-wrap items-center justify-between gap-4 text-xs font-semibold">
+        <a href="/" class="inline-flex min-h-11 items-center underline underline-offset-4">← Svi šabloni</a>
+        <span>Demo Concept · Ilustrativna fotografija</span>
+      </div>
+    )}
+
+    <div class="mt-auto pt-16 lg:pt-28">
+      <p class="text-xs font-bold tracking-widest">{hero.eyebrow}</p>
+      <h1 id="pp-hero-title" class="pp-heading mt-5 max-w-6xl text-balance text-[clamp(2.6rem,6.5vw,6rem)] leading-[0.98] tracking-[-0.055em] [overflow-wrap:anywhere]">
+        {hero.headline}
+        <span class="mt-2 block font-medium text-white/90">{hero.highlight}</span>
+      </h1>
+      <div class="mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-white/35 pt-6">
+        <p class="max-w-lg leading-7 text-white/90">{hero.description}</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href={hero.primary.href} class="pp-action inline-flex min-h-12 items-center bg-white px-6 py-3 text-sm font-bold text-[var(--pp-ink)] transition-colors hover:bg-[#eee4d8]">
+            {hero.primary.label} <span aria-hidden="true" class="ml-3">↗</span>
+          </a>
+          <a href={hero.secondary.href} class="pp-action inline-flex min-h-12 items-center border border-white/55 px-6 py-3 text-sm font-bold transition-colors hover:bg-white/15">
+            {hero.secondary.label}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

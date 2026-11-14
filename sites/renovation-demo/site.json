@@ -20,6 +20,7 @@
     { "label": "Projekti", "href": "#projekti" },
     { "label": "Usluge", "href": "#usluge" },
     { "label": "Proces rada", "href": "#proces" },
+    { "label": "Pitanja", "href": "#pitanja" },
     { "label": "Kontakt", "href": "#upit" }
   ],
   "hero": {
@@ -90,6 +91,7 @@
       {
         "number": "01",
         "title": "Kompletno renoviranje stanova",
+        "image": {"src": "/images/projectpro/project-01.jpg", "alt": "Moderan dnevni boravak sa svetlim enterijerom"},
         "description": "Sveobuhvatna adaptacija stambenog prostora, od početne pripreme do završnih detalja.",
         "details": [
           "Demontaža i priprema prostora",
@@ -112,6 +114,7 @@
       {
         "number": "03",
         "title": "Renoviranje kuhinje",
+        "image": {"src": "/images/projectpro/project-02.jpg", "alt": "Savremena kuhinja sa minimalističkim elementima"},
         "description": "Praktičan raspored, savremeni materijali i pažnja prema svakom detalju.",
         "details": [
           "Priprema instalacija",
@@ -192,6 +195,29 @@
       }
     ],
     "note": "Prikazani tekstovi su demonstracioni primeri, a ne stvarne recenzije."
+  },
+
+  "faq": {
+    "title": "Pre nego što počnete.",
+    "description": "Šta pripremiti za prvi razgovor i kako se dogovara obim radova.",
+    "items": [
+      {
+        "question": "Šta da navedem u prvom upitu?",
+        "answer": "Navedite lokaciju, približnu površinu, prostorije koje želite da obnovite i željeni početak."
+      },
+      {
+        "question": "Da li mogu da obnovim samo kuhinju ili kupatilo?",
+        "answer": "U obrascu možete da izaberete pojedinačnu prostoriju ili kompletnu adaptaciju stana."
+      },
+      {
+        "question": "Od čega zavise cena i rokovi?",
+        "answer": "Od stanja prostora, obima radova, dostupnosti materijala i dogovorenih završnih detalja."
+      },
+      {
+        "question": "Ko bira materijale?",
+        "answer": "Izbor materijala i odgovornost za nabavku dogovaraju se pre početka radova."
+      }
+    ]
   },
 
   "estimate": {

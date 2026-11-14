@@ -79,6 +79,7 @@ export interface ProjectProConfig {
       description: string;
       details: string[];
       featured: boolean;
+      image?: { src: string; alt: string };
     }[];
   };
 
@@ -106,6 +107,13 @@ export interface ProjectProConfig {
       verified: boolean;
     }[];
     note: string;
+  };
+
+  faq?: {
+    title: string;
+    description: string;
+    image?: { src: string; alt: string };
+    items: { question: string; answer: string }[];
   };
 
   estimate: {

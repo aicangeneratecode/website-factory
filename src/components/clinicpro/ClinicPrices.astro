@@ -1,0 +1,44 @@
+---
+import type { ClinicProConfig } from '../../types/clinicpro';
+
+interface Props {
+  prices: NonNullable<ClinicProConfig['prices']>;
+  demo: boolean;
+}
+
+const { prices, demo } = Astro.props;
+---
+<section id="cene" aria-labelledby="cene-naslov" class="bg-[#e6ede3]">
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
+    <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#a9beb0] pb-7">
+      <div>
+        <h2 id="cene-naslov" class="clinic-display text-5xl tracking-tight lg:text-7xl">Cenovnik</h2>
+        <p class="mt-4 max-w-md leading-7 text-[#405a50]">Uporedite usluge, pogledajte šta obuhvataju i izaberite termin.</p>
+      </div>
+      {demo && <p class="text-sm text-[#405a50]">Ilustrativne cene za demo prikaz.</p>}
+    </div>
+
+    <ul class="mt-8 grid gap-5 lg:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]">
+      {prices.map(({ service, amount, description, featured }, index) => (
+        <li class:list={[
+          'clinic-panel flex min-w-0 flex-col border p-6 sm:p-8',
+          featured ? 'border-[#18362e] bg-[#18362e] text-[#f5f7f1]' : 'border-[#bccdc0] bg-[#f7faf5]',
+        ]}>
+          <h3 class="clinic-display text-2xl leading-tight">{service}</h3>
+          <p class="clinic-display mt-4 text-[clamp(2rem,4vw,3rem)] leading-tight tabular-nums">{amount}</p>
+          {description && (
+            <p class:list={['mt-5 border-t pt-4 leading-7', featured ? 'border-white/25 text-[#d6e9db]' : 'border-[#cdd9ce] text-[#405a50]']}>{description}</p>
+          )}
+          <div class="mt-auto pt-7">
+            <a href="#termin" data-clinic-service={index} class:list={[
+              'clinic-action inline-flex w-full items-center justify-between gap-3 border px-4 py-3 transition-colors duration-200',
+              featured ? 'border-transparent bg-[#e3efe5] text-[#18362e] hover:bg-white' : 'border-[#a9beb0] text-[#18362e] hover:bg-[#e6ede3]',
+            ]}>
+              Izaberite uslugu <span class="sr-only">{service}</span><span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -37,9 +37,7 @@ Edit:
 
 The demo is fictional. Do not present illustrative photographs or placeholder testimonials as actual completed work or customer reviews.
 
-The PVC/ALU variant at `/stolarija` uses the same ProjectPro template with
-`sites/stolarija-demo/site.json`. It quotes by opening count and omits the
-comparison and testimonials when they are absent from the configuration.
+The unpublished PVC/ALU configuration is saved in `sites/stolarija-demo/site.json`.
 
 ## VenuePro configuration
 
@@ -50,6 +48,11 @@ and set `inquiry.recipientEmail` to the venue's address before turning off
 `demo`. Visitors can then open the prepared message in their mail app.
 
 ## ClinicPro configuration
+
+`src/pages/clinicpro.astro` loads the typed site configuration.
+`src/templates/ClinicPro.astro` assembles the page from eight section components
+in `src/components/clinicpro/`. The configuration type lives in
+`src/types/clinicpro.ts`.
 
 Edit `sites/physio-demo/site.json` for the clinic name, service descriptions,
 team, equipment, price list, FAQ and existing booking link. Optional sections
