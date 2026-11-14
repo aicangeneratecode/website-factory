@@ -1,0 +1,7 @@
+{
+  "name": "Clothing Store",
+  "description": "Streetwear, footwear and accessories. Browse the catalog and build your order.",
+  "basePath": "/clothing-store",
+  "previewImage": "/images/clothing-store/IMG_3375.jpg",
+  "demo": true
+}

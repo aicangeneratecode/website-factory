@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import FactoryBackLink from '../components/FactoryBackLink.astro';
 
 import type { ClinicProConfig } from '../types/clinicpro';
 import ClinicHero from '../components/clinicpro/ClinicHero.astro';
@@ -48,6 +49,8 @@ const faq = config.faq.map((item) => ({
   </head>
   <body class="clinic bg-[#f5f7f1] text-[#172e28]">
     <a href="#sadrzaj" class="sr-only focus:not-sr-only focus:absolute focus:z-10 focus:bg-white focus:p-4">Preskoči na sadržaj</a>
+
+    {config.demo && <FactoryBackLink />}
     <header class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-12">
       <div class="clinic-panel flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border border-[#cdd9ce] bg-[#fcfdf9] px-4 py-3 sm:px-6">
         <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -87,11 +90,10 @@ const faq = config.faq.map((item) => ({
 
       {hasFaq && <ClinicFaq faq={faq} />}
 
-      <ClinicBooking bookingUrl={bookingUrl} copy={config.bookingCopy} demo={config.demo} prices={prices} />
+      <ClinicBooking bookingUrl={bookingUrl} phone={config.bookingPhone} copy={config.bookingCopy} demo={config.demo} prices={prices} />
     </main>
     <footer class="mx-auto flex max-w-7xl flex-wrap justify-between gap-4 px-6 py-6 text-sm lg:px-12">
       <span>{config.brand}{config.demo && ' · Demo Concept'}</span>
-      {config.demo && <a href="/" class="underline underline-offset-4">Svi šabloni</a>}
     </footer>
   </body>
 </html>

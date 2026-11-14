@@ -94,7 +94,7 @@
   "events": {
     "eyebrow": "02 / VRSTE DOGAĐAJA",
     "title": "Svaki povod ima svoju priču.",
-    "description": "Od intimnih okupljanja do velikih svečanosti, svaki događaj zaslužuje pažljivo osmišljenu atmosferu.",
+    "description": "Pogledajte kako se prostor može urediti za venčanja, privatne proslave i poslovne događaje.",
     "items": [
       {
         "id": "vencanja",
@@ -148,7 +148,7 @@
   "capacity": {
     "eyebrow": "03 / PROSTOR I RASPORED",
     "title": "Prostor koji prati vaš događaj.",
-    "description": "Različite prilike traže različitu organizaciju. Istražite primere rasporeda i zamislite atmosferu svog događaja.",
+    "description": "Uporedite svečani, koktel i konferencijski raspored.",
     "layouts": [
       {
         "id": "banquet",
@@ -273,7 +273,7 @@
 "location": {
   "eyebrow": "06 / LOKACIJA I DOLAZAK",
   "title": "Mesto za vaše posebne trenutke.",
-  "description": "Lokacija je važan deo svakog događaja. Prilikom planiranja proverite dostupnost prostora, način dolaska i mogućnosti za goste.",
+  "description": "Za informacije o dolasku i dostupnosti prostora pošaljite upit.",
   "city": "Beograd",
   "address": "",
   "mapsUrl": "",

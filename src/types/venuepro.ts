@@ -84,6 +84,7 @@ export interface VenueProConfig {
   };
 
   capacity: {
+    maxGuests?: number;
     eyebrow: string;
     title: string;
     description: string;

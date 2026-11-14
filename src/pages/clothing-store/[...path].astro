@@ -1,0 +1,25 @@
+---
+import config from '../../../sites/clothing-store-demo/site.json';
+import ClothingStore from '../../templates/ClothingStore.astro';
+import { client } from '../../components/clothing-store/lib/sanity';
+
+export async function getStaticPaths() {
+  const products = await client.withConfig({ useCdn: false }).fetch<{ _id: string; name: string }[]>(
+    '*[_type == "product"]{_id, name}',
+  );
+  const pages = [
+    ['catalog', 'Catalog'], ['cart', 'Shopping Cart'], ['checkout', 'Checkout'], ['checkout/success', 'Checkout complete'],
+    ['men', "Men's Collection"], ['women', "Women's Collection"], ['new', 'New Arrivals'],
+    ['sale', 'Sale'], ['contact', 'Contact Us'], ['about', 'About Us'], ['faq', 'FAQ'],
+    ['shipping', 'Shipping'], ['delivery', 'Delivery Information'], ['returns', 'Returns & Exchanges'],
+  ];
+  return [
+    { params: { path: undefined }, props: { pageTitle: undefined } },
+    ...pages.map(([path, pageTitle]) => ({ params: { path }, props: { pageTitle } })),
+    ...products.map(({ _id, name }) => ({ params: { path: `product/${_id}` }, props: { pageTitle: name } })),
+  ];
+}
+
+const { pageTitle } = Astro.props;
+---
+<ClothingStore config={config} pageTitle={pageTitle} />

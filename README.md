@@ -15,6 +15,7 @@ Kolekcija statičkih web šablona za poslovne sajtove u Srbiji.
 - ProjectPro — `/projectpro` — renovation demo
 - VenuePro — `/venuepro` — event venue demo
 - ClinicPro — `/clinicpro` — physiotherapy demo
+- LifeEvo — `/lifeevo` — fitness and nutrition demo
 
 The homepage `/` is the template gallery.
 
@@ -58,6 +59,13 @@ Edit `sites/physio-demo/site.json` for the clinic name, service descriptions,
 team, equipment, price list, FAQ and existing booking link. Optional sections
 are omitted when their lists are empty. Replace the sample copy with verified clinic
 information before enabling the booking link and turning off demo mode.
+
+For a real VenuePro site, set `location.city`, `capacity.maxGuests`, and
+`events.items` to show the venue facts on the first screen. ProjectPro renders
+a before/after comparison when `beforeAfter.verifiedPair` is true.
+
+For a real ClinicPro site, set `bookingUrl`, `bookingPhone`, or both, and turn
+off demo mode. Update team profiles with confirmed names, roles and photos.
 
 ## Cloudflare Pages
 

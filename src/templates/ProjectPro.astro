@@ -1,6 +1,7 @@
 
 ---
 import '../styles/global.css';
+import FactoryBackLink from '../components/FactoryBackLink.astro';
 import type { ProjectProConfig } from '../types/projectpro';
 import ProjectHero from '../components/projectpro/ProjectHero.astro';
 import ProjectFaq from '../components/projectpro/ProjectFaq.astro';
@@ -92,6 +93,8 @@ const allowIndexing =
       Preskoči na sadržaj
     </a>
 
+    {config.demo && <FactoryBackLink />}
+
     <!-- HEADER -->
     <header class="pp-header">
       <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-5 lg:px-12">
@@ -147,7 +150,7 @@ const allowIndexing =
 
       <ProjectGallery portfolio={config.portfolio} demo={config.demo} />
 
-      {config.beforeAfter && <BeforeAfter comparison={config.beforeAfter} />}
+      {config.beforeAfter?.verifiedPair && <BeforeAfter comparison={config.beforeAfter} />}
 
       <ProcessTimeline process={config.process} demo={config.demo} />
 

@@ -8,6 +8,7 @@ export interface ClinicProConfig {
   city: string;
   demo: boolean;
   bookingUrl: string;
+  bookingPhone?: string;
   bookingCopy?: {
     title: string;
     description: string;

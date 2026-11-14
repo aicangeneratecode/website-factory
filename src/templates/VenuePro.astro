@@ -1,6 +1,7 @@
 
 ---
 import '../styles/global.css';
+import FactoryBackLink from '../components/FactoryBackLink.astro';
 import type { VenueProConfig } from '../types/venuepro';
 import VenueGallery from '../components/venuepro/VenueGallery.astro';
 import VenueEvents from '../components/venuepro/VenueEvents.astro';
@@ -71,6 +72,8 @@ const shouldIndex =
     >
       Preskoči na sadržaj
     </a>
+
+    {config.demo && <FactoryBackLink />}
 
     <main id="sadrzaj">
 
@@ -167,14 +170,6 @@ const shouldIndex =
         <!-- HERO CONTENT -->
         <div class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-6 pb-24 pt-24 lg:px-12 lg:pb-28">
 
-          {config.demo && (
-            <a
-              href="/"
-              class="mb-12 inline-flex items-center gap-3 self-start text-xs font-medium text-white/80 hover:text-white"
-            >
-              ← Svi šabloni
-            </a>
-          )}
 
           <div class="max-w-[960px]">
             <p class="mb-7 text-[10px] font-bold tracking-[0.24em] text-[#E9D6B6] md:text-xs">
@@ -192,6 +187,12 @@ const shouldIndex =
             <p class="mt-9 max-w-[520px] text-sm leading-8 text-white/85 md:text-base">
               {hero.description}
             </p>
+
+            <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white">
+              <li>{config.location.city}</li>
+              {config.capacity.maxGuests && <li>Do {config.capacity.maxGuests} gostiju{config.demo && ' · demo'}</li>}
+              {config.events.items.map(({ category }) => <li>{category}</li>)}
+            </ul>
 
             <div class="mt-10 flex flex-wrap items-center gap-7">
               <a

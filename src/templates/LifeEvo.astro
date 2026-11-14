@@ -1,0 +1,49 @@
+---
+import '../styles/lifeevo.css';
+import FactoryBackLink from '../components/FactoryBackLink.astro';
+import type { LifeEvoConfig } from '../types/lifeevo';
+import Header from '../components/lifeevo/Header.jsx';
+import Hero from '../components/lifeevo/Hero.jsx';
+import Transform from '../components/lifeevo/Transform.jsx';
+import Programs from '../components/lifeevo/Programs.jsx';
+import Training from '../components/lifeevo/Training.jsx';
+import Nutritions from '../components/lifeevo/Nutritions.jsx';
+import AppFeatures from '../components/lifeevo/AppFeatures.jsx';
+import Testimonials from '../components/lifeevo/Testimonials.jsx';
+import Footer from '../components/lifeevo/Footer.jsx';
+import ScrollToTop from '../components/lifeevo/ScrollToTop.jsx';
+
+interface Props {
+  config: LifeEvoConfig;
+}
+const { config } = Astro.props;
+---
+<!doctype html>
+<html lang="en" class="lifeevo">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&amp;family=Oswald:wght@700&amp;display=swap" />
+    <title>{config.title}</title>
+    <meta name="description" content={config.description} />
+    {config.demo && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={new URL('/lifeevo/', Astro.site ?? Astro.url)} />
+    <meta property="og:image" content={new URL(config.previewImage, Astro.site ?? Astro.url)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <Header client:load />
+    <main>
+      <Hero client:load />
+      <Transform client:visible />
+      <Programs client:visible />
+      <Training client:visible />
+      <Nutritions client:visible />
+      <AppFeatures client:visible />
+      <Testimonials client:visible />
+    </main>
+    <Footer />
+    {config.demo && <FactoryBackLink />}
+    <ScrollToTop client:load />
+  </body>
+</html>

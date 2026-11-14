@@ -1,0 +1,31 @@
+---
+import '../styles/clothing-store.css';
+import Storefront from '../components/clothing-store/Storefront';
+import FactoryBackLink from '../components/FactoryBackLink.astro';
+import type { ClothingStoreConfig } from '../types/clothing-store';
+
+interface Props {
+  config: ClothingStoreConfig;
+  pageTitle?: string;
+}
+const { config, pageTitle } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle ? `${pageTitle} | ${config.name}` : config.name}</title>
+    <meta name="description" content={config.description} />
+    {config.demo && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site ?? Astro.url)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" />
+  </head>
+  <body>
+    <Storefront client:only="react" basePath={config.basePath}>
+      <p slot="fallback" role="status">Loading storefront…</p>
+    </Storefront>
+    {config.demo && <FactoryBackLink />}
+  </body>
+</html>

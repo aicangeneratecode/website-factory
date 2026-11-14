@@ -2,13 +2,17 @@
 import type { ClinicProConfig } from '../../types/clinicpro';
 
 interface Props {
+  phone?: string;
   bookingUrl: ClinicProConfig['bookingUrl'];
   copy?: ClinicProConfig['bookingCopy'];
   demo: boolean;
   prices: NonNullable<ClinicProConfig['prices']>;
 }
 
-const { bookingUrl, copy, demo, prices } = Astro.props;
+const { bookingUrl, copy, demo, prices, phone } = Astro.props;
+const phoneNumber = phone?.trim() ?? '';
+const dialNumber = phoneNumber.replace(/[ ().-]/g, '');
+const canCall = /^\+?[0-9]{7,15}$/.test(dialNumber);
 ---
 <section id="termin" aria-labelledby="termin-naslov" class="bg-[#18362e] text-[#f5f7f1]">
   <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-12">
@@ -24,10 +28,19 @@ const { bookingUrl, copy, demo, prices } = Astro.props;
       </div>
 
       <div class="clinic-panel bg-[#e6ede3] p-6 text-[#18362e] sm:p-9">
-        {bookingUrl && !demo ? (
+        {!demo && (bookingUrl || canCall) ? (
+          <div class="flex flex-wrap gap-3">
+          {bookingUrl && (
           <a href={bookingUrl} class="inline-flex min-h-12 items-center gap-3 clinic-action bg-[#18362e] px-6 py-3 font-semibold text-white hover:bg-[#285347] transition-colors duration-200">
             {copy?.actionLabel ?? 'Otvorite zakazivanje'} <span aria-hidden="true">↗</span>
           </a>
+          )}
+          {canCall && (
+            <a href={`tel:${dialNumber}`} class="clinic-action inline-flex items-center border border-[#a9beb0] px-5 py-3 hover:bg-white">
+              Pozovite {phoneNumber}
+            </a>
+          )}
+          </div>
         ) : demo && prices.length > 0 ? (
           <div data-clinic-demo-booking>
             <h3 class="clinic-display text-3xl">Isprobajte zakazivanje</h3>
