@@ -1,0 +1,10 @@
+
+---
+import config from '../../sites/stolarija-demo/site.json';
+import ProjectPro from '../templates/ProjectPro.astro';
+import type { ProjectProConfig } from '../types/projectpro';
+
+const projectConfig: ProjectProConfig = config;
+---
+
+<ProjectPro config={projectConfig} />

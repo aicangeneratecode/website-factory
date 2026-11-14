@@ -1,0 +1,154 @@
+{
+  "template": "ProjectPro",
+  "demo": true,
+  "brand": {
+    "name": "OKVIR",
+    "descriptor": "PVC I ALU STOLARIJA"
+  },
+  "seo": {
+    "title": "OKVIR | PVC i ALU stolarija u Beogradu",
+    "description": "Demo sajt za ugradnju PVC i aluminijumskih prozora i vrata."
+  },
+  "theme": {
+    "background": "#F4F2ED",
+    "surface": "#FFFFFF",
+    "ink": "#1C2522",
+    "muted": "#6E7973",
+    "accent": "#345d6d"
+  },
+  "navigation": [
+    {
+      "label": "Usluge",
+      "href": "#usluge"
+    },
+    {
+      "label": "Proces rada",
+      "href": "#proces"
+    },
+    {
+      "label": "Kontakt",
+      "href": "#upit"
+    }
+  ],
+  "hero": {
+    "eyebrow": "PROZORI I VRATA · BEOGRAD",
+    "headline": "PVC i ALU stolarija",
+    "highlight": "po meri vašeg prostora.",
+    "description": "Isplanirajte zamenu prozora, balkonskih ili ulaznih vrata uz izmeru i ponudu za vaš objekat.",
+    "image": "/images/projectpro/hero.jpg",
+    "imageAlt": "Savremeno uređen dnevni boravak — ilustrativna fotografija",
+    "primary": {
+      "label": "Zatražite ponudu",
+      "href": "#upit"
+    },
+    "secondary": {
+      "label": "Uporedite opcije",
+      "href": "#usluge"
+    },
+    "caption": "Prozori i vrata po meri."
+  },
+  "portfolio": {
+    "eyebrow": "INSPIRACIJA",
+    "title": "Planirajte otvore prema prostoru.",
+    "description": "Ilustrativni enterijeri za planiranje rasporeda i prirodnog svetla.",
+    "projects": [
+      {
+        "id": "dnevni-boravak",
+        "title": "Dnevni boravak po meri",
+        "category": "DNEVNI BORAVAK",
+        "image": "/images/projectpro/project-01.jpg",
+        "imageAlt": "Moderan dnevni boravak sa svetlim enterijerom",
+        "note": "Ilustrativni primer enterijera"
+      }
+    ]
+  },
+  "services": {
+    "eyebrow": "MATERIJALI I USLUGE",
+    "title": "Izaberite rešenje za svoje otvore.",
+    "description": "Uporedite opcije prema nameni, dimenzijama i načinu otvaranja.",
+    "items": [
+      {
+        "number": "01",
+        "title": "PVC prozori",
+        "description": "Za zamenu prozora u stanu ili kući.",
+        "details": [
+          "Izbor stakla",
+          "Otklopno ili klasično otvaranje"
+        ],
+        "featured": true
+      },
+      {
+        "number": "02",
+        "title": "ALU prozori i vrata",
+        "description": "Za balkone, ulaze i veće staklene površine.",
+        "details": [
+          "Fiksne i klizne varijante",
+          "Izbor završne obrade"
+        ],
+        "featured": false
+      },
+      {
+        "number": "03",
+        "title": "Roletne i komarnici",
+        "description": "Dodatna oprema prema dimenzijama prozora.",
+        "details": [
+          "Način upravljanja",
+          "Montaža prema tipu otvora"
+        ],
+        "featured": false
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "PROCES RADA",
+    "title": "Jasan plan. Svaki korak.",
+    "description": "Od prvih dimenzija do završne provere ugrađene stolarije.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Pošaljite upit",
+        "description": "Navedite vrstu stolarije, broj otvora i lokaciju.",
+        "detail": "Osnovni podaci"
+      },
+      {
+        "number": "02",
+        "title": "Izmera i izbor",
+        "description": "Na licu mesta proveravaju se dimenzije i uslovi ugradnje.",
+        "detail": "Priprema ponude"
+      },
+      {
+        "number": "03",
+        "title": "Ugradnja i provera",
+        "description": "Nakon montaže proveravaju se otvaranje i zatvaranje.",
+        "detail": "Završna provera"
+      }
+    ],
+    "note": "Rokovi zavise od dimenzija i izabranog sistema."
+  },
+  "estimate": {
+    "eyebrow": "ZATRAŽITE PONUDU",
+    "title": "Pripremite upit za stolariju.",
+    "description": "Navedite šta želite da zamenite i koliko otvora treba izmeriti.",
+    "recipientEmail": "",
+    "projectTypes": [
+      "PVC prozori",
+      "ALU prozori i vrata",
+      "Roletne i komarnici",
+      "Kombinovana ugradnja"
+    ],
+    "startOptions": [
+      "Što pre",
+      "U narednih mesec dana",
+      "U naredna 3 meseca",
+      "Još uvek planiram"
+    ],
+    "disclaimer": "Ponuda zavisi od tačnih dimenzija, profila, stakla i načina ugradnje.",
+    "quantity": {
+      "label": "Broj otvora",
+      "unit": "kom",
+      "example": "4"
+    },
+    "requestSubject": "Upit za PVC i ALU stolariju",
+    "requestIntro": "Želim da zatražim ponudu za PVC ili ALU stolariju."
+  }
+}

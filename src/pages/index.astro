@@ -44,6 +44,16 @@ const templates = [
     label: 'Dostupan demo',
     href: '/clinicpro',
     available: true
+  },
+  {
+    number: '04',
+    name: 'ProjectPro PVC / ALU',
+    category: 'PROZORI I VRATA',
+    description: 'Varijanta za PVC i aluminijumsku stolariju, sa upitom prema broju otvora.',
+    image: '/images/projectpro/hero.jpg',
+    label: 'Dostupan demo',
+    href: '/stolarija',
+    available: true
   }
 ];
 ---
@@ -74,7 +84,7 @@ const templates = [
     <meta property="og:title" content="Website Factory | Web šabloni" />
     <meta
       property="og:description"
-      content="Tri različita dizajnerska koncepta za poslovne web sajtove."
+      content="Demo sajtovi za poslovanje u Srbiji."
     />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={previewImage} />
@@ -176,7 +186,7 @@ const templates = [
             </p>
           </div>
 
-          <div class="grid gap-5 lg:grid-cols-3">
+          <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {templates.map((template, index) => (
               <article class="flex min-w-0 flex-col border border-black/10 bg-[#F5F3EE]">
 

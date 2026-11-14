@@ -119,7 +119,7 @@ const allowIndexing =
         </nav>
 
         <a href="#upit" class="pp-header-cta hidden lg:inline-flex">
-          Zatražite procenu <span aria-hidden="true">↗</span>
+          {hero.primary.label} <span aria-hidden="true">↗</span>
         </a>
 
         <details class="pp-mobile-menu relative lg:hidden">
@@ -210,7 +210,7 @@ const allowIndexing =
                 DEMO CONCEPT
               </p>
               <p class="mt-2 font-display text-xl">
-                Prostor po vašoj meri.
+                {hero.caption ?? 'Prostor po vašoj meri.'}
               </p>
             </div>
 
@@ -229,7 +229,7 @@ const allowIndexing =
   />
 
   <!-- BEFORE / AFTER -->
-  <BeforeAfter comparison={config.beforeAfter} />
+  {config.beforeAfter && <BeforeAfter comparison={config.beforeAfter} />}
 
   <!-- SERVICES -->
   <ProjectServices services={config.services} />
@@ -241,10 +241,10 @@ const allowIndexing =
   />
 
   <!-- TESTIMONIALS -->
-  <ProjectTestimonials
+  {config.testimonials && <ProjectTestimonials
     testimonials={config.testimonials}
     demo={config.demo}
-  />
+  />}
 
   <!-- ESTIMATE FORM -->
   <EstimateForm

@@ -3,7 +3,7 @@
 import type { ProjectProConfig } from '../../types/projectpro';
 
 interface Props {
-  testimonials: ProjectProConfig['testimonials'];
+  testimonials: NonNullable<ProjectProConfig['testimonials']>;
   demo: boolean;
 }
 

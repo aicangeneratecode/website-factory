@@ -3,7 +3,7 @@
 import type { ProjectProConfig } from '../../types/projectpro';
 
 interface Props {
-  comparison: ProjectProConfig['beforeAfter'];
+  comparison: NonNullable<ProjectProConfig['beforeAfter']>;
 }
 
 const { comparison } = Astro.props;

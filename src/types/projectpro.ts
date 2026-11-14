@@ -32,6 +32,7 @@ export interface ProjectProConfig {
     description: string;
     image: string;
     imageAlt: string;
+    caption?: string;
 
     primary: {
       label: string;
@@ -57,7 +58,7 @@ export interface ProjectProConfig {
     }[];
   };
   
-  beforeAfter: {
+  beforeAfter?: {
     eyebrow: string;
     title: string;
     description: string;
@@ -94,7 +95,7 @@ export interface ProjectProConfig {
     note: string;
   };
 
-  testimonials: {
+  testimonials?: {
     eyebrow: string;
     title: string;
     description: string;
@@ -112,6 +113,9 @@ export interface ProjectProConfig {
     title: string;
     description: string;
     recipientEmail: string;
+    requestSubject?: string;
+    requestIntro?: string;
+    quantity?: { label: string; unit: string; example: string };
     projectTypes: string[];
     startOptions: string[];
     disclaimer: string;

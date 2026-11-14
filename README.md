@@ -37,6 +37,10 @@ Edit:
 
 The demo is fictional. Do not present illustrative photographs or placeholder testimonials as actual completed work or customer reviews.
 
+The PVC/ALU variant at `/stolarija` uses the same ProjectPro template with
+`sites/stolarija-demo/site.json`. It quotes by opening count and omits the
+comparison and testimonials when they are absent from the configuration.
+
 ## VenuePro configuration
 
 Edit `sites/venue-demo/site.json` to set the brand, theme, images, room layouts,

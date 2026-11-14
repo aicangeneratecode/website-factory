@@ -8,6 +8,8 @@ interface Props {
 }
 
 const { estimate, demo } = Astro.props;
+const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example: '65' };
+
 ---
 
 <section
@@ -64,6 +66,8 @@ const { estimate, demo } = Astro.props;
         data-estimate-form
         data-demo={String(demo)}
         data-recipient={estimate.recipientEmail}
+        data-request-subject={estimate.requestSubject}
+        data-request-intro={estimate.requestIntro}
         class="border border-black/10 bg-[var(--pp-bg)] p-6 sm:p-9 lg:p-12"
       >
         <div class="mb-9 flex flex-wrap items-center justify-between gap-3">
@@ -105,18 +109,20 @@ const { estimate, demo } = Astro.props;
           <!-- AREA -->
           <div>
             <label for="pp-area" class="mb-2 block text-xs font-bold">
-              Površina (m²) *
+              {quantity.label} ({quantity.unit}) *
             </label>
 
             <input
               id="pp-area"
               name="area"
+              data-label={quantity.label}
+              data-unit={quantity.unit}
               type="number"
               min="1"
               max="10000"
               step="1"
               required
-              placeholder="npr. 65"
+              placeholder={`npr. ${quantity.example}`}
               class="w-full min-w-0 border border-black/10 bg-white px-4 py-3.5 text-sm outline-none focus:border-[var(--pp-accent)]"
             />
           </div>
@@ -338,13 +344,14 @@ const { estimate, demo } = Astro.props;
         const value = (key: string) =>
           String(data.get(key) ?? '').trim();
 
+        const quantityInput = form.querySelector<HTMLInputElement>('[name=area]');
         const message = [
           'Poštovani,',
           '',
-          'Želim da zatražim procenu radova.',
+          form.dataset.requestIntro ?? 'Želim da zatražim procenu radova.',
           '',
           `Vrsta radova: ${value('projectType')}`,
-          `Površina: ${value('area')} m²`,
+          `${quantityInput?.dataset.label}: ${value('area')} ${quantityInput?.dataset.unit}`,
           `Lokacija: ${value('location')}`,
           `Planirani početak: ${value('start')}`,
           '',
@@ -368,7 +375,7 @@ const { estimate, demo } = Astro.props;
           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient);
 
         if (!demo && validRecipient) {
-          const subject = 'Upit za procenu radova';
+          const subject = form.dataset.requestSubject ?? 'Upit za procenu radova';
 
           mailLink.href =
             `mailto:${recipient}` +
