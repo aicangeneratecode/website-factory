@@ -184,8 +184,8 @@ export const CartPage: React.FC = () => {
                       transition={{ delay: index * 0.1 }}
                       className="glass-effect-enhanced rounded-2xl overflow-hidden border border-white/40 shadow-soft"
                     >
-                      <div className="p-6">
-                        <div className="flex gap-6">
+                      <div className="p-4 sm:p-6">
+                        <div className="flex gap-3 sm:gap-6">
                           {/* Product Image */}
                           <div
                             onClick={() =>
@@ -193,7 +193,7 @@ export const CartPage: React.FC = () => {
                             }
                             className="flex-shrink-0 cursor-pointer group"
                           >
-                            <div className="w-32 h-32 rounded-xl overflow-hidden bg-gray-100">
+                            <div className="size-16 rounded-xl overflow-hidden bg-gray-100 sm:size-32">
                               <img
                                 src={item.image}
                                 alt={item.name}
@@ -225,18 +225,22 @@ export const CartPage: React.FC = () => {
                                 </div>
                               </div>
                               <button
+                                type="button"
+                                aria-label={`Uklonite ${item.name}, veličina ${item.size}`}
                                 onClick={() => removeItem(item.id)}
-                                className="w-8 h-8 glass-effect-light-enhanced rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 text-gray-500 hover:text-gray-700"
+                                className="w-8 h-8 shrink-0 glass-effect-light-enhanced rounded-lg flex items-center justify-center hover:scale-110 transition-all duration-300 text-gray-500 hover:text-gray-700"
                               >
                                 <X className="w-4 h-4" />
                               </button>
                             </div>
 
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-wrap items-center justify-between gap-2">
                               {/* Quantity Selector */}
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-wrap items-center gap-2">
                                 <div className="flex items-center border border-white/40 glass-effect-light-enhanced rounded-xl overflow-hidden">
                                   <button
+                                    type="button"
+                                    aria-label={`Smanjite količinu: ${item.name}, veličina ${item.size}`}
                                     onClick={() =>
                                       updateQuantity(item.id, item.quantity - 1)
                                     }
@@ -248,6 +252,8 @@ export const CartPage: React.FC = () => {
                                     {item.quantity}
                                   </span>
                                   <button
+                                    type="button"
+                                    aria-label={`Povećajte količinu: ${item.name}, veličina ${item.size}`}
                                     onClick={() =>
                                       updateQuantity(item.id, item.quantity + 1)
                                     }

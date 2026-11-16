@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
-const site = process.env.SITE_URL || 'https://example.com';
+const site = process.env.SITE_URL || 'https://website-factory.websitefactory.workers.dev';
 
 export default defineConfig({
   site,

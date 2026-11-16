@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { Star, ChevronLeft, ChevronRight, Check, Quote } from "lucide-react";
 import type { ReviewsSectionData } from "../../types/homepageTypes";
 import { SectionSkeleton } from "../shared/SectionSkeleton";
@@ -425,12 +426,12 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
             <div className="text-sm text-gray-500 font-light mb-3">
               Pogledajte kolekciju
             </div>
-            <a
-              href="#products"
+            <Link
+              to="/catalog"
               className="inline-block w-full py-3 bg-gray-900 text-white text-sm font-medium rounded-xl active:scale-95 transition-transform"
             >
               Pogledajte kolekciju
-            </a>
+            </Link>
           </div>
         </div>
       </section>

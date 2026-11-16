@@ -9,9 +9,13 @@ const title = 'Website Factory | Sajtovi za poslovanje u Srbiji';
 const description = 'Demo sajtovi za renoviranje, proslave, fizioterapiju, fitnes i prodaju odeće. Istražite usluge, galerije i tok upita na svakom sajtu.';
 
 const contactEmail = process.env.SHOWCASE_CONTACT_EMAIL?.trim() ?? '';
+const contactWhatsApp = process.env.SHOWCASE_CONTACT_WHATSAPP?.trim().replace(/[+ ().-]/g, '') ?? '';
+const offerSubject = encodeURIComponent('Upit za izradu sajta');
 const offerHref = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)
-  ? `mailto:${encodeURIComponent(contactEmail).replace('%40', '@')}?subject=${encodeURIComponent('Upit za izradu sajta')}`
-  : null;
+  ? `mailto:${encodeURIComponent(contactEmail).replace('%40', '@')}?subject=${offerSubject}`
+  : /^[1-9][0-9]{6,14}$/.test(contactWhatsApp)
+    ? `https://wa.me/${contactWhatsApp}?text=${offerSubject}`
+    : null;
 
 const templates = [
   {

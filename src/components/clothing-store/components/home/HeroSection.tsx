@@ -1,6 +1,7 @@
 import { store } from "../../lib/storeConfig";
 // src/components/home/HeroSection.tsx
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Instagram,
@@ -21,7 +22,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
   }
 
   // Значения по умолчанию
-  const title = store.name;
+  const title = data?.title?.trim() || store.name;
   const subtitle = data?.subtitle || store.brand?.tagline || "";
   const buttonText = data?.buttonText || "Pogledajte katalog";
   const mainImage = data?.mainImage || "/images/clothing-store/IMG_3375.jpg";
@@ -79,13 +80,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
 
             {/* Fixed CTA Buttons Structure */}
             <div className="grid grid-cols-2 gap-2 pt-2">
-              <a
-                href="#products"
+              <Link
+                to="/catalog"
                 className="inline-flex items-center justify-center gap-1.5 px-4 py-3 bg-white text-gray-900 rounded-xl font-normal active:scale-95 transition-all duration-200 transform shadow-sm text-sm"
               >
                 <ShoppingBag className="w-3.5 h-3.5" />
                 <span>{buttonText}</span>
-              </a>
+              </Link>
 
               {instagramUsername && (<a
                 href={`https://instagram.com/${instagramUsername.replace(
@@ -168,14 +169,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
 
               {/* Fixed CTA Buttons Structure */}
               <div className="flex gap-4">
-                <a
-                  href="#products"
+                <Link
+                  to="/catalog"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-500 transform hover:scale-105 active:scale-95 group shadow-lg hover:shadow-xl"
                 >
                   <ShoppingBag className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                  <span>Pogledajte kolekciju</span>
+                  <span>{buttonText}</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
-                </a>
+                </Link>
 
                 {instagramUsername && (<a
                   href={`https://instagram.com/${instagramUsername.replace(

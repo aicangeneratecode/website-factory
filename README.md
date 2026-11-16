@@ -16,6 +16,7 @@ Kolekcija statičkih web šablona za poslovne sajtove u Srbiji.
 - VenuePro — `/venuepro` — event venue demo
 - ClinicPro — `/clinicpro` — physiotherapy demo
 - LifeEvo — `/lifeevo` — fitness and nutrition demo
+- Clothing Store — `/clothing-store` — [standalone storefront and handoff](sites/clothing-store-demo/README.md)
 
 The homepage `/` is the template gallery.
 
@@ -67,14 +68,15 @@ a before/after comparison when `beforeAfter.verifiedPair` is true.
 For a real ClinicPro site, set `bookingUrl`, `bookingPhone`, or both, and turn
 off demo mode. Update team profiles with confirmed names, roles and photos.
 
-## Cloudflare Pages
+## Cloudflare deployment
 
-Connect this GitHub repository to Cloudflare Pages.
+Website Factory deploys from `main` through Cloudflare Workers Builds.
 
 - Build command: `npm run build`
 - Build output directory: `dist`
-- Environment variable: `SITE_URL` — full public website URL
+- Environment variable: `SITE_URL` — override the default showcase URL when using a custom domain
 - Environment variable: `SHOWCASE_INDEXABLE=false` while testing
+- Build variable: `SHOWCASE_CONTACT_EMAIL` or `SHOWCASE_CONTACT_WHATSAPP` for the quote button. Use the full international WhatsApp number. If both are set, the button uses email.
 
 Only enable public search indexing after the gallery is ready and its final URL is configured.
 
