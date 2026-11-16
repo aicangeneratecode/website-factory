@@ -11,10 +11,12 @@ const description = 'Demo sajtovi za renoviranje, proslave, fizioterapiju, fitne
 const contactEmail = process.env.SHOWCASE_CONTACT_EMAIL?.trim() ?? '';
 const contactWhatsApp = process.env.SHOWCASE_CONTACT_WHATSAPP?.trim().replace(/[+ ().-]/g, '') ?? '';
 const offerSubject = encodeURIComponent('Upit za izradu sajta');
-const offerEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail) ? contactEmail : null;
-const offerHref = !offerEmail && /^[1-9][0-9]{6,14}$/.test(contactWhatsApp)
+const hasContactEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail);
+const offerEmail = hasContactEmail ? contactEmail : 'websitefactory0@gmail.com';
+const offerEmailHref = `mailto:${encodeURIComponent(offerEmail).replace('%40', '@')}?subject=${offerSubject}`;
+const offerHref = !hasContactEmail && /^[1-9][0-9]{6,14}$/.test(contactWhatsApp)
   ? `https://wa.me/${contactWhatsApp}?text=${offerSubject}`
-  : `mailto:${encodeURIComponent(offerEmail ?? 'websitefactory0@gmail.com').replace('%40', '@')}?subject=${offerSubject}`;
+  : offerEmailHref;
 
 const templates = [
   {
@@ -122,9 +124,14 @@ const templates = [
           <h2 id="ponuda-naslov" class="font-display text-3xl tracking-tight sm:text-5xl">Želite ovakav sajt za svoj biznis?</h2>
           <p class="mt-4 max-w-xl leading-7 text-[#e6e3d8]">Prilagodićemo dizajn vašoj firmi, uslugama i fotografijama. Gotov sajt sa vašim domenom i kompletnom predajom.</p>
         </div>
-        <a href={offerHref} class="inline-flex min-h-11 w-fit items-center gap-4 rounded-[10px] bg-[#e5be9a] px-5 py-3 text-sm font-bold text-[#202b24] transition-colors hover:bg-[#f5f2e9]">
-          Zatražite ponudu <span aria-hidden="true">↗</span>
-        </a>
+        <div class="flex min-w-0 flex-col items-start gap-3">
+          <a href={offerHref} class="inline-flex min-h-11 w-fit items-center gap-4 rounded-[10px] bg-[#e5be9a] px-5 py-3 text-sm font-bold text-[#202b24] transition-colors hover:bg-[#f5f2e9]">
+            Zatražite ponudu <span aria-hidden="true">↗</span>
+          </a>
+          <a href={offerEmailHref} class="max-w-full wrap-anywhere text-sm text-[#e6e3d8] underline underline-offset-4 transition-colors hover:text-[#e5be9a]">
+            {offerEmail}
+          </a>
+        </div>
       </section>
     </main>
     <footer class="border-t border-[#d7d5c9]">
