@@ -4,6 +4,13 @@ import { Instagram, ExternalLink, Grid3x3 } from "lucide-react";
 import { SectionSkeleton } from "../shared/SectionSkeleton";
 import type { InstagramFeedSectionData } from "../../types/homepageTypes";
 
+const postTypeLabels = {
+  product: "Artikal",
+  behind: "Iza scene",
+  ugc: "Zajednica",
+  announcement: "Najava",
+};
+
 interface InstagramFeedSectionProps {
   data?: InstagramFeedSectionData;
 }
@@ -78,7 +85,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                 <div className="text-3xl font-light text-gray-900 mb-2">
                   {postsCount}
                 </div>
-                <div className="text-gray500 text-sm font-light uppercase tracking-wider">
+                <div className="text-gray-500 text-sm font-light uppercase tracking-wider">
                   Objave
                 </div>
               </div>
@@ -114,7 +121,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                   </div>
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-500 flex items-end p-6">
                     <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <p className="font-light mb-3 line-clamp-2">
                         {post.caption}
@@ -128,12 +135,12 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                   </div>
 
                   {/* Type badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-sm text-white text-xs rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {({product:"Artikal",behind:"Iza scene",ugc:"Zajednica",announcement:"Najava"})[post.type]}
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-sm text-white text-xs rounded-full opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
+                    {postTypeLabels[post.type]}
                   </div>
 
                   {/* Instagram icon */}
-                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300">
                     <ExternalLink className="w-4 h-4 text-gray-900" />
                   </div>
                 </div>
@@ -205,7 +212,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
             </h2>
 
             <p className="text-gray-500 font-light text-sm mb-6 max-w-xs">
-              {description}
+              {description || subtitle}
             </p>
 
             {/* Instagram Stats - Left Aligned */}
@@ -270,23 +277,16 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                               <Instagram className="w-3.5 h-3.5 text-gray-900" />
                             </div>
 
-                            {/* Hover Overlay */}
-                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <div className="text-white text-center p-4">
-                                <div className="text-sm font-medium mb-1">
-                                  {post.likes} sviđanja
-                                </div>
-                                <div className="text-xs font-light">
-                                  {post.comments} komentara
-                                </div>
-                              </div>
-                            </div>
                           </div>
                         </div>
 
                         {/* Post Caption */}
-                        <p className="text-xs text-gray-600 font-light line-clamp-2 px-1 min-h-[2.5rem]">
+                        <p className="min-h-10 px-1 text-xs leading-5 text-gray-700">
                           {post.caption}
+                        </p>
+                        <p className="px-1 text-xs leading-5 text-gray-600">{postTypeLabels[post.type]}</p>
+                        <p className="px-1 text-xs leading-5 text-gray-700">
+                          {post.likes} sviđanja · {post.comments} komentara
                         </p>
                       </a>
                     ))}
@@ -333,23 +333,16 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                               <Instagram className="w-3.5 h-3.5 text-gray-900" />
                             </div>
 
-                            {/* Hover Overlay */}
-                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                              <div className="text-white text-center p-4">
-                                <div className="text-sm font-medium mb-1">
-                                  {post.likes} sviđanja
-                                </div>
-                                <div className="text-xs font-light">
-                                  {post.comments} komentara
-                                </div>
-                              </div>
-                            </div>
                           </div>
                         </div>
 
                         {/* Post Caption */}
-                        <p className="text-xs text-gray-600 font-light line-clamp-2 px-1 min-h-[2.5rem]">
+                        <p className="min-h-10 px-1 text-xs leading-5 text-gray-700">
                           {post.caption}
+                        </p>
+                        <p className="px-1 text-xs leading-5 text-gray-600">{postTypeLabels[post.type]}</p>
+                        <p className="px-1 text-xs leading-5 text-gray-700">
+                          {post.likes} sviđanja · {post.comments} komentara
                         </p>
                       </a>
                     ))}

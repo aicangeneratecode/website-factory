@@ -160,7 +160,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
             </h2>
 
             <p className="text-gray-500 text-lg max-w-2xl">
-              Pogledajte fotografije iz zajednice
+              {description}
             </p>
           </div>
 

@@ -60,48 +60,61 @@
     "isActive": true,
     "order": 5,
     "title": "Objave iz kolekcije",
-    "subtitle": "Ilustrativni prikaz Instagram sadržaja.",
+    "subtitle": "Objave iz originalnog primera. Brojevi su iz sačuvanog prikaza.",
     "posts": [
       {
-        "_key": "0",
-        "caption": "Kombinacija za svaki dan",
-        "likes": 0,
-        "comments": 0,
-        "link": "",
-        "type": "product",
-        "imageUrl": "/images/clothing-store/insta1.jpeg"
+        "_key": "322be13b4d85",
+        "caption": "Air Max Plus Berlin 🇩🇪",
+        "comments": 1,
+        "imageUrl": "/images/clothing-store/feed-1.jpg",
+        "likes": 22,
+        "link": "https://www.instagram.com/p/DSAF11gCBLP/?img_index=1",
+        "type": "product"
       },
       {
-        "_key": "1",
-        "caption": "Detalji kolekcije",
-        "likes": 0,
-        "comments": 0,
-        "link": "",
-        "type": "product",
-        "imageUrl": "/images/clothing-store/insta2.jpeg"
+        "_key": "d58acbd2de6e0ce4e75c6ca308113ee3",
+        "caption": "Louis Vuitton “Denim Blue”",
+        "comments": 2,
+        "imageUrl": "/images/clothing-store/feed-2.jpg",
+        "likes": 43,
+        "link": "https://www.instagram.com/p/DSsLjJWiFZA/?img_index=2",
+        "type": "product"
       },
       {
-        "_key": "2",
-        "caption": "Ideja za slojevito oblačenje",
-        "likes": 0,
-        "comments": 0,
-        "link": "",
-        "type": "product",
-        "imageUrl": "/images/clothing-store/insta3.jpeg"
+        "_key": "0bb5e23095fbe06a1620ef5e21624a81",
+        "caption": "Air Max Plus Cream",
+        "comments": 2,
+        "imageUrl": "/images/clothing-store/feed-3.jpg",
+        "likes": 38,
+        "link": "https://www.instagram.com/p/DSxYVFTCELB/?img_index=1",
+        "type": "product"
       },
       {
-        "_key": "3",
-        "caption": "Inspiracija iz kolekcije",
-        "likes": 0,
-        "comments": 0,
-        "link": "",
-        "type": "product",
-        "imageUrl": "/images/clothing-store/insta4.jpeg"
+        "_key": "ab6fc34562ebc327765fc8926bf541a1",
+        "caption": "Air Max Plus Cream",
+        "comments": 2,
+        "imageUrl": "/images/clothing-store/feed-4.jpg",
+        "likes": 38,
+        "link": "https://www.instagram.com/p/DSxYVFTCELB/?img_index=1",
+        "type": "product"
+      },
+      {
+        "_key": "f3e879bcd350889bba408c93a70deb13",
+        "caption": "Air Max Plus Cream",
+        "comments": 2,
+        "imageUrl": "/images/clothing-store/feed-5.jpg",
+        "likes": 38,
+        "link": "https://www.instagram.com/p/DSxYVFTCELB/?img_index=1",
+        "type": "product"
       }
     ],
     "handle": "",
     "followers": "",
-    "postsCount": ""
+    "postsCount": "",
+    "ctaTitle": "Prodavnica na Instagramu",
+    "ctaDescription": "Otvorite originalni Instagram profil iz ovog primera. Demo porudžbine se ne šalju.",
+    "ctaFollowText": "Pogledajte profil",
+    "ctaFollowLink": "https://www.instagram.com/driplug.jpg/"
   },
   "popularProducts": {
     "_id": "9536986b-9bd3-4ab3-87b8-f1af6349277a",

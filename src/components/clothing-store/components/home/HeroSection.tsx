@@ -72,7 +72,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
               <p className="text-sm text-white/80 font-light leading-relaxed max-w-xs">
                 Izaberite artikle i veličine iz kolekcije.
               </p>
-              <p className="text-sm text-white/80 font-light leading-relaxed max-w-xs -mt-5">
+              <p className="text-sm text-white/80 font-light leading-relaxed max-w-xs mt-2">
                 Pregledajte ponudu u katalogu.
               </p>
             </div>
