@@ -76,7 +76,7 @@ Website Factory deploys from `main` through Cloudflare Workers Builds.
 - Build output directory: `dist`
 - Environment variable: `SITE_URL` — override the default showcase URL when using a custom domain
 - Environment variable: `SHOWCASE_INDEXABLE=false` while testing
-- Build variable: `SHOWCASE_CONTACT_EMAIL` or `SHOWCASE_CONTACT_WHATSAPP` for the quote button. Use the full international WhatsApp number. If both are set, the button uses email.
+- The quote button uses the Website Factory email by default. Override it with the build variable `SHOWCASE_CONTACT_EMAIL` or set `SHOWCASE_CONTACT_WHATSAPP` to a full international number. If both are set, the button uses email.
 
 Only enable public search indexing after the gallery is ready and its final URL is configured.
 
