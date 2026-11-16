@@ -1,3 +1,4 @@
+import { formatPrice } from "../lib/storeConfig";
 // src/pages/ProductPage.tsx
 import React, { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -77,7 +78,7 @@ export const ProductPage: React.FC = () => {
             <Package className="w-8 h-8 text-gray-400" />
           </div>
           <h1 className="text-2xl font-light text-gray-900 mb-4">
-            Ошибка загрузки
+            Učitavanje nije uspelo
           </h1>
           <p className="text-gray-500 mb-6">{productError}</p>
           <button
@@ -85,7 +86,7 @@ export const ProductPage: React.FC = () => {
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-300 transform hover:scale-105 active:scale-95 group shadow-lg hover:shadow-xl"
           >
             <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
-            <span>Вернуться в каталог</span>
+            <span>Nazad na katalog</span>
           </button>
         </div>
       </div>
@@ -100,14 +101,14 @@ export const ProductPage: React.FC = () => {
             <Package className="w-8 h-8 text-gray-400" />
           </div>
           <h1 className="text-2xl font-light text-gray-900 mb-4">
-            Товар не найден
+            Artikal nije pronađen
           </h1>
           <button
             onClick={() => navigate("/catalog")}
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-300 transform hover:scale-105 active:scale-95 group shadow-lg hover:shadow-xl"
           >
             <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
-            <span>Вернуться в каталог</span>
+            <span>Nazad na katalog</span>
           </button>
         </div>
       </div>
@@ -120,7 +121,7 @@ export const ProductPage: React.FC = () => {
     addItem({
       productId: product.id,
       name: product.name,
-      brand: product.brand || "NSF",
+      brand: product.brand ?? "",
       price: product.price,
       originalPrice: product.originalPrice,
       quantity: quantity,
@@ -151,20 +152,13 @@ export const ProductPage: React.FC = () => {
 
   const shareOnViber = () => {
     const productUrl = window.location.href;
-    const text = `Посмотри ${product.name} - $${product.price}`;
+    const text = `Pogledajte ${product.name} — ${formatPrice(product.price)}`;
     const viberUrl = `viber://forward?text=${encodeURIComponent(
       text + " " + productUrl
     )}`;
     window.open(viberUrl, "_blank");
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
 
   return (
     <div className="min-h-screen py-18">
@@ -180,7 +174,7 @@ export const ProductPage: React.FC = () => {
                 <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-gray-900 transition-colors duration-300" />
               </div>
               <span className="text-sm font-light text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
-                Back
+                Nazad
               </span>
             </button>
 
@@ -201,7 +195,7 @@ export const ProductPage: React.FC = () => {
                 onClick={() => navigate("/catalog")}
                 className="px-4 py-2 glass-effect-light-enhanced rounded-xl text-sm font-medium text-gray-900 hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                Catalog
+                Katalog
               </button>
             </div>
           </div>
@@ -232,12 +226,12 @@ export const ProductPage: React.FC = () => {
                   <div className="absolute top-6 left-6 flex gap-2">
                     {product.isNew && (
                       <span className="px-3 py-1.5 glass-effect-light-enhanced text-gray-900 text-xs font-medium rounded-full shadow-sm backdrop-blur-sm">
-                        New Arrival
+                        Novi artikal
                       </span>
                     )}
                     {!product.inStock && (
                       <span className="px-3 py-1.5 glass-effect-light-enhanced bg-gray-900/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
-                        Out of Stock
+                        Nema na stanju
                       </span>
                     )}
                   </div>
@@ -396,10 +390,10 @@ export const ProductPage: React.FC = () => {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-normal text-gray-900">
-                    Select Size
+                    Izaberite veličinu
                   </h3>
                   <button className="text-xs text-gray-500 font-light hover:text-gray-900 transition-colors duration-200">
-                    Size Guide
+                    Vodič za veličine
                   </button>
                 </div>
                 <div className="inline-flex gap-2 p-2 glass-effect-enhanced rounded-2xl">
@@ -456,8 +450,8 @@ export const ProductPage: React.FC = () => {
                     />
                     <span className="text-sm text-gray-500 font-light">
                       {product.inStock
-                        ? "In Stock • Ready to ship"
-                        : "Out of Stock"}
+                        ? "Na stanju"
+                        : "Nema na stanju"}
                     </span>
                   </div>
                 </div>
@@ -470,7 +464,7 @@ export const ProductPage: React.FC = () => {
                     className="flex-1 flex items-center justify-center gap-3 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-500 transform hover:scale-105 active:scale-95 group shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     <ShoppingBag className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
-                    <span>Add to Cart</span>
+                    <span>Dodajte u korpu</span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
                   </button>
                 </div>
@@ -479,7 +473,7 @@ export const ProductPage: React.FC = () => {
               {/* Product Details - Instagram style grid */}
               <div className="pt-8 border-t border-gray-100/50">
                 <h4 className="text-sm font-normal text-gray-900 mb-6">
-                  Product Details
+                  Detalji artikla
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
@@ -508,23 +502,13 @@ export const ProductPage: React.FC = () => {
               {/* Social Sharing - Instagram CTA style */}
               <div className="pt-8 border-t border-gray-100/50">
                 <div className="flex flex-wrap gap-4">
-                  <a
-                    href="https://instagram.com/NSF_Clothing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-6 py-3 glass-effect-light-enhanced text-gray-900 rounded-xl font-medium hover:shadow-lg transition-all duration-300 group flex-1 min-w-[200px] border border-gray-200/60 hover:border-gray-300"
-                  >
-                    <Instagram className="w-5 h-5" />
-                    <span>Share on Instagram</span>
-                    <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                  </a>
 
                   <button
                     onClick={shareOnViber}
                     className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-300 group flex-1 min-w-[200px] shadow-lg hover:shadow-xl"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    <span>Share on Viber</span>
+                    <span>Podelite na Viberu</span>
                     <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
                   </button>
                 </div>
@@ -539,10 +523,10 @@ export const ProductPage: React.FC = () => {
                 <div>
                   <div className="inline-flex items-center gap-2 text-gray-500 text-sm font-light mb-3">
                     <div className="w-6 h-0.5 bg-gray-900"></div>
-                    <span>DISCOVER MORE</span>
+                    <span>POGLEDAJTE JOŠ</span>
                   </div>
                   <h2 className="text-3xl font-light text-gray-900 mb-2">
-                    You Might Also Like
+                    Slični artikli
                   </h2>
                 </div>
 
@@ -550,7 +534,7 @@ export const ProductPage: React.FC = () => {
                   onClick={() => navigate("/catalog")}
                   className="inline-flex items-center gap-2 px-6 py-3 glass-effect-light-enhanced text-gray-900 rounded-xl font-medium hover:shadow-lg transition-all duration-300 group"
                 >
-                  <span>View All</span>
+                  <span>Pogledajte sve</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
                 </button>
               </div>
@@ -576,7 +560,7 @@ export const ProductPage: React.FC = () => {
                         {product.isNew && (
                           <div className="absolute top-3 left-3">
                             <span className="px-2 py-1 glass-effect-light-enhanced text-gray-900 text-xs font-medium rounded-full">
-                              New
+                              Novo
                             </span>
                           </div>
                         )}

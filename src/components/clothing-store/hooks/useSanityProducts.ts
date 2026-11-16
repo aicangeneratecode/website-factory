@@ -1,6 +1,6 @@
+import { store } from "../lib/storeConfig";
 // src/hooks/useSanityProducts.ts
 import { useState, useEffect } from "react";
-import { urlFor } from "../lib/sanity";
 import type { Product, Category, Subcategory, Size } from "../types/types";
 
 export function useProducts() {
@@ -17,8 +17,8 @@ export function useProducts() {
         console.log("🔄 Загрузка товаров из Sanity...");
 
         // УПРОЩЕННЫЙ ЗАПРОС - размеры как строки
-        const response = await fetch("/clothing-store/data/products.json");
-        if (!response.ok) throw new Error("Unable to load store data.");
+        const response = await fetch(`${store.basePath.replace(/\/$/, "")}/data/products.json`);
+        if (!response.ok) throw new Error("Katalog trenutno nije dostupan.");
         const data = await response.json();
         console.log("✅ Данные получены из Sanity:", data?.length, "товаров");
 
@@ -34,20 +34,20 @@ export function useProducts() {
           // Преобразуем изображения
           const images = item.images?.map((img: any) => {
             if (img?.asset?.url) {
-              return urlFor(img).width(800).url();
+              return img.asset.url;
             }
             return "/images/clothing-store/Tshirt.png";
           }) || ["/images/clothing-store/Tshirt.png"];
 
           return {
             id: item._id,
-            name: item.name || "Без названия",
+            name: item.name || "Artikal",
             price: item.price || 0,
             originalPrice: item.originalPrice || undefined,
             category: (item.category as Category) || "men",
             subcategory: (item.subcategory as Subcategory) || "tshirts",
             sizes: sizes,
-            brand: item.brandName || "Unknown",
+            brand: item.brandName || "",
             colors: [],
             images: images,
             description: item.description || "",
@@ -75,7 +75,7 @@ export function useProducts() {
         // При ошибке возвращаем пустой массив вместо моковых данных
         setProducts([]);
         setError(
-          "Не удалось загрузить товары. Проверьте подключение к Sanity."
+          "Katalog trenutno nije dostupan."
         );
       } finally {
         setIsLoading(false);
@@ -106,8 +106,8 @@ export function useProduct(productId?: string) {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch("/clothing-store/data/products.json");
-        if (!response.ok) throw new Error("Unable to load store data.");
+        const response = await fetch(`${store.basePath.replace(/\/$/, "")}/data/products.json`);
+        if (!response.ok) throw new Error("Katalog trenutno nije dostupan.");
         const products = await response.json();
         const data = products.find((item: { _id: string }) => item._id === productId);
 
@@ -117,7 +117,7 @@ export function useProduct(productId?: string) {
 
           const images = data.images?.map((img: any) => {
             if (img?.asset?.url) {
-              return urlFor(img).width(800).url();
+              return img.asset.url;
             }
             return "/images/clothing-store/Tshirt.png";
           }) || ["/images/clothing-store/Tshirt.png"];
@@ -130,7 +130,7 @@ export function useProduct(productId?: string) {
             category: data.category as Category,
             subcategory: data.subcategory as Subcategory,
             sizes: sizes,
-            brand: data.brandName || "Unknown",
+            brand: data.brandName || "",
             colors: [],
             images: images,
             description: data.description || "",
@@ -141,11 +141,11 @@ export function useProduct(productId?: string) {
             sku: data.sku || "",
           });
         } else {
-          setError("Товар не найден в Sanity");
+          setError("Artikal nije pronađen.");
         }
       } catch (err: any) {
         console.error("Ошибка загрузки товара:", err);
-        setError("Не удалось загрузить товар из Sanity");
+        setError("Artikal trenutno nije dostupan.");
       } finally {
         setIsLoading(false);
       }

@@ -75,6 +75,76 @@ const shouldIndex =
 
     {config.demo && <FactoryBackLink />}
 
+    <!-- HEADER -->
+    <header class:list={['z-40 bg-[var(--vp-ink)] text-white', config.demo ? 'sticky top-[var(--factory-bar-height)]' : 'relative']}>
+      <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-4 lg:px-12">
+
+        <a
+          href="#pocetna"
+          class="flex items-center gap-3"
+          aria-label={`${brand.name} — početna`}
+        >
+          <span class="font-display text-4xl italic leading-none">
+            {brand.monogram}
+          </span>
+
+          <span>
+            <strong class="block text-base font-semibold tracking-[0.25em]">
+              {brand.name}
+            </strong>
+            <small class="mt-1 block text-[9px] font-medium tracking-[0.15em] text-white/65">
+              {brand.descriptor}
+            </small>
+          </span>
+        </a>
+
+        <nav
+          aria-label="Glavna navigacija"
+          class="hidden items-center gap-9 lg:flex"
+        >
+          {navigation.map((item) => (
+            <a
+              href={item.href}
+              class="text-[12px] font-medium tracking-wide text-white/85 transition hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <a
+          href="#upit"
+          class="hidden border border-white/60 px-6 py-3 text-xs font-semibold tracking-wide transition hover:bg-white hover:text-[#292824] lg:inline-flex"
+        >
+          Rezervacije i upiti ↗
+        </a>
+
+        <details class="vp-mobile-menu relative lg:hidden">
+          <summary class="cursor-pointer border border-white/50 px-4 py-2 text-xs font-semibold">
+            Meni
+          </summary>
+
+          <nav
+            aria-label="Mobilna navigacija"
+            class="absolute right-0 top-12 z-30 flex w-60 flex-col gap-4 border border-[#DDD4C8] bg-[#F7F4EF] p-6 text-[#292824] shadow-xl"
+          >
+            {navigation.map((item) => (
+              <a href={item.href} class="text-sm font-semibold">
+                {item.label}
+              </a>
+            ))}
+
+            <a
+              href="#upit"
+              class="border-t border-black/15 pt-4 text-sm font-semibold"
+            >
+              Pošaljite upit ↗
+            </a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
     <main id="sadrzaj">
 
       <!-- FULL SCREEN HERO -->
@@ -97,75 +167,7 @@ const shouldIndex =
           class="absolute inset-0 -z-10 bg-gradient-to-r from-[#171714]/85 via-[#171714]/50 to-[#171714]/25"
         ></div>
 
-        <!-- HEADER -->
-        <header class="relative z-20">
-          <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-6 py-7 lg:px-12">
 
-            <a
-              href="#pocetna"
-              class="flex items-center gap-3"
-              aria-label={`${brand.name} — početna`}
-            >
-              <span class="font-display text-4xl italic leading-none">
-                {brand.monogram}
-              </span>
-
-              <span>
-                <strong class="block text-base font-semibold tracking-[0.25em]">
-                  {brand.name}
-                </strong>
-                <small class="mt-1 block text-[9px] font-medium tracking-[0.15em] text-white/65">
-                  {brand.descriptor}
-                </small>
-              </span>
-            </a>
-
-            <nav
-              aria-label="Glavna navigacija"
-              class="hidden items-center gap-9 lg:flex"
-            >
-              {navigation.map((item) => (
-                <a
-                  href={item.href}
-                  class="text-[12px] font-medium tracking-wide text-white/85 transition hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-
-            <a
-              href="#upit"
-              class="hidden border border-white/60 px-6 py-3 text-xs font-semibold tracking-wide transition hover:bg-white hover:text-[#292824] lg:inline-flex"
-            >
-              Rezervacije i upiti ↗
-            </a>
-
-            <details class="vp-mobile-menu relative lg:hidden">
-              <summary class="cursor-pointer border border-white/50 px-4 py-2 text-xs font-semibold">
-                Meni
-              </summary>
-
-              <nav
-                aria-label="Mobilna navigacija"
-                class="absolute right-0 top-12 z-30 flex w-60 flex-col gap-4 border border-[#DDD4C8] bg-[#F7F4EF] p-6 text-[#292824] shadow-xl"
-              >
-                {navigation.map((item) => (
-                  <a href={item.href} class="text-sm font-semibold">
-                    {item.label}
-                  </a>
-                ))}
-
-                <a
-                  href="#upit"
-                  class="border-t border-black/15 pt-4 text-sm font-semibold"
-                >
-                  Pošaljite upit ↗
-                </a>
-              </nav>
-            </details>
-          </div>
-        </header>
 
         <!-- HERO CONTENT -->
         <div class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-6 pb-24 pt-24 lg:px-12 lg:pb-28">

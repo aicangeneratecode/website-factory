@@ -1,3 +1,4 @@
+import { NewsletterSection } from "../components/home/NewsletterSection";
 // src/pages/HomePage.tsx
 import React, { useMemo } from "react";
 import { HeroSection } from "../components/home/HeroSection";
@@ -8,7 +9,6 @@ import { InstagramFeedSection } from "../components/home/InstagramFeedSection";
 import { ReviewsSection } from "../components/home/ReviewsSection";
 import { UGCGallerySection } from "../components/home/UGCGallerySection";
 import { FAQSection } from "../components/home/FAQSection";
-import { NewsletterSection } from "../components/home/NewsletterSection";
 import { useHomepageSections } from "../hooks/useHomepageSections";
 
 export const HomePage: React.FC = () => {
@@ -32,7 +32,7 @@ export const HomePage: React.FC = () => {
       {
         key: "categoryCarousel",
         section: sections.categoryCarousel,
-        content: <CategoryCarousel />,
+        content: <CategoryCarousel data={sections.categoryCarousel ?? undefined} />,
         order: sections.categoryCarousel?.order || 3,
       },
       {
@@ -65,18 +65,12 @@ export const HomePage: React.FC = () => {
         content: <FAQSection data={sections.faqSection ?? undefined} />,
         order: sections.faqSection?.order || 8,
       },
-      {
-        key: "newsletter",
-        section: null,
-        content: <NewsletterSection />,
-        order: 9,
-      },
     ];
 
     // Фильтруем активные секции
     const activeSections = sectionComponents.filter(({ section, key }) => {
       // Статические секции (orderProcess, faq, newsletter) всегда активны
-      const staticSections = ["orderProcess", "faq", "newsletter"];
+      const staticSections = ["orderProcess"];
       if (staticSections.includes(key)) return true;
 
       // Секции из Sanity активны только если isActive === true и section не null
@@ -93,7 +87,7 @@ export const HomePage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mb-4"></div>
-            <p className="text-gray-600">Loading homepage...</p>
+            <p className="text-gray-600">Učitavanje prodavnice…</p>
           </div>
         </div>
       </div>
@@ -107,13 +101,7 @@ export const HomePage: React.FC = () => {
       <div className="min-h-screen bg-white">
         <HeroSection data={undefined} />
         <OrderProcessSection />
-        <CategoryCarousel />
-        <PopularProductsSection data={undefined} />
-        <InstagramFeedSection data={undefined} />
-        <ReviewsSection data={undefined} />{" "}
-        <UGCGallerySection data={undefined} />
-        <FAQSection />
-        <NewsletterSection />
+        <p className="mx-auto max-w-7xl px-5 py-8">Sadržaj prodavnice trenutno nije dostupan.</p>
       </div>
     );
   }
@@ -123,6 +111,7 @@ export const HomePage: React.FC = () => {
       {sortedSections.map(({ key, content }) => (
         <React.Fragment key={key}>{content}</React.Fragment>
       ))}
+      <NewsletterSection />
     </div>
   );
 };

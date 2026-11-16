@@ -1,0 +1,12 @@
+---
+import { store as config } from '../../components/clothing-store/lib/storeConfig';
+import ClothingStore from '../../templates/ClothingStore.astro';
+import { storefrontPaths } from '../../components/clothing-store/lib/routes';
+
+export async function getStaticPaths() {
+  return storefrontPaths();
+}
+
+const { pageTitle, pageDescription, pageImage } = Astro.props;
+---
+<ClothingStore config={config} pageTitle={pageTitle} pageDescription={pageDescription} pageImage={pageImage} />

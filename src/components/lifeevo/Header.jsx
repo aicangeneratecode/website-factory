@@ -44,7 +44,7 @@ const NavigationLink = ({ href, children, cta, onNavigate }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ factoryDemo = false }) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
@@ -89,7 +89,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 z-[100] w-full border-b border-[#1A1F3A] transition-all duration-300 ${
+      className={`fixed ${factoryDemo ? "top-[var(--factory-bar-height)] bg-[#0A0E27]" : "top-0"} z-[100] w-full border-b border-[#1A1F3A] transition-all duration-300 ${
         sticky
           ? "backdrop-blur-sm shadow-lg h-[70px]"
           : "backdrop-blur-sm h-[70px]"
@@ -137,7 +137,7 @@ const Header = () => {
               exit={{ opacity: 0, x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               ref={mobileMenuRef}
-              className="lg:hidden fixed top-0 right-0 h-dvh w-4/5 bg-[#0A0E27] shadow-lg z-50 p-6 flex flex-col"
+              className="lg:hidden fixed right-0 bottom-0 w-4/5 bg-[#0A0E27] shadow-lg z-50 p-6 flex flex-col" style={{ top: factoryDemo ? "var(--factory-bar-height)" : 0 }}
             >
               <div className="flex justify-between items-center mb-8">
                 <a href="/lifeevo/" onClick={() => setNavbarOpen(false)} className="flex items-center">

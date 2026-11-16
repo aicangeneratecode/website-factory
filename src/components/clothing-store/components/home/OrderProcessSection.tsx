@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import {
   ShoppingBag,
@@ -11,33 +12,33 @@ export const OrderProcessSection: React.FC = () => {
   const steps = [
     {
       number: "01",
-      title: "Browse Collection",
-      description: "Explore our curated essentials",
+      title: "Pogledajte kolekciju",
+      description: "Izaberite artikal i veličinu",
       icon: ShoppingBag,
       color: "from-gray-900 to-gray-800",
       accentColor: "group-hover:from-gray-800 group-hover:to-gray-700",
-      action: "View Products",
-      link: "#products",
+      action: "Pogledajte artikle",
+      link: "/catalog",
     },
     {
       number: "02",
-      title: "DM on Instagram",
-      description: "Send us your order details",
+      title: "Pripremite porudžbinu",
+      description: "Pregledajte artikle i količine u korpi",
       icon: MessageCircle,
       color: "from-gray-800 to-gray-700",
       accentColor: "group-hover:from-gray-700 group-hover:to-gray-600",
-      action: "Message Us",
-      link: "https://instagram.com/nsf_clothing",
+      action: "Otvori korpu",
+      link: "/cart",
     },
     {
       number: "03",
-      title: "Receive Order",
-      description: "Tracked & secure delivery",
+      title: "Dogovorite dostavu",
+      description: "Proverite uslove sa prodavnicom",
       icon: Package,
       color: "from-gray-900 to-gray-800",
       accentColor: "group-hover:from-gray-800 group-hover:to-gray-700",
-      action: "Track Order",
-      link: "/tracking",
+      action: "Uslovi dostave",
+      link: "/shipping",
     },
   ];
 
@@ -52,30 +53,27 @@ export const OrderProcessSection: React.FC = () => {
               <div className="inline-flex items-center gap-3 mb-4">
                 <div className="w-8 h-0.5 bg-gray-900"></div>
                 <span className="text-gray-500 text-sm font-light uppercase tracking-wider">
-                  Process
+                  Poručivanje
                 </span>
               </div>
 
               <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
-                How to Order
+                Kako poručiti
                 <br />
                 <span className="text-gray-600 font-semibold">
-                  in Three Steps
+                  u tri koraka
                 </span>
               </h2>
             </div>
 
             <div className="text-right">
-              <a
-                href="https://instagram.com/nsf_clothing"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link to="/catalog"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-300 group shadow-lg hover:shadow-xl"
               >
                 <Instagram className="w-5 h-5" />
-                <span>Start Order on Instagram</span>
+                <span>Pogledajte katalog</span>
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -110,21 +108,12 @@ export const OrderProcessSection: React.FC = () => {
                       </p>
 
                       {/* Action button */}
-                      <a
-                        href={step.link}
-                        target={
-                          step.link.includes("instagram") ? "_blank" : "_self"
-                        }
-                        rel={
-                          step.link.includes("instagram")
-                            ? "noopener noreferrer"
-                            : ""
-                        }
+                      <Link to={step.link}
                         className="inline-flex items-center gap-2 text-gray-900 font-medium hover:text-gray-700 transition-colors duration-300 group/btn"
                       >
                         <span>{step.action}</span>
                         <ArrowRight className="w-4 h-4 transform group-hover/btn:translate-x-2 transition-transform duration-300" />
-                      </a>
+                      </Link>
                     </div>
 
                     {/* Decorative corner */}
@@ -150,12 +139,12 @@ export const OrderProcessSection: React.FC = () => {
             <div className="inline-flex items-center gap-2 mb-2">
               <div className="w-6 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                Process
+                Poručivanje
               </span>
             </div>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-3 leading-tight tracking-tight">
-              How to Order
+              Kako poručiti
               <br />
             </h2>
           </div>
@@ -191,21 +180,12 @@ export const OrderProcessSection: React.FC = () => {
                     </div>
 
                     {/* Action - Compact */}
-                    <a
-                      href={step.link}
-                      target={
-                        step.link.includes("instagram") ? "_blank" : "_self"
-                      }
-                      rel={
-                        step.link.includes("instagram")
-                          ? "noopener noreferrer"
-                          : ""
-                      }
+                    <Link to={step.link}
                       className="inline-flex items-center gap-1 text-xs text-gray-900 font-medium"
                     >
                       <span>{step.action}</span>
                       <ArrowRight className="w-3 h-3" />
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Connector (except last) - Smaller */}

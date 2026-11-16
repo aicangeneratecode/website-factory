@@ -1,249 +1,59 @@
-// src/pages/CheckoutPage.tsx (упрощенная версия)
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Check, Lock, CreditCard } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { formatPrice, store, shippingLabel, shippingMode } from "../lib/storeConfig";
 
-export const CheckoutPage: React.FC = () => {
-  const navigate = useNavigate();
-  const { items, clearCart, total } = useCart();
-  const [isProcessing, setIsProcessing] = useState(false);
+export function CheckoutPage() {
+  const { items, subtotal, shippingCost, total } = useCart();
+  const [status, setStatus] = useState("");
+  const whatsapp = store.contact.whatsapp.replace(/[+ ().-]/g, "");
+  const instagram = store.contact.instagram.trim().replace(/^@/, "");
+  const canWhatsApp = !store.demo && store.orders?.whatsapp !== false && /^[1-9][0-9]{6,14}$/.test(whatsapp);
+  const canInstagram = !store.demo && store.orders?.instagram !== false && /^[A-Za-z0-9._]{1,30}$/.test(instagram);
+  const summary = [
+    `Porudžbina — ${store.name}`,
+    ...items.map(({ name, size, quantity, price }) =>
+      `• ${name} | Veličina: ${size} | ${quantity} × ${formatPrice(price)} = ${formatPrice(quantity * price)}`),
+    `Artikli: ${formatPrice(subtotal)}`,
+    `Dostava: ${shippingLabel(shippingCost)}`,
+    `Ukupno: ${formatPrice(total)}${shippingMode === "arranged" ? " + dostava po dogovoru" : ""}`,
+  ].join("\n");
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsProcessing(true);
-
-    // Simulate payment processing
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    clearCart();
-    setIsProcessing(false);
-    navigate("/checkout/success");
-  };
+  async function copyOrder() {
+    try {
+      await navigator.clipboard.writeText(summary);
+      setStatus("Tekst je kopiran.");
+    } catch {
+      setStatus("Označite tekst iznad i kopirajte ga ručno.");
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-white py-16">
-      <div className="border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <button
-            onClick={() => navigate(-1)}
-            className="group flex items-center gap-3 transition-all duration-300 hover:gap-4"
-          >
-            <div className="w-10 h-10 glass-effect-light-enhanced rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-              <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-gray-900 transition-colors duration-300" />
-            </div>
-            <span className="text-sm font-light text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
-              Back
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <div className="py-8">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-6 h-0.5 bg-gray-900"></div>
-              <span className="text-gray-500 text-sm font-light uppercase tracking-wider">
-                Checkout
-              </span>
-              <div className="w-6 h-0.5 bg-gray-900"></div>
-            </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              Complete Your Order
-            </h1>
-            <p className="text-gray-500 font-light">
-              Secure checkout powered by our Instagram-based service
-            </p>
+    <section className="mx-auto max-w-4xl px-5 py-16">
+      <Link to="/cart" className="text-sm font-semibold underline">← Nazad u korpu</Link>
+      <h1 className="mt-5 text-4xl font-bold">Pregled porudžbine</h1>
+      {items.length === 0 ? (
+        <p className="mt-5">Korpa je prazna. <Link to="/catalog" className="underline">Pogledajte katalog</Link></p>
+      ) : (
+        <div className="mt-8 rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:p-8">
+          <label className="block text-sm font-semibold" htmlFor="order-summary">Tekst porudžbine</label>
+          <textarea id="order-summary" readOnly value={summary} rows={Math.min(16, items.length + 5)} className="mt-3 w-full rounded-xl border border-gray-300 bg-white p-4 text-sm leading-7" />
+          <div className="mt-5 flex flex-wrap gap-3">
+            {canWhatsApp && (
+              <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(summary)}`} target="_blank" rel="noreferrer" className="rounded-xl bg-[var(--store-ink)] px-5 py-3 text-sm font-bold text-white">Otvori WhatsApp</a>
+            )}
+            <button type="button" onClick={copyOrder} className="rounded-xl border border-gray-500 px-5 py-3 text-sm font-bold">Kopirajte porudžbinu</button>
+            {canInstagram && (
+              <a href={`https://www.instagram.com/${instagram}/`} target="_blank" rel="noreferrer" className="rounded-xl border border-gray-500 px-5 py-3 text-sm font-bold">Otvori Instagram profil</a>
+            )}
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Order Summary */}
-            <div>
-              <div className="glass-effect-enhanced rounded-2xl border border-white/40 p-6 mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-6">
-                  Order Summary
-                </h3>
-                <div className="space-y-3">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex justify-between text-sm">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div>
-                          <div className="font-medium text-gray-900">
-                            {item.name}
-                          </div>
-                          <div className="text-xs text-gray-500">
-                            {item.size} • Qty: {item.quantity}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="font-medium text-gray-900">
-                        {formatPrice(item.price * item.quantity)}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="border-t border-gray-100/50 pt-6 mt-6">
-                  <div className="flex justify-between text-xl">
-                    <span className="font-bold text-gray-900">Total</span>
-                    <span className="font-bold text-gray-900">
-                      {formatPrice(total)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="glass-effect-light-enhanced rounded-2xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Lock className="w-5 h-5 text-gray-600" />
-                  <div>
-                    <h4 className="font-medium text-gray-900">
-                      Secure Checkout
-                    </h4>
-                    <p className="text-sm text-gray-500 font-light">
-                      Your payment information is encrypted
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="text-center">
-                    <CreditCard className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                    <span className="text-xs text-gray-500">All cards</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Checkout Form */}
-            <div>
-              <div className="glass-effect-enhanced rounded-2xl border border-white/40 p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-900 mb-2">
-                      Contact Information
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="Email address"
-                      className="w-full px-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-900 mb-2">
-                      Shipping Address
-                    </label>
-                    <div className="space-y-3">
-                      <input
-                        type="text"
-                        placeholder="Full name"
-                        className="w-full px-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
-                        required
-                      />
-                      <input
-                        type="text"
-                        placeholder="Address"
-                        className="w-full px-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
-                        required
-                      />
-                      <div className="grid grid-cols-2 gap-3">
-                        <input
-                          type="text"
-                          placeholder="City"
-                          className="px-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
-                          required
-                        />
-                        <input
-                          type="text"
-                          placeholder="ZIP Code"
-                          className="px-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300"
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-900 mb-2">
-                      Payment Method
-                    </label>
-                    <div className="space-y-2">
-                      <label className="flex items-center gap-3 p-3 glass-effect-light-enhanced rounded-xl cursor-pointer hover:bg-white/20 transition-all duration-300">
-                        <input
-                          type="radio"
-                          name="payment"
-                          value="instagram"
-                          defaultChecked
-                          className="w-4 h-4 text-gray-900 bg-white border-gray-300"
-                        />
-                        <div>
-                          <div className="font-medium text-gray-900">
-                            Instagram Direct Message
-                          </div>
-                          <div className="text-xs text-gray-500 font-light">
-                            We'll contact you on Instagram for payment
-                          </div>
-                        </div>
-                      </label>
-                      <label className="flex items-center gap-3 p-3 glass-effect-light-enhanced rounded-xl cursor-pointer hover:bg-white/20 transition-all duration-300">
-                        <input
-                          type="radio"
-                          name="payment"
-                          value="card"
-                          className="w-4 h-4 text-gray-900 bg-white border-gray-300"
-                        />
-                        <div>
-                          <div className="font-medium text-gray-900">
-                            Credit Card
-                          </div>
-                          <div className="text-xs text-gray-500 font-light">
-                            Pay securely with your card
-                          </div>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isProcessing}
-                    className="w-full py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3"
-                  >
-                    {isProcessing ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Processing...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Check className="w-5 h-5" />
-                        <span>Place Order</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
+          {store.demo && <p className="mt-4 text-sm text-gray-700">Demo prikaz. Porudžbina se ne šalje.</p>}
+          {canWhatsApp && <p className="mt-4 text-sm text-gray-700">Proverite tekst u WhatsApp-u i pošaljite poruku.</p>}
+          {canInstagram && <p className="mt-4 text-sm text-gray-700">Kopirajte tekst, otvorite Instagram profil i nalepite ga u poruku koju ćete poslati.</p>}
+          {!store.demo && !canWhatsApp && !canInstagram && <p className="mt-4 text-sm text-gray-700">Slanje porudžbine trenutno nije dostupno.</p>}
+          <p role="status" className="mt-3 text-sm">{status}</p>
         </div>
-      </div>
-    </div>
+      )}
+    </section>
   );
-};
+}

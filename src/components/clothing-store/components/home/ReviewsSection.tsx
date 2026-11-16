@@ -19,19 +19,12 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
 
   // Безопасная деструктуризация с проверками
   const safeData = data || {};
-  const title = safeData.title || "What Our Customers Say";
-  const subtitle = safeData.subtitle || "Real reviews from real customers";
-  const averageRating = safeData.averageRating || 4.8;
-  const totalReviews = safeData.totalReviews || 1284;
+  const title = safeData.title || "Utisci kupaca";
+  const subtitle = safeData.subtitle || "";
+  const averageRating = safeData.averageRating ?? (safeData.reviews?.length ? safeData.reviews.reduce((sum, review) => sum + review.rating, 0) / safeData.reviews.length : 0);
+  const totalReviews = safeData.totalReviews ?? safeData.reviews?.length ?? 0;
   const reviews = Array.isArray(safeData.reviews) ? safeData.reviews : [];
-  const stats = Array.isArray(safeData.stats)
-    ? safeData.stats
-    : [
-        { label: "Reviews", value: "200+" },
-        { label: "Average Rating", value: "4.9★" },
-        { label: "Recommend", value: "98%" },
-        { label: "Response Time", value: "24h" },
-      ];
+  const stats = Array.isArray(safeData.stats) ? safeData.stats : [];
 
   // Если нет отзывов, показываем сообщение
   if (reviews.length === 0) {
@@ -40,7 +33,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
           <p className="text-gray-500">{subtitle}</p>
-          <p className="text-gray-400 mt-4">No reviews yet.</p>
+          <p className="text-gray-400 mt-4">Još nema recenzija.</p>
         </div>
       </section>
     );
@@ -48,12 +41,12 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
 
   // Форматирование даты
   const formatDate = (dateString: string) => {
-    if (!dateString) return "Recently";
+    if (!dateString) return "Nedavno";
 
     try {
       const date = new Date(dateString);
       if (isNaN(date.getTime())) {
-        return "Recently";
+        return "Nedavno";
       }
 
       const now = new Date();
@@ -67,13 +60,13 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
       if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
       return `${Math.floor(diffDays / 365)} years ago`;
     } catch (error) {
-      return "Recently";
+      return "Nedavno";
     }
   };
 
   // Безопасное получение названия продукта
   const getProductName = (review: any) => {
-    if (!review) return "Product";
+    if (!review) return "Artikal";
 
     // Проверяем разные варианты структуры product
     if (review.product?.name) return review.product.name;
@@ -81,7 +74,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
     if (typeof review.product === "string") return review.product;
     if (review.productName) return review.productName;
 
-    return "Product";
+    return "Artikal";
   };
 
   const scrollReviews = (direction: "left" | "right") => {
@@ -143,7 +136,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
     if (count >= 1000) {
       return `${(count / 1000).toFixed(1)}K`;
     }
-    return `${count}+`;
+    return String(count);
   };
 
   return (
@@ -156,7 +149,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
             <div className="lg:w-2/5 mb-8 lg:mb-0">
               <div className="inline-flex items-center gap-2 text-gray-500 text-sm font-light mb-3">
                 <div className="w-6 h-0.5 bg-gray-900"></div>
-                <span>TESTIMONIALS</span>
+                <span>UTISCI</span>
               </div>
               <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
                 {title ? title.split(" ")[0] : "What Our"}
@@ -185,13 +178,13 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                     {averageRating.toFixed(1)}★
                   </div>
                   <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                    Average Rating
+                    Prosečna ocena
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-light text-gray-900">98%</div>
+                  <div className="text-3xl font-light text-gray-900">{totalReviews}</div>
                   <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                    Recommend
+                    Recenzije
                   </div>
                 </div>
               </div>
@@ -210,7 +203,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                 const customerLocation = review.customerLocation || "";
                 const rating = review.rating || 5;
                 const reviewText = review.reviewText || "Great product!";
-                const date = review.date ? formatDate(review.date) : "Recently";
+                const date = review.date ? formatDate(review.date) : "Nedavno";
                 const productName = getProductName(review);
 
                 return (
@@ -261,12 +254,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                               )}
                             </div>
                           </div>
-                          <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full">
-                            <Check className="w-3 h-3 text-green-600" />
-                            <span className="text-green-600 text-xs font-light">
-                              Verified
-                            </span>
-                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -281,7 +269,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                 <button
                   onClick={() => scrollReviews("left")}
                   className="hidden lg:flex absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-xl shadow-lg items-center justify-center hover:bg-gray-50 transition-all duration-300 border border-gray-200 z-20 hover:scale-110 active:scale-95"
-                  aria-label="Previous reviews"
+                  aria-label="Prethodni utisci"
                 >
                   <ChevronLeft className="w-5 h-5 text-gray-700" />
                 </button>
@@ -289,7 +277,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                 <button
                   onClick={() => scrollReviews("right")}
                   className="hidden lg:flex absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-xl shadow-lg items-center justify-center hover:bg-gray-50 transition-all duration-300 border border-gray-200 z-20 hover:scale-110 active:scale-95"
-                  aria-label="Next reviews"
+                  aria-label="Sledeći utisci"
                 >
                   <ChevronRight className="w-5 h-5 text-gray-700" />
                 </button>
@@ -323,7 +311,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-6 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                Reviews
+                Recenzije
               </span>
             </div>
 
@@ -344,7 +332,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                   {averageRating.toFixed(1)}★
                 </div>
                 <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                  Average Rating
+                  Prosečna ocena
                 </div>
               </div>
               <div className="w-0.5 h-8 bg-gray-200"></div>
@@ -353,7 +341,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                   {formatReviewCount(totalReviews)}
                 </div>
                 <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                  Reviews
+                  Recenzije
                 </div>
               </div>
             </div>
@@ -371,7 +359,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                 const customerLocation = review.customerLocation || "";
                 const rating = review.rating || 5;
                 const reviewText = review.reviewText || "Great product!";
-                const date = review.date ? formatDate(review.date) : "Recently";
+                const date = review.date ? formatDate(review.date) : "Nedavno";
                 const productName = getProductName(review);
 
                 return (
@@ -422,12 +410,7 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
                               )}
                             </div>
                           </div>
-                          <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full">
-                            <Check className="w-3 h-3 text-green-600" />
-                            <span className="text-green-600 text-xs font-light">
-                              Verified
-                            </span>
-                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -440,13 +423,13 @@ export const ReviewsSection: React.FC<ReviewsSectionProps> = ({ data }) => {
           {/* CTA Section */}
           <div className="-mt-8 text-center">
             <div className="text-sm text-gray-500 font-light mb-3">
-              Ready to join our satisfied customers?
+              Pogledajte kolekciju
             </div>
             <a
               href="#products"
               className="inline-block w-full py-3 bg-gray-900 text-white text-sm font-medium rounded-xl active:scale-95 transition-transform"
             >
-              Shop Premium Collection
+              Pogledajte kolekciju
             </a>
           </div>
         </div>

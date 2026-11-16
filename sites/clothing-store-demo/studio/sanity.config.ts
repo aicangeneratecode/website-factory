@@ -16,12 +16,18 @@ import {
   SettingsIcon,
 } from 'lucide-react'
 
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID
+const dataset = process.env.SANITY_STUDIO_DATASET
+if (!projectId || !dataset) {
+  throw new Error('Set SANITY_STUDIO_PROJECT_ID and SANITY_STUDIO_DATASET for this client.')
+}
+
 export default defineConfig({
   name: 'default',
   title: 'Clothing Store CMS',
 
-  projectId: '6ij9zoxn',
-  dataset: 'production',
+  projectId,
+  dataset,
 
   plugins: [
     media(),

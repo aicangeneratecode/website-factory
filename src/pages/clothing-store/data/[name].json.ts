@@ -1,14 +1,13 @@
 import type { APIRoute } from 'astro';
-import { client } from '../../../components/clothing-store/lib/sanity';
-import { homepageQuery, instagramQuery, productsQuery } from '../../../components/clothing-store/lib/queries';
+import { loadProducts, loadStoreData } from '../../../components/clothing-store/lib/sanity';
 
-const queries = { homepage: homepageQuery, instagram: instagramQuery, products: productsQuery };
+const names = ['homepage', 'instagram', 'products'] as const;
 
 export function getStaticPaths() {
-  return Object.entries(queries).map(([name, query]) => ({ params: { name }, props: { query } }));
+  return names.map((name) => ({ params: { name }, props: { name } }));
 }
 
 export const GET: APIRoute = async ({ props }) => {
-  const data = await client.withConfig({ useCdn: false }).fetch(props.query);
-  return Response.json(data);
+  const name = props.name as typeof names[number];
+  return Response.json(await (name === 'products' ? loadProducts() : loadStoreData(name)));
 };

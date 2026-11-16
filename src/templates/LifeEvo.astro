@@ -32,7 +32,8 @@ const { config } = Astro.props;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <Header client:load />
+    {config.demo && <FactoryBackLink />}
+    <Header client:load factoryDemo={config.demo} />
     <main>
       <Hero client:load />
       <Transform client:visible />
@@ -43,7 +44,6 @@ const { config } = Astro.props;
       <Testimonials client:visible />
     </main>
     <Footer />
-    {config.demo && <FactoryBackLink />}
     <ScrollToTop client:load />
   </body>
 </html>

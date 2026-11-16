@@ -1,23 +1,20 @@
+import { store } from "../../lib/storeConfig";
 import React, { useRef, useEffect, useState } from "react";
 import type { TouchEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight, Grid3x3 } from "lucide-react";
 
-interface Category {
-  id: number;
-  name: string;
-  image: string;
-  link: string;
-  description: string;
-}
+import type { CategoryCarouselData } from "../../types/homepageTypes";
 
 interface CategoryCarouselProps {
+  data?: CategoryCarouselData;
   autoRotate?: boolean;
   rotateInterval?: number;
   isMobileSwipe?: boolean;
 }
 
 export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
+  data,
   autoRotate = true,
   rotateInterval = 5000,
   isMobileSwipe = true,
@@ -32,56 +29,7 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
   const minSwipeDistance = 50;
   const [direction, setDirection] = useState(0);
 
-  const categories: Category[] = [
-    {
-      id: 1,
-      name: "Hoodies",
-      image: "/images/clothing-store/hoodie.png",
-      link: "/catalog?category=hoodies",
-      description:
-        "Premium comfort and style with our curated hoodie collection. Crafted from the finest materials for everyday luxury.",
-    },
-    {
-      id: 2,
-      name: "Jeans",
-      image: "/images/clothing-store/True-Religion.png",
-      link: "/catalog?category=jeans",
-      description:
-        "Classic and contemporary fits that redefine denim. Perfect combination of style and comfort for modern living.",
-    },
-    {
-      id: 3,
-      name: "Shoes",
-      image: "/images/clothing-store/NikeTNTripleWhite-.png",
-      link: "/catalog?category=shoes",
-      description:
-        "Elevate your everyday with premium footwear. From casual sneakers to statement pieces.",
-    },
-    {
-      id: 4,
-      name: "Shirts",
-      image: "/images/clothing-store/Tshirt.png",
-      link: "/catalog?category=shirts",
-      description:
-        "Essential foundations for your wardrobe. Minimalist designs with maximum comfort and style.",
-    },
-    {
-      id: 5,
-      name: "Accessories",
-      image: "/images/clothing-store/gucci-belt.png",
-      link: "/catalog?category=accessories",
-      description:
-        "Complete your look with carefully selected accessories. The perfect finishing touches.",
-    },
-    {
-      id: 6,
-      name: "Tracksuits",
-      image: "/images/clothing-store/tracksuits.png",
-      link: "/catalog?category=tracksuits",
-      description:
-        "Modern athletic wear that blends performance with style. Perfect for active lifestyles.",
-    },
-  ];
+  const categories = data?.categories ?? [];
 
   // Navigation functions
   const nextSlide = () => {
@@ -188,6 +136,8 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
     }),
   };
 
+  if (categories.length === 0) return null;
+
   return (
     <>
       {/* Desktop Version - About Section Style */}
@@ -199,21 +149,20 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-0.5 bg-gray-900"></div>
                 <span className="text-gray-500 text-sm font-light uppercase tracking-wider">
-                  Collections
+                  Kolekcije
                 </span>
               </div>
 
               <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
-                Explore Our
+                Istražite
                 <br />
                 <span className="text-gray-600 font-semibold">
-                  Premium Categories
+                  kategorije
                 </span>
               </h2>
 
               <p className="text-gray-500 text-xl font-light max-w-xl leading-relaxed">
-                Curated essentials for modern living. Each category crafted with
-                attention to detail and premium materials.
+                {data?.subtitle}
               </p>
             </div>
 
@@ -225,14 +174,14 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
                     {(currentIndex + 1).toString().padStart(2, "0")}
                   </div>
                   <div className="text-gray-500 text-sm font-light">
-                    of {categories.length.toString().padStart(2, "0")}
+                    od {categories.length.toString().padStart(2, "0")}
                   </div>
                 </div>
                 <div className="w-0.5 h-12 bg-gradient-to-b from-gray-900/20 to-transparent"></div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-gray-900">6</div>
                   <div className="text-gray-500 text-sm font-light">
-                    Categories
+                    Kategorije
                   </div>
                 </div>
               </div>
@@ -309,7 +258,7 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
                           ? "bg-gray-900 w-12"
                           : "bg-gray-300 hover:bg-gray-400"
                       }`}
-                      aria-label={`Go to ${categories[index].name}`}
+                      aria-label={`Prikažite: ${categories[index].name}`}
                     />
                   ))}
                 </div>
@@ -344,10 +293,10 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
                   {/* Enhanced CTA Button */}
                   <div className="pt-4">
                     <a
-                      href={categories[currentIndex].link}
+                      href={`${store.basePath.replace(/\/$/, "")}${categories[currentIndex].link}`}
                       className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-500 transform hover:scale-105 active:scale-95 group shadow-lg hover:shadow-xl"
                     >
-                      <span>Explore Collection</span>
+                      <span>Pogledajte kolekciju</span>
                       <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
                     </a>
                   </div>
@@ -359,7 +308,7 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
                 <div className="flex flex-wrap gap-2">
                   {categories.map((category, index) => (
                     <button
-                      key={category.id}
+                      key={category.name}
                       onClick={() => goToSlide(index)}
                       className={`px-4 py-2 rounded-xl transition-all duration-300 text-sm ${
                         currentIndex === index
@@ -378,11 +327,11 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
           {/* Enhanced View All Button */}
           <div className="text-center mt-20">
             <a
-              href="/clothing-store/catalog"
+              href={`${store.basePath.replace(/\/$/, "")}/catalog`}
               className="inline-flex items-center gap-4 px-12 py-6 glass-effect-enhanced text-gray-900 rounded-2xl font-medium hover:shadow-xl transition-all duration-500 transform hover:scale-105 active:scale-95 group border border-white/40"
             >
               <Grid3x3 className="w-5 h-5" />
-              <span className="text-lg">View All Categories</span>
+              <span className="text-lg">Sve kategorije</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
             </a>
           </div>
@@ -397,12 +346,12 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
             <div className="inline-flex items-center gap-2 mb-2">
               <div className="w-6 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                Collections
+                Kolekcije
               </span>
             </div>
 
             <h2 className="text-3xl font-bold text-gray-900 mb-3 leading-tight tracking-tight">
-              Premium Categories
+              kategorije
             </h2>
           </div>
 
@@ -410,7 +359,7 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
           <div className="flex gap-2 overflow-x-auto scrollbar-hide mb-6 px-2">
             {categories.map((category, index) => (
               <button
-                key={category.id}
+                key={category.name}
                 onClick={() => goToSlide(index)}
                 className={`flex-shrink-0 px-4 py-2 rounded-full text-sm transition-all duration-300 whitespace-nowrap ${
                   currentIndex === index
@@ -482,15 +431,15 @@ export const CategoryCarousel: React.FC<CategoryCarouselProps> = ({
                   <div className="p-4 pt-5">
                     {/* Page Counter */}
                     <div className="text-center text-xs text-gray-500 mb-3 font-light">
-                      {currentIndex + 1} of {categories.length}
+                      {currentIndex + 1} od {categories.length}
                     </div>
 
                     {/* CTA Button - Clean & Modern */}
                     <a
-                      href={categories[currentIndex].link}
+                      href={`${store.basePath.replace(/\/$/, "")}${categories[currentIndex].link}`}
                       className="block w-full py-3.5 bg-gray-900 text-white text-sm font-medium rounded-xl text-center active:scale-95 transition-transform shadow-sm"
                     >
-                      Shop Collection
+                      Pogledajte kolekciju
                     </a>
                   </div>
                 </div>

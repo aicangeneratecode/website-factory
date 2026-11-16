@@ -1,0 +1,85 @@
+[
+  {
+    "_id": "402119ef-080c-48d8-b1fb-1c9cfa54896c",
+    "brandName": "Armani",
+    "category": "men",
+    "description": null,
+    "images": [
+      {
+        "asset": {
+          "url": "/images/clothing-store/Tshirt.png"
+        }
+      }
+    ],
+    "inStock": true,
+    "isNew": true,
+    "isSale": false,
+    "material": null,
+    "name": "Crna majica",
+    "originalPrice": null,
+    "price": 25,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XXL"
+    ],
+    "sku": "TSHIRT-BLACK-M-001",
+    "subcategory": "tshirts"
+  },
+  {
+    "_id": "ac6a9eac-d15e-4b64-b17e-43ded036d763",
+    "brandName": "Trapstar",
+    "category": "unisex",
+    "description": null,
+    "images": [
+      {
+        "asset": {
+          "url": "/images/clothing-store/Tshirt copy.png"
+        }
+      }
+    ],
+    "inStock": true,
+    "isNew": false,
+    "isSale": null,
+    "material": null,
+    "name": "Majica sa printom",
+    "originalPrice": 35,
+    "price": 20,
+    "sizes": [
+      "M",
+      "XL",
+      "XXL"
+    ],
+    "sku": null,
+    "subcategory": "tshirts"
+  },
+  {
+    "_id": "feec2408-fe7e-4c61-9079-1ec870f5d88d",
+    "brandName": "TrueReligon",
+    "category": "women",
+    "description": "Farmerke iz demo kolekcije.",
+    "images": [
+      {
+        "asset": {
+          "url": "/images/clothing-store/True-Religion.png"
+        }
+      }
+    ],
+    "inStock": true,
+    "isNew": true,
+    "isSale": false,
+    "material": "Teksas",
+    "name": "Farmerke",
+    "originalPrice": null,
+    "price": 65,
+    "sizes": [
+      "M",
+      "L",
+      "XXL"
+    ],
+    "sku": null,
+    "subcategory": "pants"
+  }
+]

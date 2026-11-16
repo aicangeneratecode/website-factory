@@ -460,3 +460,10 @@ img {
 .scroll-smooth {
   scroll-behavior: smooth;
 }
+
+@layer base {
+  body {
+    color: var(--store-ink, #111827);
+    background: var(--store-surface, #ffffff);
+  }
+}

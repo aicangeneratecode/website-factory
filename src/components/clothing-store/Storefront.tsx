@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { store } from "./lib/storeConfig";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { CatalogPage } from "./pages/CatalogPage";
 import { ProductPage } from "./pages/ProductPage";
@@ -10,12 +11,12 @@ import { Footer } from "./components/layout/Footer";
 import { ScrollToTop } from "./components/shared/ScrollToTop";
 import { CartSidebar } from "./components/layout/CartSidebar";
 
-function App({ basePath }: { basePath: string }) {
+function App({ basePath, factoryDemo }: { basePath: string; factoryDemo: boolean }) {
   return (
     <CartProvider>
       <Router basename={basePath}>
         <div className="min-h-screen flex flex-col">
-          <Header />
+          <Header factoryDemo={factoryDemo} />
           <CartSidebar />
           <main className="flex-1">
             <Routes>
@@ -24,74 +25,25 @@ function App({ basePath }: { basePath: string }) {
               <Route path="/product/:productId" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/checkout/success" element={<section className="mx-auto max-w-3xl px-6 py-24"><h1 className="text-4xl font-bold">Demo checkout complete</h1><p className="mt-4">No order was sent and no payment was taken.</p></section>} />
-              <Route path="/shipping" element={<div className="container mx-auto px-4 py-8"><h1 className="text-4xl font-bold">Delivery Information</h1></div>} />
-              <Route path="/faq" element={<HomePage />} />
-              <Route path="*" element={<div className="container mx-auto px-4 py-8"><h1 className="text-4xl font-bold">Page not found</h1></div>} />
-              <Route
-                path="/men"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">Men's Collection</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/women"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">Women's Collection</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/new"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">New Arrivals</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/sale"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">Sale</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/contact"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">Contact Us</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/about"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">About Us</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/delivery"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">Delivery Information</h1>
-                  </div>
-                }
-              />
-              <Route
-                path="/returns"
-                element={
-                  <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-4xl font-bold">Returns & Exchanges</h1>
-                  </div>
-                }
-              />
+              <Route path="/faq" element={<section className="mx-auto max-w-3xl space-y-6 px-5 py-16">
+                <h1 className="text-4xl font-bold">Česta pitanja</h1>
+                <details><summary className="cursor-pointer font-semibold">Kako da poručim?</summary><p className="mt-2">Izaberite veličinu, dodajte artikle u korpu i otvorite pregled porudžbine. Ako je kanal za poručivanje podešen, pošaljite tekst prodavnici.</p></details>
+                <details><summary className="cursor-pointer font-semibold">Kada je porudžbina potvrđena?</summary><p className="mt-2">Kada prodavnica potvrdi dostupnost artikala, cenu dostave i način plaćanja.</p></details>
+                <Link to="/catalog" className="inline-block underline">Pogledajte katalog</Link>
+              </section>} />
+              <Route path="/shipping" element={<section className="mx-auto max-w-3xl space-y-6 px-5 py-16">
+                <h1 className="text-4xl font-bold">Dostava</h1>
+                <p>{store.shipping?.description || "Trošak i rok dostave proverite sa prodavnicom pre potvrde porudžbine."}</p>
+                <Link to="/cart" className="inline-block underline">Pogledajte korpu</Link>
+              </section>} />
+              <Route path="/delivery" element={<Navigate to="/shipping" replace />} />
+              <Route path="/men" element={<Navigate to="/catalog?category=men" replace />} />
+              <Route path="/women" element={<Navigate to="/catalog?category=women" replace />} />
+              <Route path="/new" element={<Navigate to="/catalog?new=true" replace />} />
+              <Route path="*" element={<section className="mx-auto max-w-3xl px-5 py-16">
+                <h1 className="text-4xl font-bold">Stranica nije pronađena</h1>
+                <Link to="/catalog" className="mt-6 inline-block underline">Nazad na katalog</Link>
+              </section>} />
             </Routes>
           </main>
           <Footer />

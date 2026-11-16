@@ -1,3 +1,12 @@
+const categoryNames: Record<string, string> = {
+  men: "Muškarci", women: "Žene", unisex: "Uniseks",
+  tshirts: "Majice", hoodies: "Duksevi", jeans: "Farmerke",
+  pants: "Pantalone", shoes: "Obuća", accessories: "Dodaci",
+  tracksuits: "Trenerke", jackets: "Jakne", all: "Sve",
+};
+const categoryLabel = (category: string) => categoryNames[category] ?? category;
+
+import { formatPrice } from "../lib/storeConfig";
 // src/pages/CatalogPage.tsx - Обновленная версия с поиском и улучшениями
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -95,7 +104,7 @@ const FilterSidebar: React.FC<{
             <div className="flex items-center gap-3">
               <div className="w-8 h-0.5 bg-gradient-to-r from-gray-900 to-transparent"></div>
               <span className="text-gray-500 text-sm font-light uppercase tracking-wider">
-                Filters
+                Filteri
               </span>
             </div>
             <div>
@@ -103,7 +112,7 @@ const FilterSidebar: React.FC<{
                 onClick={clearFilters}
                 className="text-sm text-gray-500 hover:text-gray-700 font-light transition-all duration-300 px-3 py-1.5 glass-effect-light-enhanced rounded-lg hover:scale-105 active:scale-95"
               >
-                Clear all
+                Poništi sve
               </button>
             </div>
           </div>
@@ -123,7 +132,7 @@ const FilterSidebar: React.FC<{
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search products..."
+            placeholder="Pretražite artikle…"
             className="w-full pl-10 pr-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:border-gray-300 transition-all duration-300"
           />
         </div>
@@ -131,7 +140,7 @@ const FilterSidebar: React.FC<{
         <div className="space-y-6">
           {/* Category Filter */}
           <div>
-            <h4 className="text-sm font-normal text-gray-900 mb-3">Category</h4>
+            <h4 className="text-sm font-normal text-gray-900 mb-3">Kategorija</h4>
             <div className="inline-flex gap-2 p-2 glass-effect-enhanced rounded-2xl">
               {categories.map((category) => (
                 <button
@@ -146,7 +155,7 @@ const FilterSidebar: React.FC<{
                   <span className="font-medium text-sm whitespace-nowrap">
                     {category === "all"
                       ? "All"
-                      : category.charAt(0).toUpperCase() + category.slice(1)}
+                      : categoryLabel(category)}
                   </span>
                   {selectedCategory === category && (
                     <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
@@ -159,7 +168,7 @@ const FilterSidebar: React.FC<{
           {/* Subcategory Filter */}
           <div>
             <h4 className="text-sm font-normal text-gray-900 mb-3">
-              Product Type
+              Vrsta artikla
             </h4>
             <div className="flex flex-wrap gap-2">
               {subcategories.map((subcategory) => (
@@ -173,9 +182,8 @@ const FilterSidebar: React.FC<{
                   }`}
                 >
                   {subcategory === "all"
-                    ? "All Types"
-                    : subcategory.charAt(0).toUpperCase() +
-                      subcategory.slice(1)}
+                    ? "Sve vrste"
+                    : categoryLabel(subcategory)}
                 </button>
               ))}
             </div>
@@ -208,7 +216,7 @@ const FilterSidebar: React.FC<{
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-gray-500" />
                 <span className="text-sm font-light text-gray-900">
-                  New Arrivals Only
+                  Samo novi artikli
                 </span>
               </div>
             </label>
@@ -216,7 +224,7 @@ const FilterSidebar: React.FC<{
 
           {/* Size Filter */}
           <div>
-            <h4 className="text-sm font-normal text-gray-900 mb-3">Size</h4>
+            <h4 className="text-sm font-normal text-gray-900 mb-3">Veličina</h4>
             <div className="flex flex-wrap gap-2">
               {sizes.map((size) => (
                 <button
@@ -236,7 +244,7 @@ const FilterSidebar: React.FC<{
 
           {/* Brand Filter */}
           <div>
-            <h4 className="text-sm font-normal text-gray-900 mb-3">Brand</h4>
+            <h4 className="text-sm font-normal text-gray-900 mb-3">Brend</h4>
             <div className="grid grid-cols-2 gap-2 max-h-60 overflow-y-auto">
               {brands.map((brand) => (
                 <label
@@ -304,7 +312,7 @@ const Toolbar: React.FC<{
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
+              placeholder="Pretražite artikle…"
               className="w-full pl-12 pr-4 py-4 glass-effect-enhanced rounded-2xl border border-white/40 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:border-gray-300 transition-all duration-300"
             />
           </div>
@@ -320,7 +328,7 @@ const Toolbar: React.FC<{
             </div>
             <div className="text-left">
               <div className="text-sm font-light text-gray-500">
-                Filter Products
+                Filtrirajte artikle
               </div>
               <div className="text-xs text-gray-400">
                 {productCount} products
@@ -340,7 +348,7 @@ const Toolbar: React.FC<{
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search by name or brand..."
+            placeholder="Pretražite po nazivu ili brendu…"
             className="w-full pl-12 pr-4 py-3.5 glass-effect-light-enhanced rounded-xl border border-white/40 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:border-gray-300 transition-all duration-300"
           />
         </div>
@@ -352,7 +360,7 @@ const Toolbar: React.FC<{
               {productCount}
             </div>
             <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-              Products
+              Artikli
             </div>
           </div>
 
@@ -368,13 +376,13 @@ const Toolbar: React.FC<{
               className="appearance-none bg-transparent border border-white/40 px-6 py-3.5 pr-10 text-sm font-light text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300 glass-effect-enhanced rounded-2xl hover:shadow-lg cursor-pointer w-48"
             >
               <option value="newest" className="bg-white">
-                Newest First
+                Najnovije prvo
               </option>
               <option value="price-low" className="bg-white">
-                Price: Low to High
+                Cena rastuće
               </option>
               <option value="price-high" className="bg-white">
-                Price: High to Low
+                Cena opadajuće
               </option>
             </select>
             <ChevronDown className="w-4 h-4 text-gray-500 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none transition-transform duration-300 group-hover:rotate-180" />
@@ -396,7 +404,7 @@ const SizeIcon: React.FC<{ size: string; isAvailable: boolean }> = ({
         ? "bg-gray-100 border border-gray-200 text-gray-700"
         : "bg-gray-50 border border-gray-100 text-gray-400"
     }`}
-    title={`Size ${size}`}
+    title={`Veličina ${size}`}
   >
     <span className="text-xs font-medium">{size}</span>
   </div>
@@ -425,13 +433,6 @@ const ProductCard: React.FC<{
       ? product.images[1]
       : product.images[0];
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
 
   return (
     <div
@@ -476,7 +477,7 @@ const ProductCard: React.FC<{
           <div className="absolute top-3 left-3">
             {product.isNew && (
               <span className="px-2 py-1 glass-effect-light-enhanced text-gray-900 text-xs font-medium rounded-full shadow-sm">
-                New
+                Novo
               </span>
             )}
           </div>
@@ -496,7 +497,7 @@ const ProductCard: React.FC<{
           {!product.inStock && (
             <div className="absolute bottom-3 right-3">
               <span className="px-2 py-1 glass-effect-light-enhanced bg-gray-900/80 text-white text-xs font-medium rounded-full">
-                Out of Stock
+                Nema na stanju
               </span>
             </div>
           )}
@@ -555,7 +556,7 @@ const ProductCard: React.FC<{
                 }`}
               />
               <span className="hidden sm:inline text-[10px]">
-                {product.inStock ? "In Stock" : "Out"}
+                {product.inStock ? "Na stanju" : "Rasprodato"}
               </span>
             </div>
           </div>
@@ -605,7 +606,7 @@ const Pagination: React.FC<{
         className="flex items-center gap-2 px-4 py-2.5 glass-effect-light-enhanced rounded-xl text-sm font-light text-gray-900 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
       >
         <ChevronLeft className="w-4 h-4" />
-        <span className="hidden sm:inline">Previous</span>
+        <span className="hidden sm:inline">Prethodna</span>
       </button>
 
       <div className="flex items-center gap-1">
@@ -629,7 +630,7 @@ const Pagination: React.FC<{
         disabled={currentPage === totalPages}
         className="flex items-center gap-2 px-4 py-2.5 glass-effect-light-enhanced rounded-xl text-sm font-light text-gray-900 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 active:scale-95"
       >
-        <span className="hidden sm:inline">Next</span>
+        <span className="hidden sm:inline">Sledeća</span>
         <ChevronRight className="w-4 h-4" />
       </button>
     </div>
@@ -843,7 +844,7 @@ export const CatalogPage: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mb-4"></div>
-            <p className="text-gray-600">Loading products...</p>
+            <p className="text-gray-600">Učitavanje artikala…</p>
           </div>
         </div>
       </div>
@@ -861,7 +862,7 @@ export const CatalogPage: React.FC = () => {
               onClick={() => window.location.reload()}
               className="px-4 py-2 bg-gray-900 text-white rounded-lg"
             >
-              Refresh page
+              Osvežite stranicu
             </button>
           </div>
         </div>
@@ -878,17 +879,17 @@ export const CatalogPage: React.FC = () => {
             <div className="inline-flex items-center gap-2 mb-3">
               <div className="w-4 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                Shop Collection
+                Pogledajte kolekciju
               </span>
               <div className="w-4 h-0.5 bg-gray-900"></div>
             </div>
 
             <h2 className="text-2xl lg:text-5xl font-bold text-gray-900 mb-3 lg:mb-6 leading-tight tracking-tight">
-              Premium Essentials
+              Katalog odeće
             </h2>
 
             <p className="text-gray-500 font-light text-sm lg:text-lg max-w-xl mx-auto leading-relaxed px-4">
-              Discover our carefully curated selection
+              Pronađite artikle po kategoriji, veličini i brendu.
             </p>
           </div>
         </div>
@@ -942,18 +943,18 @@ export const CatalogPage: React.FC = () => {
                     <Search className="w-5 h-5 lg:w-8 lg:h-8 text-gray-400" />
                   </div>
                   <h3 className="text-lg lg:text-2xl font-light text-gray-900 mb-3">
-                    No products found
+                    Nema rezultata
                   </h3>
                   <p className="text-gray-500 font-light text-sm lg:text-lg max-w-md mx-auto mb-8">
                     {searchQuery
                       ? "Try a different search term"
-                      : "Try adjusting your filters"}
+                      : "Pokušajte da promenite filtere."}
                   </p>
                   <button
                     onClick={clearFilters}
                     className="inline-flex items-center gap-2 px-5 py-2.5 lg:px-6 lg:py-3 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-300 text-sm lg:text-base"
                   >
-                    <span>Clear All Filters</span>
+                    <span>Poništite filtere</span>
                     <X className="w-4 h-4" />
                   </button>
                 </div>
@@ -983,7 +984,7 @@ export const CatalogPage: React.FC = () => {
               {/* Clean Header - ONE X button */}
               <div className="sticky top-0 bg-white z-10 flex items-center justify-between p-5 border-b border-gray-100">
                 <h2 className="text-lg font-light text-gray-900">
-                  Filter Products
+                  Filtrirajte artikle
                 </h2>
                 <button
                   onClick={() => setShowMobileFilters(false)}
@@ -1003,7 +1004,7 @@ export const CatalogPage: React.FC = () => {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search products..."
+                      placeholder="Pretražite artikle…"
                       className="w-full pl-10 pr-4 py-3 glass-effect-light-enhanced rounded-xl border border-white/40 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:border-gray-300 transition-all duration-300"
                     />
                   </div>
@@ -1012,7 +1013,7 @@ export const CatalogPage: React.FC = () => {
                 {/* Category Filter */}
                 <div>
                   <h4 className="text-sm font-normal text-gray-900 mb-3">
-                    Category
+                    Kategorija
                   </h4>
                   <div className="space-y-2">
                     {(["all", "men", "women"] as (Category | "all")[]).map(
@@ -1027,9 +1028,8 @@ export const CatalogPage: React.FC = () => {
                           }`}
                         >
                           {category === "all"
-                            ? "All Categories"
-                            : category.charAt(0).toUpperCase() +
-                              category.slice(1)}
+                            ? "Sve kategorije"
+                            : categoryLabel(category)}
                         </button>
                       )
                     )}
@@ -1039,7 +1039,7 @@ export const CatalogPage: React.FC = () => {
                 {/* Subcategory Filter */}
                 <div>
                   <h4 className="text-sm font-normal text-gray-900 mb-3">
-                    Product Type
+                    Vrsta artikla
                   </h4>
                   <div className="space-y-2">
                     {(
@@ -1066,9 +1066,8 @@ export const CatalogPage: React.FC = () => {
                         }`}
                       >
                         {subcategory === "all"
-                          ? "All Types"
-                          : subcategory.charAt(0).toUpperCase() +
-                            subcategory.slice(1)}
+                          ? "Sve vrste"
+                          : categoryLabel(subcategory)}
                       </button>
                     ))}
                   </div>
@@ -1077,7 +1076,7 @@ export const CatalogPage: React.FC = () => {
                 {/* Size Filter */}
                 <div>
                   <h4 className="text-sm font-normal text-gray-900 mb-3">
-                    Size
+                    Veličina
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {sizes.map((size) => (
@@ -1107,7 +1106,7 @@ export const CatalogPage: React.FC = () => {
                 {/* Brand Filter */}
                 <div>
                   <h4 className="text-sm font-normal text-gray-900 mb-3">
-                    Brand
+                    Brend
                   </h4>
                   <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
                     {brands.map((brand) => (
@@ -1149,7 +1148,7 @@ export const CatalogPage: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Sparkles className="w-4 h-4 text-gray-500" />
                       <span className="text-sm font-light text-gray-900">
-                        New Arrivals Only
+                        Samo novi artikli
                       </span>
                     </div>
                   </label>
@@ -1162,13 +1161,13 @@ export const CatalogPage: React.FC = () => {
                   onClick={() => setShowMobileFilters(false)}
                   className="w-full py-4 bg-gray-900 text-white rounded-xl font-medium hover:bg-gray-800 transition-all duration-300 active:scale-95"
                 >
-                  Apply Filters
+                  Primeni filtere
                 </button>
                 <button
                   onClick={clearFilters}
                   className="w-full py-3 text-gray-500 font-light text-sm hover:text-gray-700 transition-colors duration-300"
                 >
-                  Clear All Filters
+                  Poništite filtere
                 </button>
               </div>
             </div>

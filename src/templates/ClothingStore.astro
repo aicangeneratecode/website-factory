@@ -7,25 +7,34 @@ import type { ClothingStoreConfig } from '../types/clothing-store';
 interface Props {
   config: ClothingStoreConfig;
   pageTitle?: string;
+  pageDescription?: string;
+  pageImage?: string;
 }
-const { config, pageTitle } = Astro.props;
+const { config, pageTitle, pageDescription, pageImage } = Astro.props;
+const base = Astro.site ?? Astro.url;
+const title = pageTitle ? `${pageTitle} | ${config.name}` : config.name;
+const description = pageDescription?.trim() || config.description;
+const checkout = /\/(cart|checkout)\/?$/.test(Astro.url.pathname);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={config.locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{pageTitle ? `${pageTitle} | ${config.name}` : config.name}</title>
-    <meta name="description" content={config.description} />
-    {config.demo && <meta name="robots" content="noindex,nofollow" />}
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site ?? Astro.url)} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {(config.demo || checkout) && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={new URL(Astro.url.pathname, base)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(pageImage || config.previewImage, base).href} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" />
   </head>
-  <body>
-    <Storefront client:only="react" basePath={config.basePath}>
-      <p slot="fallback" role="status">Loading storefront…</p>
+  <body style={{ '--store-ink': config.brand?.ink ?? '#111827', '--store-surface': config.brand?.surface ?? '#ffffff' }}>
+    {config.demo && config.basePath !== "/" && <FactoryBackLink />}
+    <Storefront client:only="react" basePath={config.basePath} factoryDemo={config.demo && config.basePath !== "/"}>
+      <p slot="fallback" role="status">Učitavanje prodavnice…</p>
     </Storefront>
-    {config.demo && <FactoryBackLink />}
   </body>
 </html>

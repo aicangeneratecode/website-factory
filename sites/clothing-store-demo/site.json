@@ -1,7 +1,32 @@
 {
   "name": "Clothing Store",
-  "description": "Streetwear, footwear and accessories. Browse the catalog and build your order.",
+  "description": "Katalog odeće, obuće i dodataka. Izaberite artikle i pripremite porudžbinu.",
   "basePath": "/clothing-store",
   "previewImage": "/images/clothing-store/IMG_3375.jpg",
-  "demo": true
+  "demo": true,
+  "locale": "sr-Latn-RS",
+  "currency": "RSD",
+  "priceMultiplier": 100,
+  "shippingCost": 0,
+  "contact": {
+    "whatsapp": "",
+    "instagram": ""
+  },
+  "catalog": {
+    "provider": "json"
+  },
+  "brand": {
+    "tagline": "Odeća za svaki dan",
+    "logo": "",
+    "ink": "#111827",
+    "surface": "#ffffff"
+  },
+  "shipping": {
+    "mode": "arranged",
+    "description": "Trošak i rok dostave dogovaraju se sa prodavnicom pre potvrde porudžbine."
+  },
+  "orders": {
+    "whatsapp": true,
+    "instagram": true
+  }
 }

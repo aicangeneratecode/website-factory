@@ -1,9 +1,15 @@
 import {defineCliConfig} from 'sanity/cli'
 
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID
+const dataset = process.env.SANITY_STUDIO_DATASET
+if (!projectId || !dataset) {
+  throw new Error('Set SANITY_STUDIO_PROJECT_ID and SANITY_STUDIO_DATASET for this client.')
+}
+
 export default defineCliConfig({
   api: {
-    projectId: '6ij9zoxn',
-    dataset: 'production'
+    projectId,
+    dataset
   },
   deployment: {
     /**

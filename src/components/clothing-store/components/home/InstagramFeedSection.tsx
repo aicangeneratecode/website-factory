@@ -23,20 +23,20 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
 
   // Используем данные из Sanity или значения по умолчанию
   const {
-    title = "Our Instagram",
-    subtitle = "Follow for daily style inspiration, new drops, and exclusive content.",
-    handle = "@NSF_Clothing",
-    description = "Follow for daily style inspiration, new drops, and exclusive content.",
-    followers = "5.2K",
-    postsCount = "89",
+    title = "Instagram",
+    subtitle = "",
+    handle = "",
+    description = "",
+    followers = "",
+    postsCount = "",
     posts = [],
-    ctaTitle = "Shop directly through Instagram",
-    ctaDescription = "DM us your desired items for personalized service and fastest response.",
-    ctaFollowText = "Follow & Shop Now",
-    ctaFollowLink = "https://instagram.com/NSF_Clothing",
-    ctaDmText = "Send Direct Message",
-    ctaDmLink = "https://instagram.com/direct",
-    responseTime = "Average response time: Under 2 hours",
+    ctaTitle = "Prodavnica na Instagramu",
+    ctaDescription = "",
+    ctaFollowText = "Otvori profil",
+    ctaFollowLink = "",
+    ctaDmText = "Pošaljite poruku",
+    ctaDmLink = "",
+    responseTime = "",
   } = data;
 
   return (
@@ -49,7 +49,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
             <div className="mb-8 lg:mb-0 lg:w-2/5">
               <div className="inline-flex items-center gap-2 text-gray-500 text-sm font-light mb-3">
                 <div className="w-6 h-0.5 bg-gray-900"></div>
-                <span>SOCIAL</span>
+                <span>DRUŠTVENE MREŽE</span>
               </div>
 
               <div className="flex items-center gap-4 mb-6">
@@ -57,21 +57,21 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                   <Instagram className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-5xl font-bold text-gray-900 leading-tight tracking-tight">
-                  {handle}
+                  {title}
                 </h2>
               </div>
 
-              <p className="text-gray-500 font-light text-lg">{description}</p>
+              <p className="text-gray-500 font-light text-lg">{description || subtitle}</p>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className={followers || postsCount ? "grid grid-cols-2 gap-6" : "hidden"}>
               <div className="text-center p-6 bg-white rounded-2xl border border-gray-100">
                 <div className="text-3xl font-light text-gray-900 mb-2">
                   {followers}
                 </div>
                 <div className="text-gray-500 text-sm font-light uppercase tracking-wider">
-                  Followers
+                  Pratioci
                 </div>
               </div>
               <div className="text-center p-6 bg-white rounded-2xl border border-gray-100">
@@ -79,7 +79,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                   {postsCount}
                 </div>
                 <div className="text-gray500 text-sm font-light uppercase tracking-wider">
-                  Posts
+                  Objave
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
             {posts.map((post, index) => (
               <a
                 key={post._key || index}
-                href={post.link}
+                href={post.link || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group relative overflow-hidden rounded-2xl bg-gray-100 ${
@@ -120,16 +120,16 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                         {post.caption}
                       </p>
                       <div className="flex items-center gap-4 text-sm text-white/70">
-                        <span>{post.likes} likes</span>
+                        <span>{post.likes} sviđanja</span>
                         <span>•</span>
-                        <span>{post.comments} comments</span>
+                        <span>{post.comments} komentara</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Type badge */}
                   <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-sm text-white text-xs rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {post.type}
+                    {({product:"Artikal",behind:"Iza scene",ugc:"Zajednica",announcement:"Najava"})[post.type]}
                   </div>
 
                   {/* Instagram icon */}
@@ -158,7 +158,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
+                {ctaFollowLink && (<a
                   href={ctaFollowLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -166,16 +166,16 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                 >
                   <Instagram className="w-5 h-5" />
                   <span>{ctaFollowText}</span>
-                </a>
+                </a>)}
 
-                <a
+                {ctaDmLink && (<a
                   href={ctaDmLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-white/30 text-white rounded-2xl font-light hover:bg-white/10 transition-all duration-300 transform hover:scale-105 active:scale-95"
                 >
                   <span>{ctaDmText}</span>
-                </a>
+                </a>)}
               </div>
 
               <div className="mt-8 text-gray-400 text-sm font-light">
@@ -194,7 +194,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-6 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                SOCIAL
+                DRUŠTVENE MREŽE
               </span>
             </div>
 
@@ -215,7 +215,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                   {followers}
                 </div>
                 <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                  Followers
+                  Pratioci
                 </div>
               </div>
               <div className="w-0.5 h-8 bg-gray-200"></div>
@@ -224,7 +224,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                   {postsCount}
                 </div>
                 <div className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                  Posts
+                  Objave
                 </div>
               </div>
             </div>
@@ -244,7 +244,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                     {posts.map((post) => (
                       <a
                         key={`first-${post._key}`}
-                        href={post.link}
+                        href={post.link || undefined}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-shrink-0 w-40 group"
@@ -274,10 +274,10 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                               <div className="text-white text-center p-4">
                                 <div className="text-sm font-medium mb-1">
-                                  {post.likes} likes
+                                  {post.likes} sviđanja
                                 </div>
                                 <div className="text-xs font-light">
-                                  {post.comments} comments
+                                  {post.comments} komentara
                                 </div>
                               </div>
                             </div>
@@ -306,7 +306,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                     {[...posts].reverse().map((post) => (
                       <a
                         key={`second-${post._key}`}
-                        href={post.link}
+                        href={post.link || undefined}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-shrink-0 w-40 group"
@@ -337,10 +337,10 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
                             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                               <div className="text-white text-center p-4">
                                 <div className="text-sm font-medium mb-1">
-                                  {post.likes} likes
+                                  {post.likes} sviđanja
                                 </div>
                                 <div className="text-xs font-light">
-                                  {post.comments} comments
+                                  {post.comments} komentara
                                 </div>
                               </div>
                             </div>
@@ -360,7 +360,7 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
               {/* Scroll Hint - Bottom */}
               <div className="text-center mt-4">
                 <div className="inline-flex items-center gap-2 text-xs text-gray-500">
-                  <span>Scroll both rows</span>
+                  <span>Prevucite za još objava</span>
                   <div className="flex gap-1">
                     <div className="w-1.5 h-1.5 border border-gray-400 rounded-full"></div>
                     <div className="w-1.5 h-1.5 border border-gray-400 rounded-full"></div>
@@ -384,23 +384,23 @@ export const InstagramFeedSection: React.FC<InstagramFeedSectionProps> = ({
 
               {/* Buttons */}
               <div className="space-y-3">
-                <a
+                {ctaFollowLink && (<a
                   href={ctaFollowLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-3 bg-white text-gray-900 text-sm font-medium rounded-xl text-center active:scale-95 transition-transform"
                 >
                   {ctaFollowText}
-                </a>
+                </a>)}
 
-                <a
+                {ctaDmLink && (<a
                   href={ctaDmLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full py-3 border border-white/30 text-white text-sm font-medium rounded-xl text-center active:scale-95 transition-transform"
                 >
                   {ctaDmText}
-                </a>
+                </a>)}
               </div>
 
               {/* Response Time */}

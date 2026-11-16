@@ -1,3 +1,4 @@
+import { store, shippingMode } from "../lib/storeConfig";
 // src/context/CartContext.tsx
 import React, {
   createContext,
@@ -40,8 +41,6 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-const SHIPPING_COST = 9.99;
-const FREE_SHIPPING_THRESHOLD = 100;
 
 export const useCart = () => {
   const context = useContext(CartContext);
@@ -129,7 +128,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+  const shippingCost = items.length && shippingMode === "fixed" ? store.shippingCost : 0;
   const total = subtotal + shippingCost;
 
   return (

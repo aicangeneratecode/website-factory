@@ -35,13 +35,13 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
 
   // Используем данные из Sanity или значения по умолчанию
   const {
-    title = "Community",
-    subtitle = "Stories",
-    description = "Real photos from our community",
+    title = "Zajednica",
+    subtitle = "Galerija",
+    description = "",
     posts = [],
-    ctaText = "Share Your Story",
-    ctaLink = "https://instagram.com/nsf_clothing",
-    ctaDescription = "Tag @nsf_clothing for a chance to be featured",
+    ctaText = "",
+    ctaLink = "",
+    ctaDescription = "",
   } = data;
 
   // Получаем индексы для трех карточек
@@ -124,9 +124,9 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             {title} {subtitle}
           </h2>
-          <p className="text-gray-500 mb-8">No content available yet</p>
+          <p className="text-gray-500 mb-8">Još nema objava</p>
           <a
-            href={ctaLink}
+            href={ctaLink || undefined}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 text-white rounded-2xl font-medium hover:bg-gray-800 transition-all"
@@ -149,7 +149,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-6 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-sm font-light uppercase tracking-wider">
-                Community Style
+                Stil zajednice
               </span>
             </div>
 
@@ -160,7 +160,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
             </h2>
 
             <p className="text-gray-500 text-lg max-w-2xl">
-              Discover real photos from our amazing community
+              Pogledajte fotografije iz zajednice
             </p>
           </div>
 
@@ -209,7 +209,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                       <div className="absolute inset-0 overflow-hidden">
                         <img
                           src={posts[leftIndex]?.imageUrl || "/images/clothing-store/placeholder.jpg"}
-                          alt="Community story"
+                          alt="Fotografija iz galerije"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
                         />
@@ -266,7 +266,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                           src={
                             posts[centerIndex]?.imageUrl || "/images/clothing-store/placeholder.jpg"
                           }
-                          alt="Community story"
+                          alt="Fotografija iz galerije"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
                         />
@@ -328,7 +328,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                           src={
                             posts[rightIndex]?.imageUrl || "/images/clothing-store/placeholder.jpg"
                           }
-                          alt="Community story"
+                          alt="Fotografija iz galerije"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
                         />
@@ -403,7 +403,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
           {/* CTA */}
           <div className="mt-10 flex flex-col items-center">
             <a
-              href={ctaLink}
+              href={ctaLink || undefined}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-gray-900 to-black text-white rounded-2xl font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 group shadow-lg"
@@ -426,7 +426,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
             <div className="inline-flex items-center gap-2 mb-3">
               <div className="w-5 h-0.5 bg-gray-900"></div>
               <span className="text-gray-500 text-xs font-light uppercase tracking-wider">
-                Community
+                Zajednica
               </span>
             </div>
 
@@ -458,7 +458,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                         src={
                           posts[currentIndex]?.imageUrl || "/images/clothing-store/placeholder.jpg"
                         }
-                        alt="Community story"
+                        alt="Fotografija iz galerije"
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
@@ -509,7 +509,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                     {currentIndex + 1}
                   </div>
                   <div className="text-xs text-gray-500 font-light">
-                    of {posts.length}
+                    od {posts.length}
                   </div>
                 </div>
 
@@ -529,7 +529,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
               <div className="mb-8">
                 <div className="flex items-center justify-center mb-4">
                   <div className="text-sm text-gray-900 font-medium">
-                    More stories
+                    Još objava
                   </div>
                 </div>
 
@@ -546,7 +546,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                           <div className="absolute inset-0 overflow-hidden">
                             <img
                               src={post.imageUrl || "/images/clothing-store/placeholder.jpg"}
-                              alt="UGC post"
+                              alt="Objava iz galerije"
                               className="w-full h-full object-cover"
                               loading="lazy"
                             />
@@ -581,7 +581,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
             {/* CTA Button */}
             <div className="text-center">
               <a
-                href={ctaLink}
+                href={ctaLink || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 w-full py-4 bg-gray-900 text-white text-sm font-medium rounded-xl active:scale-95 transition-transform shadow-md"
@@ -618,7 +618,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
               <div className="absolute inset-0 overflow-hidden">
                 <img
                   src={posts[selectedImage].imageUrl}
-                  alt="Enlarged post"
+                  alt="Uvećana fotografija"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -629,7 +629,7 @@ export const UGCGallerySection: React.FC<UGCGallerySectionProps> = ({
                     className="text-white text-sm font-medium hover:text-gray-300 transition-colors"
                     onClick={() => setSelectedImage(null)}
                   >
-                    Close
+                    Zatvori
                   </button>
                   <div className="flex items-center gap-4">
                     {/* Tags */}

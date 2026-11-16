@@ -1,0 +1,239 @@
+{
+  "categoryCarousel": {
+    "_id": "e5a8c31c-5299-446a-a9e4-7f27b039a8c2",
+    "categories": [
+      {
+        "name": "Majice",
+        "description": "Majice iz demo kolekcije",
+        "image": "/images/clothing-store/Tshirt.png",
+        "link": "/catalog",
+        "buttonText": "Pogledajte katalog"
+      },
+      {
+        "name": "Farmerke",
+        "description": "Farmerke iz demo kolekcije",
+        "image": "/images/clothing-store/True-Religion.png",
+        "link": "/catalog?category=women",
+        "buttonText": "Pogledajte katalog"
+      }
+    ],
+    "isActive": true,
+    "order": 3,
+    "subtitle": "Izaberite šta tražite",
+    "title": "Kupujte po kategoriji"
+  },
+  "faqSection": {
+    "_id": "faqSection",
+    "_type": "faqSection",
+    "isActive": true,
+    "order": 8,
+    "title": "Česta pitanja",
+    "faqs": [
+      {
+        "_key": "order",
+        "question": "Kako da poručim?",
+        "answer": "Izaberite veličinu, dodajte artikal u korpu i otvorite pregled porudžbine. U demo prodavnici možete da kopirate pripremljeni tekst.",
+        "category": "Porudžbine"
+      },
+      {
+        "_key": "delivery",
+        "question": "Kako se dogovara dostava?",
+        "answer": "Sa prodavnicom proverite trošak i rok dostave pre potvrde porudžbine.",
+        "category": "Dostava"
+      }
+    ]
+  },
+  "hero": {
+    "_id": "b6231f31-0dfd-444f-895e-c2171cdce1a6",
+    "buttonText": "Pogledajte katalog",
+    "instagramUsername": "",
+    "isActive": true,
+    "mainImage": "/images/clothing-store/IMG_3375.jpg",
+    "order": null,
+    "stats": [],
+    "subtitle": "Odeća za svaki dan",
+    "title": "Clothing Store"
+  },
+  "instagramFeed": {
+    "_id": "instagramFeed",
+    "_type": "instagramFeed",
+    "isActive": true,
+    "order": 5,
+    "title": "Objave iz kolekcije",
+    "subtitle": "Ilustrativni prikaz Instagram sadržaja.",
+    "posts": [
+      {
+        "_key": "0",
+        "caption": "Kombinacija za svaki dan",
+        "likes": 0,
+        "comments": 0,
+        "link": "",
+        "type": "product",
+        "imageUrl": "/images/clothing-store/insta1.jpeg"
+      },
+      {
+        "_key": "1",
+        "caption": "Detalji kolekcije",
+        "likes": 0,
+        "comments": 0,
+        "link": "",
+        "type": "product",
+        "imageUrl": "/images/clothing-store/insta2.jpeg"
+      },
+      {
+        "_key": "2",
+        "caption": "Ideja za slojevito oblačenje",
+        "likes": 0,
+        "comments": 0,
+        "link": "",
+        "type": "product",
+        "imageUrl": "/images/clothing-store/insta3.jpeg"
+      },
+      {
+        "_key": "3",
+        "caption": "Inspiracija iz kolekcije",
+        "likes": 0,
+        "comments": 0,
+        "link": "",
+        "type": "product",
+        "imageUrl": "/images/clothing-store/insta4.jpeg"
+      }
+    ],
+    "handle": "",
+    "followers": "",
+    "postsCount": ""
+  },
+  "popularProducts": {
+    "_id": "9536986b-9bd3-4ab3-87b8-f1af6349277a",
+    "isActive": true,
+    "order": 4,
+    "products": [
+      {
+        "_id": "402119ef-080c-48d8-b1fb-1c9cfa54896c",
+        "name": "Crna majica",
+        "price": 25,
+        "originalPrice": null,
+        "images": [
+          "/images/clothing-store/Tshirt.png"
+        ],
+        "brand": "Armani",
+        "isNew": true,
+        "inStock": true,
+        "sizes": [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XXL"
+        ]
+      },
+      {
+        "_id": "ac6a9eac-d15e-4b64-b17e-43ded036d763",
+        "name": "Majica sa printom",
+        "price": 20,
+        "originalPrice": 35,
+        "images": [
+          "/images/clothing-store/Tshirt copy.png"
+        ],
+        "brand": "Trapstar",
+        "isNew": false,
+        "inStock": true,
+        "sizes": [
+          "M",
+          "XL",
+          "XXL"
+        ]
+      },
+      {
+        "_id": "feec2408-fe7e-4c61-9079-1ec870f5d88d",
+        "name": "Farmerke",
+        "price": 65,
+        "originalPrice": null,
+        "images": [
+          "/images/clothing-store/True-Religion.png"
+        ],
+        "brand": "TrueReligon",
+        "isNew": true,
+        "inStock": true,
+        "sizes": [
+          "M",
+          "L",
+          "XXL"
+        ]
+      }
+    ],
+    "subtitle": "Iz demo kolekcije",
+    "title": "Izdvojeni artikli"
+  },
+  "reviewsSection": {
+    "_id": "reviewsSection",
+    "_type": "reviewsSection",
+    "isActive": true,
+    "order": 6,
+    "title": "Utisci kupaca",
+    "subtitle": "Primer prikaza recenzija. Utisci su izmišljeni.",
+    "reviews": [
+      {
+        "_key": "demo-a",
+        "customerName": "Primer recenzije",
+        "customerLocation": "Demo",
+        "rating": 5,
+        "reviewText": "Opis veličine mi je pomogao pri izboru majice.",
+        "date": "",
+        "productName": "Crna majica"
+      },
+      {
+        "_key": "demo-b",
+        "customerName": "Primer recenzije",
+        "customerLocation": "Demo",
+        "rating": 5,
+        "reviewText": "U korpi sam lako proverio artikle i odabrane veličine.",
+        "date": "",
+        "productName": "Farmerke"
+      }
+    ]
+  },
+  "ugcGallery": {
+    "_id": "ugcGallery",
+    "_type": "ugcGallery",
+    "isActive": true,
+    "order": 7,
+    "title": "Ideje za kombinovanje",
+    "subtitle": "Galerija",
+    "description": "Ilustrativne fotografije za prikaz galerije.",
+    "filters": [],
+    "posts": [
+      {
+        "_key": "0",
+        "imageUrl": "/images/clothing-store/insta1.jpeg",
+        "isVideo": false,
+        "likes": 0,
+        "tags": []
+      },
+      {
+        "_key": "1",
+        "imageUrl": "/images/clothing-store/insta2.jpeg",
+        "isVideo": false,
+        "likes": 0,
+        "tags": []
+      },
+      {
+        "_key": "2",
+        "imageUrl": "/images/clothing-store/insta3.jpeg",
+        "isVideo": false,
+        "likes": 0,
+        "tags": []
+      },
+      {
+        "_key": "3",
+        "imageUrl": "/images/clothing-store/insta4.jpeg",
+        "isVideo": false,
+        "likes": 0,
+        "tags": []
+      }
+    ],
+    "ctaText": "Pogledajte katalog",
+    "ctaLink": "#products",
+    "ctaDescription": ""
+  }
+}

@@ -1,3 +1,4 @@
+import { formatPrice } from "../../lib/storeConfig";
 // src/components/home/PopularProductsSection.tsx
 import React, {
   useState,
@@ -59,7 +60,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
         name: product.name,
         price: product.price,
         originalPrice: product.originalPrice,
-        brand: product.brand || "NSF", // ← brand теперь строка из запроса
+        brand: product.brand || "", // ← brand теперь строка из запроса
         images: product.images || ["/images/clothing-store/Tshirt.png"],
         isNew: product.isNew,
         inStock: product.inStock,
@@ -98,7 +99,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
 
   // Получаем уникальные бренды из продуктов
   const brands = useMemo(() => {
-    if (!products.length) return [{ id: "all", name: "All" }];
+    if (!products.length) return [{ id: "all", name: "Svi" }];
 
     const allBrands = products
       .map((product) => product.brand)
@@ -108,7 +109,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
 
     const uniqueBrands = Array.from(new Set(allBrands));
     return [
-      { id: "all", name: "All" },
+      { id: "all", name: "Svi" },
       ...uniqueBrands.map((brand) => ({
         id: brand.toLowerCase(),
         name: brand,
@@ -243,13 +244,6 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
     }
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
 
   const handleProductClick = (productId: string) => {
     if (!isDragging) {
@@ -265,7 +259,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
     addItem({
       productId: product.id,
       name: product.name,
-      brand: product.brand || "NSF",
+      brand: product.brand || "",
       price: product.price,
       originalPrice: product.originalPrice,
       quantity: 1,
@@ -292,7 +286,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
           {/* Заголовок секции из Sanity */}
           <div className="mb-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">
-              {data?.title || "Popular Products"}
+              {data?.title || "Izdvojeni artikli"}
             </h2>
             {data?.subtitle && (
               <p className="text-gray-500 font-light text-lg max-w-2xl mx-auto">
@@ -405,12 +399,12 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
                       <div className="absolute top-4 left-4 flex gap-2">
                         {product.isNew && (
                           <span className="glass-effect-light-enhanced text-gray-900 px-3 py-1.5 rounded-full text-xs font-medium shadow-sm">
-                            New
+                            Novo
                           </span>
                         )}
                         {!product.inStock && (
                           <span className="glass-effect-light-enhanced bg-gray-900/80 text-white px-3 py-1.5 rounded-full text-xs font-medium">
-                            Out of Stock
+                            Nema na stanju
                           </span>
                         )}
                       </div>
@@ -448,7 +442,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
                         </span>
 
                         <div className="text-gray-400 text-xs font-light">
-                          {product.inStock ? "In Stock" : "Out of Stock"}
+                          {product.inStock ? "Na stanju" : "Nema na stanju"}
                         </div>
                       </div>
                     </div>
@@ -456,7 +450,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
                 ))
               ) : (
                 <div className="w-full text-center py-12 text-gray-500">
-                  No products found for this brand
+                  Nema artikala ovog brenda
                 </div>
               )}
             </div>
@@ -488,7 +482,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
           {/* Заголовок секции */}
           <div className="mb-6 text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              {data?.title || "Popular Products"}
+              {data?.title || "Izdvojeni artikli"}
             </h2>
             {data?.subtitle && (
               <p className="text-gray-500 font-light text-sm">
@@ -543,7 +537,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
                     {product.isNew && (
                       <div className="absolute top-2 left-2">
                         <span className="px-2 py-1 bg-white/90 text-gray-900 text-xs rounded-full">
-                          New
+                          Novo
                         </span>
                       </div>
                     )}
@@ -579,7 +573,7 @@ export const PopularProductsSection: React.FC<PopularProductsSectionProps> = ({
               ))
             ) : (
               <div className="w-full text-center py-8 text-gray-500 text-sm">
-                No products found for this brand
+                Nema artikala ovog brenda
               </div>
             )}
           </div>

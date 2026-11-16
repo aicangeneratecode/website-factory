@@ -1,3 +1,4 @@
+import { formatPrice, shippingLabel } from "../lib/storeConfig";
 // src/pages/CartPage.tsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -33,13 +34,6 @@ export const CartPage: React.FC = () => {
 
   const [isClearing, setIsClearing] = useState(false);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
 
   const handleClearCart = () => {
     setIsClearing(true);
@@ -68,7 +62,7 @@ export const CartPage: React.FC = () => {
                   <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-gray-900 transition-colors duration-300" />
                 </div>
                 <span className="text-sm font-light text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
-                  Back
+                  Nazad
                 </span>
               </button>
 
@@ -76,7 +70,7 @@ export const CartPage: React.FC = () => {
                 onClick={() => navigate("/catalog")}
                 className="px-4 py-2 glass-effect-light-enhanced rounded-xl text-sm font-medium text-gray-900 hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                Continue Shopping
+                Nastavite kupovinu
               </button>
             </div>
           </div>
@@ -92,10 +86,10 @@ export const CartPage: React.FC = () => {
 
               <div className="space-y-4 mb-8">
                 <h1 className="text-3xl font-light text-gray-900">
-                  Your cart is empty
+                  Korpa je prazna
                 </h1>
                 <p className="text-gray-500 font-light text-lg max-w-md mx-auto">
-                  Looks like you haven't added any items to your cart yet.
+                  Izaberite artikal i veličinu u katalogu.
                 </p>
               </div>
 
@@ -104,20 +98,9 @@ export const CartPage: React.FC = () => {
                   onClick={() => navigate("/catalog")}
                   className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-2xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-500 transform hover:scale-105 active:scale-95 group shadow-lg hover:shadow-xl"
                 >
-                  <span>Browse Collection</span>
+                  <span>Pogledajte kolekciju</span>
                   <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
                 </button>
-
-                <a
-                  href="https://instagram.com/nsf_clothing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 glass-effect-enhanced text-gray-900 rounded-2xl font-medium hover:shadow-lg transition-all duration-500 transform hover:scale-105 active:scale-95 group border border-white/40"
-                >
-                  <Instagram className="w-5 h-5" />
-                  <span>Shop on Instagram</span>
-                  <MessageCircle className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                </a>
               </div>
             </div>
           </div>
@@ -140,7 +123,7 @@ export const CartPage: React.FC = () => {
                 <ArrowLeft className="w-5 h-5 text-gray-600 group-hover:text-gray-900 transition-colors duration-300" />
               </div>
               <span className="text-sm font-light text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
-                Back
+                Nazad
               </span>
             </button>
 
@@ -151,13 +134,13 @@ export const CartPage: React.FC = () => {
                   isClearing ? "animate-pulse" : ""
                 }`}
               >
-                Clear All
+                Ispraznite korpu
               </button>
               <button
                 onClick={() => navigate("/catalog")}
                 className="px-4 py-2 glass-effect-light-enhanced rounded-xl text-sm font-medium text-gray-900 hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                Continue Shopping
+                Nastavite kupovinu
               </button>
             </div>
           </div>
@@ -171,7 +154,7 @@ export const CartPage: React.FC = () => {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-                  Shopping Cart
+                  Korpa
                 </h1>
                 <p className="text-gray-500 font-light">
                   {totalItems} {totalItems === 1 ? "item" : "items"} in your
@@ -182,7 +165,7 @@ export const CartPage: React.FC = () => {
                 <div className="text-2xl font-bold text-gray-900 mb-1">
                   {formatPrice(total)}
                 </div>
-                <p className="text-sm text-gray-500 font-light">Total amount</p>
+                <p className="text-sm text-gray-500 font-light">Ukupan iznos</p>
               </div>
             </div>
           </div>
@@ -237,7 +220,7 @@ export const CartPage: React.FC = () => {
                                   </span>
                                   <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
                                   <span className="text-gray-500 font-light">
-                                    Size: {item.size}
+                                    Veličina: {item.size}
                                   </span>
                                 </div>
                               </div>
@@ -274,7 +257,7 @@ export const CartPage: React.FC = () => {
                                   </button>
                                 </div>
                                 <div className="text-sm text-gray-500 font-light ml-3">
-                                  {formatPrice(item.price)} each
+                                  {formatPrice(item.price)} po komadu
                                 </div>
                               </div>
 
@@ -292,25 +275,25 @@ export const CartPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Order Summary */}
+            {/* Pregled porudžbine */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
                 {/* Summary Card */}
                 <div className="glass-effect-enhanced rounded-2xl border border-white/40 shadow-soft p-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-6">
-                    Order Summary
+                    Pregled porudžbine
                   </h3>
 
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between">
-                      <span className="text-gray-600 font-light">Subtotal</span>
+                      <span className="text-gray-600 font-light">Artikli</span>
                       <span className="font-medium text-gray-900">
                         {formatPrice(subtotal)}
                       </span>
                     </div>
 
                     <div className="flex justify-between">
-                      <span className="text-gray-600 font-light">Shipping</span>
+                      <span className="text-gray-600 font-light">Dostava</span>
                       <span
                         className={
                           shippingCost === 0
@@ -318,22 +301,16 @@ export const CartPage: React.FC = () => {
                             : "font-medium text-gray-900"
                         }
                       >
-                        {shippingCost === 0
-                          ? "FREE"
-                          : formatPrice(shippingCost)}
+                        {shippingLabel(shippingCost)}
                       </span>
                     </div>
 
-                    {subtotal < 100 && (
-                      <div className="text-sm text-gray-500 font-light py-2 px-3 glass-effect-light-enhanced rounded-xl">
-                        Add {formatPrice(100 - subtotal)} more for free shipping
-                      </div>
-                    )}
+
                   </div>
 
                   <div className="border-t border-gray-100/50 pt-6 mb-6">
                     <div className="flex justify-between text-xl">
-                      <span className="font-bold text-gray-900">Total</span>
+                      <span className="font-bold text-gray-900">Ukupno</span>
                       <span className="font-bold text-gray-900">
                         {formatPrice(total)}
                       </span>
@@ -344,64 +321,13 @@ export const CartPage: React.FC = () => {
                     onClick={handleCheckout}
                     className="w-full py-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-xl font-medium hover:from-gray-800 hover:to-gray-700 transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
                   >
-                    Proceed to Checkout
+                    Pregled porudžbine
                   </button>
                 </div>
 
                 {/* Trust Badges */}
                 <div className="glass-effect-light-enhanced rounded-2xl border border-white/30 p-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-3">
-                      <Truck className="w-5 h-5 text-gray-600 mx-auto mb-2" />
-                      <span className="text-xs text-gray-600 font-light block">
-                        Free Shipping
-                      </span>
-                    </div>
-                    <div className="text-center p-3">
-                      <RotateCcw className="w-5 h-5 text-gray-600 mx-auto mb-2" />
-                      <span className="text-xs text-gray-600 font-light block">
-                        30-Day Returns
-                      </span>
-                    </div>
-                    <div className="text-center p-3">
-                      <Shield className="w-5 h-5 text-gray-600 mx-auto mb-2" />
-                      <span className="text-xs text-gray-600 font-light block">
-                        Secure Payment
-                      </span>
-                    </div>
-                    <div className="text-center p-3">
-                      <Package className="w-5 h-5 text-gray-600 mx-auto mb-2" />
-                      <span className="text-xs text-gray-600 font-light block">
-                        Fast Delivery
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Instagram CTA */}
-                <div className="glass-effect-enhanced rounded-2xl border border-white/40 p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 glass-effect-light-enhanced rounded-xl flex items-center justify-center">
-                      <Instagram className="w-5 h-5 text-gray-700" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-gray-900">
-                        Shop on Instagram
-                      </h4>
-                      <p className="text-sm text-gray-500 font-light">
-                        Get personalized service
-                      </p>
-                    </div>
-                  </div>
-                  <a
-                    href="https://instagram.com/nsf_clothing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 w-full justify-center py-3 glass-effect-light-enhanced text-gray-900 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>Message on Instagram</span>
-                  </a>
+                  <p className="mt-4 text-sm text-gray-600">Prodavnica potvrđuje dostupnost, dostavu i način plaćanja nakon prijema upita.</p>
                 </div>
               </div>
             </div>

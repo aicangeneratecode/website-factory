@@ -1,3 +1,4 @@
+import { store } from "../../lib/storeConfig";
 import React from "react";
 import { Link } from "react-router-dom";
 import { X } from "lucide-react";
@@ -35,14 +36,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         <button
           onClick={onClose}
           className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300"
-          aria-label="Close menu"
+          aria-label="Zatvorite meni"
         >
           <X size={20} className="text-gray-700" />
         </button>
 
         {/* Logo */}
         <div className="mt-4 mb-8">
-          <div className="text-2xl font-light text-gray-900">NSF</div>
+          <div className="text-2xl font-light text-gray-900">{store.name}</div>
         </div>
 
         <nav className="space-y-2">
@@ -51,28 +52,28 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             className="block py-3 px-4 text-lg font-light text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-300"
             onClick={onClose}
           >
-            Catalog
+            Katalog
           </Link>
           <Link
             to="/catalog?category=men"
             className="block py-3 px-4 text-lg font-light text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-300"
             onClick={onClose}
           >
-            Men
+            Muškarci
           </Link>
           <Link
             to="/catalog?category=women"
             className="block py-3 px-4 text-lg font-light text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-300"
             onClick={onClose}
           >
-            Women
+            Žene
           </Link>
           <Link
             to="/catalog?new=true"
             className="block py-3 px-4 text-lg font-light text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-300"
             onClick={onClose}
           >
-            New
+            Novo
           </Link>
         </nav>
 
@@ -80,18 +81,18 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         <div className="mt-8 pt-6 border-t border-gray-200">
           <div className="space-y-2">
             <Link
-              to="/contact"
+              to="/faq"
               className="block py-2 px-4 text-sm font-light text-gray-500 hover:text-gray-700 transition-colors duration-300"
               onClick={onClose}
             >
-              Contact
+              Česta pitanja
             </Link>
             <Link
-              to="/about"
+              to="/shipping"
               className="block py-2 px-4 text-sm font-light text-gray-500 hover:text-gray-700 transition-colors duration-300"
               onClick={onClose}
             >
-              About
+              Dostava
             </Link>
           </div>
         </div>
