@@ -150,9 +150,9 @@ const allowIndexing =
 
       <ProjectGallery portfolio={config.portfolio} demo={config.demo} />
 
-      {config.beforeAfter?.verifiedPair && <BeforeAfter comparison={config.beforeAfter} />}
-
       <ProcessTimeline process={config.process} demo={config.demo} />
+
+      {config.beforeAfter?.verifiedPair && <BeforeAfter comparison={config.beforeAfter} demo={config.demo} />}
 
       {config.testimonials?.items.some((item) => item.verified) && (
         <ProjectTestimonials testimonials={config.testimonials} demo={config.demo} />

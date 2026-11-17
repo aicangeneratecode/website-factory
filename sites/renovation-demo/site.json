@@ -20,6 +20,7 @@
     { "label": "Projekti", "href": "#projekti" },
     { "label": "Usluge", "href": "#usluge" },
     { "label": "Proces rada", "href": "#proces" },
+    { "label": "Pre i posle", "href": "#preposle" },
     { "label": "Pitanja", "href": "#pitanja" },
     { "label": "Kontakt", "href": "#upit" }
   ],
@@ -75,12 +76,12 @@
   "beforeAfter": {
     "eyebrow": "02 / PRE I POSLE",
     "title": "Pogledajte razliku izbliza.",
-    "description": "Pomerite klizač i uporedite dva prikaza prostora.",
-    "beforeImage": "/images/projectpro/project-01.jpg",
-    "afterImage": "/images/projectpro/project-02.jpg",
-    "beforeAlt": "Ilustrativna fotografija dnevnog boravka",
-    "afterAlt": "Ilustrativna fotografija kuhinje",
-    "verifiedPair": false
+    "description": "Uporedite izgled dnevnog boravka pre i posle uređenja.",
+    "beforeImage": "/images/projectpro/before.avif",
+    "afterImage": "/images/projectpro/after.avif",
+    "beforeAlt": "Dnevni boravak pre uređenja sa praznim podom i belim zidovima",
+    "afterAlt": "Dnevni boravak posle uređenja sa nameštajem, biljkama i tamnim zidom uz kamin",
+    "verifiedPair": true
   },
 
   "services": {
