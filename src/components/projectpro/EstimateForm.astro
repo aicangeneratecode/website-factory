@@ -14,48 +14,48 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
 
 <section
   id="upit"
-  class="scroll-mt-24 bg-[var(--pp-surface)] py-20 md:py-28"
+  class="scroll-mt-40 bg-[var(--pp-surface)] py-8 md:scroll-mt-24 md:py-28"
 >
-  <div class="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-12">
+  <div class="mx-auto grid max-w-[1440px] gap-6 px-4 md:gap-12 md:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20 lg:px-12">
 
     <!-- LEFT CONTENT -->
     <div class="lg:pt-8">
-      <p class="mb-6 text-[11px] font-extrabold tracking-[0.2em] text-[var(--pp-accent)]">
+      <p class="mb-3 text-[11px] font-extrabold tracking-[0.2em] text-[var(--pp-accent)] md:mb-6">
         {estimate.eyebrow}
       </p>
 
-      <h2 class="pp-heading text-[clamp(3rem,5vw,5.5rem)] leading-[1.07] tracking-[-0.06em]">
+      <h2 class="pp-heading text-[clamp(2.125rem,7.5vw,3rem)] leading-[1.07] tracking-[-0.06em] md:text-[clamp(3rem,5vw,5.5rem)]">
         {estimate.title}
       </h2>
 
-      <p class="mt-8 max-w-[440px] text-base leading-8 text-[var(--pp-muted)]">
+      <p class="mt-3 max-w-[440px] text-sm/6 text-[var(--pp-muted)] md:mt-8 md:text-base/8">
         {estimate.description}
       </p>
 
-      <div class="mt-12 border-t border-black/10 pt-8">
-        <p class="mb-4 text-sm font-bold">
+      <div class="mt-5 border-t border-black/10 pt-3 md:mt-12 md:pt-8">
+        <p class="mb-2 text-sm font-bold md:mb-4">
           Kako funkcioniše upit?
         </p>
 
-        <div class="space-y-5">
-          <p class="flex items-start gap-4 text-sm leading-7 text-[var(--pp-muted)]">
+        <div class="space-y-1 md:space-y-5">
+          <p class="flex items-start gap-3 text-sm/5 text-[var(--pp-muted)] md:gap-4 md:leading-7">
             <span class="font-bold text-[var(--pp-accent)]">01</span>
             Unesite osnovne podatke o projektu.
           </p>
 
-          <p class="flex items-start gap-4 text-sm leading-7 text-[var(--pp-muted)]">
+          <p class="flex items-start gap-3 text-sm/5 text-[var(--pp-muted)] md:gap-4 md:leading-7">
             <span class="font-bold text-[var(--pp-accent)]">02</span>
             Pregledajte pripremljenu poruku.
           </p>
 
-          <p class="flex items-start gap-4 text-sm leading-7 text-[var(--pp-muted)]">
+          <p class="flex items-start gap-3 text-sm/5 text-[var(--pp-muted)] md:gap-4 md:leading-7">
             <span class="font-bold text-[var(--pp-accent)]">03</span>
             Pošaljite upit putem e-pošte nakon potvrde.
           </p>
         </div>
       </div>
 
-      <p class="mt-10 max-w-[440px] border-l-2 border-[var(--pp-accent)] pl-5 text-xs leading-7 text-[var(--pp-muted)]">
+      <p class="mt-4 max-w-[440px] border-l-2 border-[var(--pp-accent)] pl-3 text-xs/5 text-[var(--pp-muted)] md:mt-10 md:pl-5 md:leading-7">
         {estimate.disclaimer}
       </p>
     </div>
@@ -68,10 +68,10 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
         data-recipient={estimate.recipientEmail}
         data-request-subject={estimate.requestSubject}
         data-request-intro={estimate.requestIntro}
-        class="rounded-[10px] border border-black/10 bg-[var(--pp-bg)] p-6 sm:p-9 lg:p-12"
+        class="rounded-[10px] border border-black/10 bg-[var(--pp-bg)] p-4 md:p-9 lg:p-12"
       >
-        <div class="mb-9 flex flex-wrap items-center justify-between gap-3">
-          <h3 class="pp-heading text-3xl tracking-tight">
+        <div class="mb-4 flex flex-wrap items-center justify-between gap-3 md:mb-9">
+          <h3 class="pp-heading text-xl tracking-tight md:text-3xl">
             Detalji vašeg projekta
           </h3>
 
@@ -82,10 +82,10 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
           )}
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2">
+        <div class="grid gap-3 min-[360px]:grid-cols-2 md:gap-6">
 
           <!-- TYPE -->
-          <div class="sm:col-span-2">
+          <div class="col-span-full">
             <label for="pp-type" class="mb-2 block text-xs font-bold">
               Vrsta radova *
             </label>
@@ -145,7 +145,7 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
           </div>
 
           <!-- TIMELINE -->
-          <div class="sm:col-span-2">
+          <div class="col-span-full">
             <label for="pp-start" class="mb-2 block text-xs font-bold">
               Kada planirate početak radova? *
             </label>
@@ -202,7 +202,7 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
           </div>
 
           <!-- EMAIL -->
-          <div class="sm:col-span-2">
+          <div class="col-span-full">
             <label for="pp-email" class="mb-2 block text-xs font-bold">
               E-mail adresa *
             </label>
@@ -220,7 +220,7 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
           </div>
 
           <!-- MESSAGE -->
-          <div class="sm:col-span-2">
+          <div class="col-span-full">
             <label for="pp-message" class="mb-2 block text-xs font-bold">
               Dodatne informacije
             </label>
@@ -237,7 +237,7 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
 
         </div>
 
-        <p class="mt-6 text-xs leading-6 text-[var(--pp-muted)]">
+        <p class="mt-3 text-xs/5 text-[var(--pp-muted)] md:mt-6 md:leading-6">
           * Obavezna polja. Podaci se ne šalju automatski.
         </p>
 
@@ -245,7 +245,7 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
           type="submit"
           disabled
           data-prepare-request
-          class="pp-action mt-7 flex min-h-14 w-full items-center justify-center gap-5 bg-[var(--pp-accent)] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-[var(--pp-ink)]"
+          class="pp-action mt-3 flex min-h-14 w-full items-center justify-center gap-5 bg-[var(--pp-accent)] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[var(--pp-ink)] md:mt-7 md:px-7 md:py-4"
         >
           Pripremite upit
           <span aria-hidden="true">↗</span>
@@ -305,6 +305,20 @@ const quantity = estimate.quantity ?? { label: 'Površina', unit: 'm²', example
 
   </div>
 </section>
+
+<style>
+  @media (width < 48rem) {
+    [data-estimate-form] .pp-field {
+      min-height: 2.75rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+    }
+
+    #pp-message {
+      height: 4rem;
+    }
+  }
+</style>
 
 <script>
   document
