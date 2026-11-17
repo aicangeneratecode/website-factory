@@ -12,7 +12,7 @@ const { portfolio, demo } = Astro.props;
 
 <section
   id="projekti"
-  class="scroll-mt-40 bg-[var(--pp-surface)] py-8 md:py-10"
+  class="scroll-mt-40 bg-[var(--pp-surface)] py-8 md:py-7"
 >
   <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
 
@@ -45,8 +45,8 @@ const { portfolio, demo } = Astro.props;
                 ? 'md:col-span-5'
                 : 'md:col-span-12',
             index === 2
-              ? 'min-h-[clamp(11.5rem,51vw,16rem)] md:min-h-[clamp(12rem,23svh,18rem)]'
-              : 'min-h-[clamp(12rem,56vw,18rem)] md:min-h-[clamp(14rem,30svh,23rem)]'
+              ? 'min-h-[calc(clamp(12rem,51vw,16rem)*1.1)] md:min-h-[calc(clamp(12rem,23svh,18rem)*1.1)]'
+              : 'min-h-[calc(clamp(12rem,56vw,18rem)*1.1)] md:min-h-[calc(clamp(14rem,30svh,23rem)*1.1)]'
           ]}
         >
           <img
