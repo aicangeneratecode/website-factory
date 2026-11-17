@@ -12,36 +12,36 @@ const { process, demo } = Astro.props;
 
 <section
   id="proces"
-  class="scroll-mt-24 overflow-hidden bg-[var(--pp-ink)] py-20 text-white md:py-28"
+  class="scroll-mt-48 overflow-hidden bg-[var(--pp-ink)] py-14 text-white min-[360px]:scroll-mt-40 md:scroll-mt-24 md:py-28"
 >
   <div class="mx-auto max-w-[1440px] px-6 lg:px-12">
 
     <!-- SECTION HEADING -->
-    <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+    <div class="grid gap-5 md:gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
 
       <div>
-        <p class="mb-6 text-[11px] font-extrabold tracking-[0.2em] text-[#DCA18A]">
+        <p class="mb-4 text-[11px] font-extrabold tracking-[0.2em] text-[#DCA18A] md:mb-6">
           {process.eyebrow}
         </p>
 
         <h2
-          class="pp-heading max-w-[760px] text-[clamp(3rem,5.5vw,5.8rem)] leading-[1.05] tracking-[-0.06em]"
+          class="pp-heading max-w-[760px] text-[clamp(2.5rem,7vw,3rem)] leading-[1.05] tracking-[-0.06em] md:text-[clamp(3rem,5.5vw,5.8rem)]"
         >
           {process.title}
         </h2>
       </div>
 
-      <p class="max-w-[460px] text-base leading-8 text-white/60 lg:ml-auto">
+      <p class="max-w-[460px] text-base leading-7 text-white/60 md:leading-8 lg:ml-auto">
         {process.description}
       </p>
     </div>
 
     <!-- TIMELINE -->
-    <ol class="mt-16 grid grid-cols-1 lg:mt-22 lg:grid-cols-4">
+    <ol class="mt-10 grid grid-cols-1 md:mt-16 lg:mt-22 lg:grid-cols-4">
 
       {process.steps.map((step) => (
         <li
-          class="relative border-l border-white/25 pb-11 pl-8 last:pb-0 lg:border-l-0 lg:border-t lg:pb-0 lg:pl-0 lg:pr-8 lg:pt-11"
+          class="relative border-l border-white/25 pb-8 pl-6 last:pb-0 md:pb-11 md:pl-8 lg:border-l-0 lg:border-t lg:pb-0 lg:pl-0 lg:pr-8 lg:pt-11"
         >
 
           <!-- TIMELINE DOT -->
@@ -52,27 +52,27 @@ const { process, demo } = Astro.props;
 
           <!-- STEP NUMBER -->
           <span
-            class="font-display text-[clamp(3rem,4vw,4.5rem)] leading-none tracking-[-0.05em] text-[#DCA18A]"
+            class="font-display text-[2.5rem] leading-none tracking-[-0.05em] text-[#DCA18A] md:text-[clamp(3rem,4vw,4.5rem)]"
           >
             {step.number}
           </span>
 
           <!-- STEP TITLE -->
           <h3
-            class="pp-heading mt-7 max-w-[300px] text-[clamp(1.6rem,2vw,2rem)] leading-[1.15] tracking-[-0.035em]"
+            class="pp-heading mt-4 max-w-[300px] text-[clamp(1.6rem,2vw,2rem)] leading-[1.15] tracking-[-0.035em] md:mt-7"
           >
             {step.title}
           </h3>
 
           <!-- DESCRIPTION -->
           <p
-            class="mt-5 max-w-[310px] text-sm leading-[1.9] text-white/60"
+            class="mt-3 max-w-[310px] text-sm leading-[1.9] text-white/60 md:mt-5"
           >
             {step.description}
           </p>
 
           <!-- STEP DETAIL -->
-          <div class="mt-8 flex items-start gap-3">
+          <div class="mt-4 flex items-start gap-3 md:mt-8">
             <span
               class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#DCA18A]"
               aria-hidden="true"
@@ -90,7 +90,7 @@ const { process, demo } = Astro.props;
 
     <!-- BOTTOM CTA -->
     <div
-      class="mt-16 flex flex-col justify-between gap-8 border-t border-white/20 pt-9 md:flex-row md:items-center"
+      class="mt-10 flex flex-col justify-between gap-5 border-t border-white/20 pt-6 md:mt-16 md:flex-row md:items-center md:gap-8 md:pt-9"
     >
       <div class="max-w-[570px]">
 
